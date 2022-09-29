@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:national_digital_notes/views/verification_screen/verification_views.dart';
 
 import '../../utils/constants/heading_text_styles.dart';
 import '../../utils/constants/my_colors.dart';
@@ -60,7 +62,9 @@ class ForgotScreen extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                     primary: Colors.blueAccent[400], elevation: 0),
                 child: Text("Continue", style: TextStyle(color: Colors.white)),
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(VerificationCodeRoute());
+                },
               ),
             ),
           ],
