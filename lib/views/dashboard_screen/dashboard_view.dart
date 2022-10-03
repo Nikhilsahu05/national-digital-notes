@@ -1,10 +1,11 @@
+import 'dart:developer';
 import 'dart:math' as math;
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:esys_flutter_share_plus/esys_flutter_share_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:national_digital_notes/views/about_screen/about_us_view.dart';
 import 'package:national_digital_notes/views/login_screen/login_view.dart';
 
@@ -15,7 +16,7 @@ import '../privaceAndTerms_screens.dart';
 import 'controller_dashboard_view.dart';
 
 class DashboardView extends StatefulWidget {
-  DashboardView({Key? key}) : super(key: key);
+  const DashboardView({Key? key}) : super(key: key);
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
@@ -79,7 +80,7 @@ class _DashboardViewState extends State<DashboardView> {
     Icons.confirmation_num_sharp,
     Icons.confirmation_num_sharp,
   ];
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +89,7 @@ class _DashboardViewState extends State<DashboardView> {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              Container(
+              SizedBox(
                 height: 190,
                 child: Stack(
                   children: <Widget>[
@@ -99,12 +100,12 @@ class _DashboardViewState extends State<DashboardView> {
                       fit: BoxFit.cover,
                     ),
                     Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 40, horizontal: 14),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 40, horizontal: 14),
                       child: CircleAvatar(
                         radius: 36,
                         backgroundColor: Colors.grey[100],
-                        child: CircleAvatar(
+                        child: const CircleAvatar(
                           radius: 33,
                           backgroundImage: AssetImage(
                               'assets/home_screen_images/Screenshot 2022-09-29 153032.png'),
@@ -114,8 +115,8 @@ class _DashboardViewState extends State<DashboardView> {
                     Align(
                       alignment: Alignment.bottomLeft,
                       child: Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 18),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -139,8 +140,8 @@ class _DashboardViewState extends State<DashboardView> {
                 title: Text("My Subscription",
                     style: MyText.subhead(context)!.copyWith(
                         color: Colors.black, fontWeight: FontWeight.w500)),
-                leading:
-                    Icon(Icons.subscriptions, size: 25.0, color: Colors.grey),
+                leading: const Icon(Icons.subscriptions,
+                    size: 25.0, color: Colors.grey),
                 onTap: () {
                   // onDrawerItemClicked("Home");
                 },
@@ -149,7 +150,8 @@ class _DashboardViewState extends State<DashboardView> {
                 title: Text("Invoices",
                     style: MyText.subhead(context)!.copyWith(
                         color: Colors.black, fontWeight: FontWeight.w500)),
-                leading: Icon(Icons.payment, size: 25.0, color: Colors.grey),
+                leading:
+                    const Icon(Icons.payment, size: 25.0, color: Colors.grey),
                 onTap: () {
                   // onDrawerItemClicked("Trending");
                 },
@@ -158,13 +160,13 @@ class _DashboardViewState extends State<DashboardView> {
                 title: Text("Free eBooks",
                     style: MyText.subhead(context)!.copyWith(
                         color: Colors.black, fontWeight: FontWeight.w500)),
-                leading:
-                    Icon(Icons.menu_book_sharp, size: 25.0, color: Colors.grey),
+                leading: const Icon(Icons.menu_book_sharp,
+                    size: 25.0, color: Colors.grey),
                 onTap: () {
                   // onDrawerItemClicked("Latest");
                 },
               ),
-              Divider(
+              const Divider(
                 height: 1,
                 thickness: 1.4,
               ),
@@ -172,7 +174,8 @@ class _DashboardViewState extends State<DashboardView> {
                 title: Text("Saved Notes",
                     style: MyText.subhead(context)!.copyWith(
                         color: Colors.black, fontWeight: FontWeight.w500)),
-                leading: Icon(Icons.note_sharp, size: 25.0, color: Colors.grey),
+                leading: const Icon(Icons.note_sharp,
+                    size: 25.0, color: Colors.grey),
                 onTap: () {
                   // onDrawerItemClicked("Highlight");
                 },
@@ -181,7 +184,8 @@ class _DashboardViewState extends State<DashboardView> {
                 title: Text("Current Affairs",
                     style: MyText.subhead(context)!.copyWith(
                         color: Colors.black, fontWeight: FontWeight.w500)),
-                leading: Icon(Icons.newspaper, size: 25.0, color: Colors.grey),
+                leading:
+                    const Icon(Icons.newspaper, size: 25.0, color: Colors.grey),
                 onTap: () {
                   // onDrawerItemClicked("Settings");
                 },
@@ -190,13 +194,13 @@ class _DashboardViewState extends State<DashboardView> {
                 title: Text("Success Stories",
                     style: MyText.subhead(context)!.copyWith(
                         color: Colors.black, fontWeight: FontWeight.w500)),
-                leading:
-                    Icon(Icons.auto_stories, size: 25.0, color: Colors.grey),
+                leading: const Icon(Icons.auto_stories,
+                    size: 25.0, color: Colors.grey),
                 onTap: () {
                   // onDrawerItemClicked("Help");
                 },
               ),
-              Divider(
+              const Divider(
                 height: 1,
                 thickness: 1.4,
               ),
@@ -204,12 +208,18 @@ class _DashboardViewState extends State<DashboardView> {
                 title: Text("Share",
                     style: MyText.subhead(context)!.copyWith(
                         color: Colors.black, fontWeight: FontWeight.w500)),
-                leading: Icon(Icons.share, size: 25.0, color: Colors.grey),
+                leading:
+                    const Icon(Icons.share, size: 25.0, color: Colors.grey),
                 onTap: () {
+                  Share.text(
+                    'NATIONAL DIGITAL NOTES',
+                    'NDN',
+                    'www.google.com',
+                  );
                   // onDrawerItemClicked("Help");
                 },
               ),
-              Divider(
+              const Divider(
                 height: 1,
                 thickness: 1.4,
               ),
@@ -217,13 +227,14 @@ class _DashboardViewState extends State<DashboardView> {
                 title: Text("Contact us",
                     style: MyText.subhead(context)!.copyWith(
                         color: Colors.black, fontWeight: FontWeight.w500)),
-                leading: Icon(Icons.phone, size: 25.0, color: Colors.grey),
+                leading:
+                    const Icon(Icons.phone, size: 25.0, color: Colors.grey),
                 onTap: () {
-                  Get.to(ContactUsView());
+                  Get.to(const ContactUsView());
                   // onDrawerItemClicked("Help");
                 },
               ),
-              Divider(
+              const Divider(
                 height: 1,
                 thickness: 1.4,
               ),
@@ -231,13 +242,13 @@ class _DashboardViewState extends State<DashboardView> {
                 title: Text("About NDN",
                     style: MyText.subhead(context)!.copyWith(
                         color: Colors.black, fontWeight: FontWeight.w500)),
-                leading: Icon(Icons.info, size: 25.0, color: Colors.grey),
+                leading: const Icon(Icons.info, size: 25.0, color: Colors.grey),
                 onTap: () {
-                  Get.to(AboutAppSimpleBlueRoute());
+                  Get.to(const AboutAppSimpleBlueRoute());
                   // onDrawerItemClicked("Help");
                 },
               ),
-              Divider(
+              const Divider(
                 height: 1,
                 thickness: 1.4,
               ),
@@ -245,10 +256,10 @@ class _DashboardViewState extends State<DashboardView> {
                 title: Text("Terms",
                     style: MyText.subhead(context)!.copyWith(
                         color: Colors.black, fontWeight: FontWeight.w500)),
-                leading: Icon(Icons.front_hand_sharp,
+                leading: const Icon(Icons.front_hand_sharp,
                     size: 25.0, color: Colors.grey),
                 onTap: () {
-                  Get.to(TermsScreen());
+                  Get.to(const TermsScreen());
                   // onDrawerItemClicked("Help");
                 },
               ),
@@ -256,9 +267,10 @@ class _DashboardViewState extends State<DashboardView> {
                 title: Text("Polices",
                     style: MyText.subhead(context)!.copyWith(
                         color: Colors.black, fontWeight: FontWeight.w500)),
-                leading: Icon(Icons.policy, size: 25.0, color: Colors.grey),
+                leading:
+                    const Icon(Icons.policy, size: 25.0, color: Colors.grey),
                 onTap: () {
-                  Get.to(PoliciesScreen());
+                  Get.to(const PoliciesScreen());
 
                   // onDrawerItemClicked("Help");
                 },
@@ -267,10 +279,10 @@ class _DashboardViewState extends State<DashboardView> {
                 title: Text("Logout",
                     style: MyText.subhead(context)!.copyWith(
                         color: Colors.black, fontWeight: FontWeight.w500)),
-                leading:
-                    Icon(Icons.help_outline, size: 25.0, color: Colors.grey),
+                leading: const Icon(Icons.help_outline,
+                    size: 25.0, color: Colors.grey),
                 onTap: () {
-                  Get.offAll(LoginView());
+                  Get.offAll(const LoginView());
                 },
               ),
             ],
@@ -315,9 +327,9 @@ class _DashboardViewState extends State<DashboardView> {
         leading: IconButton(
           onPressed: () {
             _scaffoldKey.currentState?.openDrawer();
-            print("Tapped on Drawer");
+            log("Tapped on Drawer");
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.menu,
             color: Colors.black,
           ),
@@ -342,7 +354,7 @@ class _DashboardViewState extends State<DashboardView> {
                 ),
                 IconButton(
                   onPressed: () {},
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.person,
                     color: Colors.black,
                   ),
@@ -396,12 +408,12 @@ class _DashboardViewState extends State<DashboardView> {
                     fontWeight: FontWeight.w600),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Expanded(
               child: GridView.builder(
-                  physics: AlwaysScrollableScrollPhysics(),
+                  physics: const AlwaysScrollableScrollPhysics(),
                   primary: true,
                   scrollDirection: Axis.vertical,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -424,7 +436,7 @@ class _DashboardViewState extends State<DashboardView> {
                         Get.to(TabsSimpleLightRoute(
                           title: coursesNames['name'][index].toString(),
                         ));
-                        print(dashboardController.examCategories.value);
+                        log(dashboardController.examCategories.value);
                       },
                       child: Card(
                         elevation: 3,

@@ -1,7 +1,9 @@
 import 'package:esys_flutter_share_plus/esys_flutter_share_plus.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 import 'about_this_ebook_view.dart';
 
@@ -25,18 +27,20 @@ class _SpecificBooksViewsState extends State<SpecificBooksViews> {
 
   @override
   Widget build(BuildContext context) {
-    print("Book Name : ${widget.bookName}, Image URL : ${widget.imageURL}");
+    if (kDebugMode) {
+      print("Book Name : ${widget.bookName}, Image URL : ${widget.imageURL}");
+    }
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('${widget.bookName}'),
+        title: Text(widget.bookName),
         actions: [
           IconButton(
               onPressed: () {
                 Share.text(
                   'NDN',
-                  '${widget.bookName}',
-                  '${widget.imageURL}',
+                  widget.bookName,
+                  widget.imageURL,
                 );
               },
               icon: Icon(Icons.ios_share))
@@ -55,31 +59,7 @@ class _SpecificBooksViewsState extends State<SpecificBooksViews> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
-                    child: Stack(alignment: Alignment.center, children: [
-                      Image.asset(widget.imageURL),
-                      Container(
-                        alignment: Alignment.bottomRight,
-                        child: IconButton(
-                            onPressed: () {
-                              setState(() {
-                                isFaved = !isFaved;
-                                isFaved
-                                    ? Get.snackbar(
-                                        widget.bookName, "Added to Wishlists")
-                                    : Get.snackbar(widget.bookName,
-                                        "Removed from Wishlists");
-                              });
-                            },
-                            icon: isFaved
-                                ? const Icon(
-                                    Icons.favorite,
-                                    color: Colors.red,
-                                  )
-                                : const Icon(
-                                    Icons.favorite_border_outlined,
-                                  )),
-                      ),
-                    ]),
+                    child: Image.asset(widget.imageURL),
                   ),
                   Expanded(
                     child: Column(
@@ -98,26 +78,84 @@ class _SpecificBooksViewsState extends State<SpecificBooksViews> {
                         SizedBox(
                           height: 10,
                         ),
-                        Spacer(),
-                        SizedBox(
-                          height: 50,
-                          width: 150,
-                          child: CustomPaint(
-                            painter: PriceTagPaint(),
-                            child: Center(
-                              child: Text(
-                                "₹ 999",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
-                                    letterSpacing: 1.2,
-                                    color: Colors.white),
-                              ),
+                        Flexible(
+                          child: Container(
+                            height: 25,
+                            child: ListView(
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              children: [
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.orange,
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.orange,
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.orange,
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.orange,
+                                ),
+                                Icon(
+                                  Icons.star_border,
+                                  color: Colors.black,
+                                ),
+                              ],
                             ),
                           ),
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 10,
+                        ),
+                        Row(
+                          children: const [
+                            Text(
+                              "₹ 999",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  letterSpacing: 1.2,
+                                  color: Colors.green),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              "₹ 1549",
+                              style: TextStyle(
+                                  decoration: TextDecoration.lineThrough,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  letterSpacing: 1.2,
+                                  color: Colors.black),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        SizedBox(
+                          height: 35,
+                          width: MediaQuery.of(context).size.width * 0.4,
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(Icons.shopping_cart),
+                                Text(
+                                  "BUY NOW",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -136,69 +174,82 @@ class _SpecificBooksViewsState extends State<SpecificBooksViews> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 OutlinedButton(
-                  onPressed: () {},
-                  style: OutlinedButton.styleFrom(
-                    //<-- SEE HERE
-                    side: BorderSide(width: 1.0, color: Colors.grey),
+                    onPressed: () {
+                      Get.to(PDFSYNC(
+                        bookName: widget.bookName,
+                      ));
+                    },
+                    style: OutlinedButton.styleFrom(
+                      //<-- SEE HERE
+                      side: BorderSide(width: 1.0, color: Colors.grey),
+                    ),
+                    child: Text(
+                      'Read Sample',
+                      style: TextStyle(fontSize: 11),
+                    )),
+                Flexible(
+                  child: OutlinedButton(
+                    onPressed: () {
+                      setState(() {
+                        setState(() {
+                          isFaved = !isFaved;
+                        });
+                      });
+                      // Get.to(PDFSYNC(
+                      //   bookName: widget.bookName,
+                      // ));
+                    },
+                    style: OutlinedButton.styleFrom(
+                      //<-- SEE HERE
+                      side: BorderSide(width: 1.0, color: Colors.grey),
+                    ),
+                    child: isFaved
+                        ? Text(
+                            '    Add to Wishlist   ',
+                            style: TextStyle(fontSize: 11),
+                          )
+                        : Text(
+                            'Remove from Wishlist',
+                            style: TextStyle(fontSize: 11),
+                          ),
                   ),
-                  child: Text('Read Sample'),
                 ),
-                OutlinedButton(
-                  onPressed: () {},
-                  style: OutlinedButton.styleFrom(
-                    //<-- SEE HERE
-                    side: BorderSide(width: 1.0, color: Colors.grey),
-                  ),
-                  child: Text('Add to cart'),
-                ),
-
-                // ElevatedButton(
-                //   onPressed: () {},
-                //   child: Text("Add to cart"),
-                //   style: ElevatedButton.styleFrom(
-                //       backgroundColor: Colors.blue.shade300),
-                // ),
                 ElevatedButton(
-                  onPressed: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Icon(Icons.shopping_cart),
-                      Text("BUY NOW"),
-                    ],
-                  ),
-                ),
+                    onPressed: () {},
+                    child: Text(
+                      "Add to Cart",
+                      style: TextStyle(fontSize: 11),
+                    )),
               ],
             ),
             SizedBox(
               height: 15,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 18.0),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.warning_amber,
-                    size: 20,
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Flexible(
-                    child: Text(
-                      "Books that you buy on the Google Play website can be read in the app.",
-                      style: TextStyle(fontSize: 13),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const Divider(
-              thickness: 1.2,
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 18.0),
+            //   child: Row(
+            //     children: [
+            //       Icon(
+            //         Icons.warning_amber,
+            //         size: 20,
+            //       ),
+            //       SizedBox(
+            //         width: 10,
+            //       ),
+            //       Flexible(
+            //         child: Text(
+            //           "Books that you buy on the Google Play website can be read in the app.",
+            //           style: TextStyle(fontSize: 13),
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // // ),
+            // const Divider(
+            //   thickness: 1.2,
+            // ),
             SizedBox(
-              height: 15,
+              height: 10,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18.0),
@@ -292,4 +343,45 @@ class PriceTagPaint extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+}
+
+class PDFSYNC extends StatefulWidget {
+  String bookName;
+
+  PDFSYNC({required this.bookName});
+
+  @override
+  State<PDFSYNC> createState() => _PDFSYNCState();
+}
+
+class _PDFSYNCState extends State<PDFSYNC> {
+  final GlobalKey<SfPdfViewerState> _pdfViewerKey = GlobalKey();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('Read Sample Book - ${widget.bookName}'),
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(
+                Icons.bookmark,
+                color: Colors.white,
+                semanticLabel: 'Bookmark',
+              ),
+              onPressed: () {
+                _pdfViewerKey.currentState?.openBookmarkView();
+              },
+            ),
+          ],
+        ),
+        body: SfPdfViewer.asset(
+          'assets/sample_book.pdf',
+          canShowHyperlinkDialog: true,
+          canShowPaginationDialog: true,
+          canShowPasswordDialog: true,
+          canShowScrollHead: true,
+          canShowScrollStatus: true,
+        ));
+  }
 }

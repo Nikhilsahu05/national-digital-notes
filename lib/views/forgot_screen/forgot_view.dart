@@ -13,8 +13,8 @@ class ForgotScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      appBar:
-          PreferredSize(preferredSize: Size.fromHeight(0), child: Container()),
+      appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(0), child: Container()),
       body: Container(
         padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
         width: double.infinity,
@@ -25,7 +25,7 @@ class ForgotScreen extends StatelessWidget {
           children: [
             Container(height: 30),
             Center(
-              child: Container(
+              child: SizedBox(
                 width: 80,
                 height: 80,
                 child: Hero(
@@ -47,14 +47,14 @@ class ForgotScreen extends StatelessWidget {
                       color: Colors.blueGrey[300],
                       fontWeight: FontWeight.bold)),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 5),
-              child: SizedBox(
+              child: const SizedBox(
                 height: 50,
-                child: const TextField(
+                child: TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Email',
@@ -63,14 +63,15 @@ class ForgotScreen extends StatelessWidget {
               ),
             ),
             Container(height: 5),
-            Container(
+            SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    primary: Colors.blueAccent[400], elevation: 0),
-                child: Text("Continue", style: TextStyle(color: Colors.white)),
+                    backgroundColor: Colors.blueAccent[400], elevation: 0),
+                child: const Text("Continue",
+                    style: TextStyle(color: Colors.white)),
                 onPressed: () {
-                  Get.to(VerificationCodeRoute());
+                  Get.to(const VerificationCodeRoute());
                 },
               ),
             ),

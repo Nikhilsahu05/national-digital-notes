@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:national_digital_notes/views/login_screen/login_view.dart';
 
 import '../../utils/constants/heading_text_styles.dart';
@@ -14,24 +13,16 @@ class NewPasswordView extends StatefulWidget {
 }
 
 class _NewPasswordViewState extends State<NewPasswordView> {
-  Widget _buildImage() {
-    return Image.asset(
-      'assets/onboarding-images/android_logo.png',
-      fit: BoxFit.fill,
-    );
-  }
-
   bool isVisible1 = false;
   bool isVisible2 = false;
 
   @override
   Widget build(BuildContext context) {
-    var kH = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      appBar:
-          PreferredSize(preferredSize: Size.fromHeight(0), child: Container()),
+      appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(0), child: Container()),
       body: Container(
         padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
         width: double.infinity,
@@ -54,12 +45,12 @@ class _NewPasswordViewState extends State<NewPasswordView> {
                 style: MyText.title(context)!.copyWith(
                     color: MyColors.grey_80, fontWeight: FontWeight.bold)),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Container(
             padding: const EdgeInsets.symmetric(vertical: 5),
-            child: Container(
+            child: SizedBox(
               height: 50,
               child: TextField(
                 obscureText: !isVisible1,
@@ -71,10 +62,10 @@ class _NewPasswordViewState extends State<NewPasswordView> {
                       });
                     },
                     icon: isVisible1
-                        ? Icon(Icons.visibility)
-                        : Icon(Icons.visibility_off),
+                        ? const Icon(Icons.visibility)
+                        : const Icon(Icons.visibility_off),
                   ),
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                   labelText: 'New Password',
                 ),
               ),
@@ -82,7 +73,7 @@ class _NewPasswordViewState extends State<NewPasswordView> {
           ),
           Container(
             padding: const EdgeInsets.symmetric(vertical: 5),
-            child: Container(
+            child: SizedBox(
               height: 50,
               child: TextField(
                 obscureText: !isVisible2,
@@ -104,7 +95,7 @@ class _NewPasswordViewState extends State<NewPasswordView> {
             ),
           ),
           Container(height: 5),
-          Container(
+          SizedBox(
             width: double.infinity,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -112,7 +103,7 @@ class _NewPasswordViewState extends State<NewPasswordView> {
               child:
                   const Text("Submit", style: TextStyle(color: Colors.white)),
               onPressed: () {
-                Get.offAll(LoginView());
+                Get.offAll(const LoginView());
               },
             ),
           ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../../utils/constants/heading_text_styles.dart';
 import '../../utils/constants/my_colors.dart';
@@ -54,14 +53,14 @@ class AboutAppSimpleBlueRouteState extends State<AboutAppSimpleBlueRoute> {
             Text("V 1.0.1",
                 style: MyText.medium(context).copyWith(color: Colors.white)),
             Container(height: 15),
-            Text(
+            const Text(
               "Website legal agreements, such as Terms and Conditions, Terms of Service, and Terms of Use, typically need to be revised and updated from time to time in order to add new provisions or adapt to new laws."
               "\n"
               "\n"
               "Terms and Conditions, Terms of Service, and Terms of Use, typically need to be revised and updated from time to time in order to add new provisions or adapt to new laws.",
               style: TextStyle(color: Colors.white70),
             ),
-            Spacer(),
+            const Spacer(),
             Container(
               alignment: Alignment.bottomLeft,
               child: TextButton(
@@ -77,7 +76,7 @@ class AboutAppSimpleBlueRouteState extends State<AboutAppSimpleBlueRoute> {
               alignment: Alignment.bottomLeft,
               child: TextButton(
                 onPressed: () {
-                  Get.to(PoliciesScreen());
+                  Get.to(const PoliciesScreen());
                 },
                 child: Text("Privacy Policies",
                     style:

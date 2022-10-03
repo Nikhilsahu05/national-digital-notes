@@ -17,10 +17,6 @@ class OnBoardingPageState extends State<OnBoardingPage> {
   int currentPageIndex = 0;
   final introKey = GlobalKey<IntroductionScreenState>();
 
-  void _onIntroEnd(context) {
-    Get.to(const PreLoginScreen());
-  }
-
   PageController pageController = PageController();
 
   @override
@@ -59,17 +55,14 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           child: Container(
             alignment: Alignment.center,
             height: 40,
-            width: MediaQuery
-                .of(context)
-                .size
-                .width,
+            width: MediaQuery.of(context).size.width,
             color: Colors.transparent,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 TextButton(
                     onPressed: () {
-                      Get.to(PreLoginScreen());
+                      Get.to(const PreLoginScreen());
                     },
                     child: const Text(
                       "Skip",
@@ -116,13 +109,11 @@ class OnBoardingPageState extends State<OnBoardingPage> {
                       },
                       child: const Text(
                         "Next",
-
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                             fontSize: 18),
-                      )
-                  )
+                      ))
               ],
             ),
           ),

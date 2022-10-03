@@ -1,7 +1,8 @@
+import 'dart:developer';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:national_digital_notes/views/dashboard_screen/controller_dashboard_view.dart';
 
 import '../subject_books/subject_wise_view.dart';
@@ -12,7 +13,10 @@ class DetailedCoachingView extends StatefulWidget {
   String courseName;
 
   DetailedCoachingView(
-      {required this.index, required this.map, required this.courseName});
+      {super.key,
+      required this.index,
+      required this.map,
+      required this.courseName});
 
   @override
   State<DetailedCoachingView> createState() => _DetailedCoachingViewState();
@@ -47,7 +51,7 @@ class _DetailedCoachingViewState extends State<DetailedCoachingView> {
 
   @override
   Widget build(BuildContext context) {
-    print(dashboardController.examCategories.value);
+    log(dashboardController.examCategories.value);
     return Obx(
       () => Scaffold(
         appBar: AppBar(
@@ -57,11 +61,11 @@ class _DetailedCoachingViewState extends State<DetailedCoachingView> {
             children: [
               Text(
                 widget.map['name'][widget.index],
-                style: TextStyle(fontSize: 14),
+                style: const TextStyle(fontSize: 14),
               ),
               Text(
                 dashboardController.examCategories.value,
-                style: TextStyle(fontSize: 12, color: Colors.white70),
+                style: const TextStyle(fontSize: 12, color: Colors.white70),
               ),
             ],
           ),
@@ -81,7 +85,7 @@ class _DetailedCoachingViewState extends State<DetailedCoachingView> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             CarouselSlider(
@@ -117,11 +121,11 @@ class _DetailedCoachingViewState extends State<DetailedCoachingView> {
                 );
               }).toList(),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0),
+            const Padding(
+              padding: EdgeInsets.only(left: 8.0),
               child: Text(
                 "SUBJECTS",
                 style: TextStyle(
@@ -130,12 +134,12 @@ class _DetailedCoachingViewState extends State<DetailedCoachingView> {
                     fontWeight: FontWeight.bold),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Expanded(
               child: GridView.builder(
-                  physics: AlwaysScrollableScrollPhysics(),
+                  physics: const AlwaysScrollableScrollPhysics(),
                   primary: true,
                   scrollDirection: Axis.vertical,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -147,30 +151,29 @@ class _DetailedCoachingViewState extends State<DetailedCoachingView> {
                     return InkWell(
                       onTap: () {
                         Get.to(SubjectWiseView(
+                          isHome: true,
                           coachingName: '${widget.map['name'][widget.index]}',
-                          examType:
-                              '${dashboardController.examCategories.value}',
-                          subjectName:
-                              '${coursesNames['name'][index].toString()}',
+                          examType: dashboardController.examCategories.value,
+                          subjectName: coursesNames['name'][index].toString(),
                         ));
                       },
                       child: Card(
                         elevation: 3,
                         color: Colors.white,
                         child: Container(
-                          padding: EdgeInsets.only(right: 10),
+                          padding: const EdgeInsets.only(right: 10),
                           color: Colors.transparent,
                           alignment: Alignment.bottomRight,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Container(
-                                  padding: EdgeInsets.only(
+                                  padding: const EdgeInsets.only(
                                       left: 10, top: 10, bottom: 10),
                                   alignment: Alignment.centerLeft,
                                   child: Text(
                                     coursesNames['name'][index].toString(),
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w600),
                                   )),
@@ -182,12 +185,12 @@ class _DetailedCoachingViewState extends State<DetailedCoachingView> {
                                     child: Text(
                                       coursesNames['desc'][index].toString(),
                                       textAlign: TextAlign.start,
-                                      style: TextStyle(fontSize: 11),
+                                      style: const TextStyle(fontSize: 11),
                                     ),
                                   ),
                                   Flexible(
                                     child: Container(
-                                        decoration: BoxDecoration(
+                                        decoration: const BoxDecoration(
                                           shape: BoxShape.circle,
                                         ),
                                         width: 50,

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../../utils/constants/my_colors.dart';
 import '../detailed_coaching_screen/detailed_coaching_view.dart';
+import '../subject_books/subject_wise_view.dart';
 
 class TabsSimpleLightRoute extends StatefulWidget {
   String title;
@@ -21,7 +22,7 @@ class TabsSimpleLightRouteState extends State<TabsSimpleLightRoute>
 
   @override
   void initState() {
-    _tabController = TabController(length: 6, vsync: this);
+    _tabController = TabController(length: 5, vsync: this);
     _scrollController = ScrollController();
     super.initState();
   }
@@ -92,10 +93,6 @@ class TabsSimpleLightRouteState extends State<TabsSimpleLightRoute>
                     SizedBox(
                       width: 90,
                       child: Tab(text: "Exam Date"),
-                    ),
-                    SizedBox(
-                      width: 90,
-                      child: Tab(text: "Test Series"),
                     ),
                   ],
                   controller: _tabController,
@@ -247,9 +244,15 @@ class TabsSimpleLightRouteState extends State<TabsSimpleLightRoute>
                     )
                   : Container(),
               const DetailedCoursesTab(),
-              Container(),
-              Container(),
-              Container(),
+              SubjectWiseView(
+                isHome: false,
+                coachingName: '',
+                examType: '',
+                subjectName: '',
+              ),
+              Image.asset(
+                'assets/upsc-exam-timetable-1.jpg',
+              ),
             ],
           )),
     );
@@ -314,11 +317,11 @@ class _DetailedCoursesTabState extends State<DetailedCoursesTab> {
               height: 10,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     "COACHING",
                     style: TextStyle(
                         color: Colors.grey,
@@ -333,7 +336,7 @@ class _DetailedCoursesTabState extends State<DetailedCoursesTab> {
                               isGridView = !isGridView;
                             });
                           },
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.grid_view_rounded,
                             size: 20,
                           ))
@@ -343,7 +346,7 @@ class _DetailedCoursesTabState extends State<DetailedCoursesTab> {
                               isGridView = !isGridView;
                             });
                           },
-                          icon: Icon(Icons.list, size: 20))
+                          icon: const Icon(Icons.list, size: 20))
                 ],
               ),
             ),
@@ -354,9 +357,9 @@ class _DetailedCoursesTabState extends State<DetailedCoursesTab> {
                   scrollDirection: Axis.vertical,
                   padding: const EdgeInsets.all(0),
                   gridDelegate: isGridView == false
-                      ? SliverGridDelegateWithFixedCrossAxisCount(
+                      ? const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 1, childAspectRatio: 3)
-                      : SliverGridDelegateWithFixedCrossAxisCount(
+                      : const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           childAspectRatio: 1.7,
                           crossAxisSpacing: 2),
@@ -430,46 +433,42 @@ Widget listTile(int index, String title, String desc, String imageURL) {
   return Card(
     elevation: 5,
     color: Colors.white,
-    child: Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            height: 100,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  child: Text(
-                    title.trimLeft(),
-                    textAlign: TextAlign.start,
-                    style: const TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.w600),
-                  ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        SizedBox(
+          height: 100,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title.trimLeft(),
+                textAlign: TextAlign.start,
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              ),
+              SizedBox(
+                width: 150,
+                child: Text(
+                  desc.trimLeft(),
+                  textAlign: TextAlign.start,
+                  style: const TextStyle(
+                      fontSize: 14, fontWeight: FontWeight.w300),
                 ),
-                Container(
-                  width: 150,
-                  child: Text(
-                    desc.trimLeft(),
-                    textAlign: TextAlign.start,
-                    style: const TextStyle(
-                        fontSize: 14, fontWeight: FontWeight.w300),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-          Container(
-              height: 100,
-              width: 100,
-              child: Image.asset(
-                imageURL,
-                fit: BoxFit.fitWidth,
-              )),
-        ],
-      ),
+        ),
+        SizedBox(
+            height: 100,
+            width: 100,
+            child: Image.asset(
+              imageURL,
+              fit: BoxFit.fitWidth,
+            )),
+      ],
     ),
   );
 }

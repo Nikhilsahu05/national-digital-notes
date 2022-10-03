@@ -8,10 +8,10 @@ import '../../utils/constants/heading_text_styles.dart';
 import '../../utils/constants/my_colors.dart';
 
 class LoginView extends StatefulWidget {
-  LoginView();
+  const LoginView({super.key});
 
   @override
-  LoginViewState createState() => new LoginViewState();
+  LoginViewState createState() => LoginViewState();
 }
 
 class LoginViewState extends State<LoginView> {
@@ -20,8 +20,8 @@ class LoginViewState extends State<LoginView> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      appBar:
-          PreferredSize(preferredSize: Size.fromHeight(0), child: Container()),
+      appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(0), child: Container()),
       body: Container(
         padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
         width: double.infinity,
@@ -53,9 +53,9 @@ class LoginViewState extends State<LoginView> {
           Container(height: 50),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 5),
-            child: Container(
+            child: const SizedBox(
               height: 50,
-              child: const TextField(
+              child: TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Email',
@@ -65,9 +65,9 @@ class LoginViewState extends State<LoginView> {
           ),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 5),
-            child: Container(
+            child: const SizedBox(
               height: 50,
-              child: const TextField(
+              child: TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Password',
@@ -78,15 +78,16 @@ class LoginViewState extends State<LoginView> {
           Container(height: 5),
           Row(
             children: <Widget>[
-              Spacer(),
+              const Spacer(),
               TextButton(
-                style: TextButton.styleFrom(primary: Colors.transparent),
+                style:
+                    TextButton.styleFrom(foregroundColor: Colors.transparent),
                 child: Text(
                   "Forgot Password?",
                   style: TextStyle(color: Colors.blue[400]),
                 ),
                 onPressed: () {
-                  Get.to(ForgotScreen());
+                  Get.to(const ForgotScreen());
                 },
               )
             ],
@@ -96,16 +97,16 @@ class LoginViewState extends State<LoginView> {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blueAccent[400], elevation: 0),
-              child: Text("Login", style: TextStyle(color: Colors.white)),
+              child: const Text("Login", style: TextStyle(color: Colors.white)),
               onPressed: () {
-                Get.to(DashboardView());
+                Get.to(const DashboardView());
               },
             ),
           ),
           SizedBox(
             width: double.infinity,
             child: TextButton(
-              style: TextButton.styleFrom(primary: Colors.transparent),
+              style: TextButton.styleFrom(foregroundColor: Colors.transparent),
               child: Text("New user? Sign Up",
                   style: TextStyle(color: Colors.blueAccent[400])),
               onPressed: () {

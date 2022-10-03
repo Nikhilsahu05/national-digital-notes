@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:national_digital_notes/views/dashboard_screen/dashboard_view.dart';
@@ -21,7 +20,7 @@ class _SignupViewState extends State<SignupView> {
 
   // This function is triggered when the button is clicked
   void _doSomething() {
-    Get.to(DashboardView());
+    Get.to(const DashboardView());
     // Do something
   }
 
@@ -51,10 +50,10 @@ class _SignupViewState extends State<SignupView> {
               Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                child: Container(
+                child: const SizedBox(
                   height: 50,
                   child: TextField(
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Name',
                     ),
@@ -64,10 +63,10 @@ class _SignupViewState extends State<SignupView> {
               Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                child: Container(
+                child: const SizedBox(
                   height: 50,
                   child: TextField(
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Email',
                     ),
@@ -77,10 +76,10 @@ class _SignupViewState extends State<SignupView> {
               Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                child: Container(
+                child: const SizedBox(
                   height: 50,
                   child: TextField(
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Mobile',
                     ),
@@ -90,7 +89,7 @@ class _SignupViewState extends State<SignupView> {
               Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                child: Container(
+                child: SizedBox(
                   height: 50,
                   child: TextField(
                     obscureText: !isVisible1,
@@ -102,10 +101,10 @@ class _SignupViewState extends State<SignupView> {
                           });
                         },
                         icon: isVisible1
-                            ? Icon(Icons.visibility)
-                            : Icon(Icons.visibility_off),
+                            ? const Icon(Icons.visibility)
+                            : const Icon(Icons.visibility_off),
                       ),
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
                       labelText: 'Password',
                     ),
                   ),
@@ -114,7 +113,7 @@ class _SignupViewState extends State<SignupView> {
               Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                child: Container(
+                child: SizedBox(
                   height: 50,
                   child: TextField(
                     obscureText: !isVisible2,
@@ -126,10 +125,10 @@ class _SignupViewState extends State<SignupView> {
                           });
                         },
                         icon: isVisible2
-                            ? Icon(Icons.visibility)
-                            : Icon(Icons.visibility_off),
+                            ? const Icon(Icons.visibility)
+                            : const Icon(Icons.visibility_off),
                       ),
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
                       labelText: 'Confirm Password',
                     ),
                   ),
@@ -148,8 +147,8 @@ class _SignupViewState extends State<SignupView> {
                         },
                       ),
                     ),
-                    Flexible(
-                      child: const Text(
+                    const Flexible(
+                      child: Text(
                         'I have read and accept terms and conditions',
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(fontSize: 12),
@@ -159,7 +158,7 @@ class _SignupViewState extends State<SignupView> {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: Container(
+                  child: SizedBox(
                     width: double.maxFinite,
                     child: ElevatedButton(
                         onPressed: agree ? _doSomething : null,
@@ -177,7 +176,7 @@ class _SignupViewState extends State<SignupView> {
                       style: TextStyle(fontSize: 15),
                     ),
                     onPressed: () {
-                      Get.to(LoginView());
+                      Get.to(const LoginView());
                       //signup screen
                     },
                   )

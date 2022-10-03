@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:national_digital_notes/views/login_screen/login_view.dart';
 
 import '../sign_up_screen/signup_view.dart';
@@ -76,7 +75,7 @@ class PreSignInScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
             child: InkWell(
               onTap: () {
-                Get.to(LoginView());
+                Get.to(const LoginView());
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -113,7 +112,7 @@ class PreSignInScreen extends StatelessWidget {
               ),
               TextButton(
                   onPressed: () {
-                    Get.to(SignupView());
+                    Get.to(const SignupView());
                   },
                   child: const Text(
                     "Register here",
