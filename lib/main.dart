@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:national_digital_notes/views/dashboard_screen/dashboard_view.dart';
+import 'package:national_digital_notes/views/splash_screen/splash_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: SafeArea(child: DashboardView()),
+      home: SplashScreen(),
     );
   }
 }

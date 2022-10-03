@@ -1,8 +1,14 @@
-import 'dart:developer';
 import 'dart:math' as math;
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:national_digital_notes/views/login_screen/login_view.dart';
+
+import '../../utils/constants/heading_text_styles.dart';
+import '../detailed_course_screen/detailed_course_view.dart';
+import 'controller_dashboard_view.dart';
 
 class DashboardView extends StatefulWidget {
   DashboardView({Key? key}) : super(key: key);
@@ -21,6 +27,8 @@ class _DashboardViewState extends State<DashboardView> {
       _selectedIndex = index;
     });
   }
+
+  DashboardController dashboardController = Get.put(DashboardController());
 
   Map coursesNames = {
     'name': [
@@ -46,7 +54,7 @@ class _DashboardViewState extends State<DashboardView> {
       'Union Public Service Commission',
       'Civil Service Aptitude or CSAT',
       'Railways (Railway Board)',
-      'Indian Navy is a balanced three dimensional',
+      'Indian Navy is a dimensional force',
       'Notice Regarding Extension',
       'THE INDIAN NAVY',
       'Jharkhand Staff Selection Commission'
@@ -67,39 +75,243 @@ class _DashboardViewState extends State<DashboardView> {
     Icons.confirmation_num_sharp,
     Icons.confirmation_num_sharp,
   ];
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Container(
+                height: 190,
+                child: Stack(
+                  children: <Widget>[
+                    Image.asset(
+                      'assets/home_screen_images/material_bg_1.png',
+                      width: double.infinity,
+                      height: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 40, horizontal: 14),
+                      child: CircleAvatar(
+                        radius: 36,
+                        backgroundColor: Colors.grey[100],
+                        child: CircleAvatar(
+                          radius: 33,
+                          backgroundImage: AssetImage(
+                              'assets/home_screen_images/Screenshot 2022-09-29 153032.png'),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text("Tanmay Sasvadkar",
+                                style: MyText.body2(context)!.copyWith(
+                                    color: Colors.grey[100],
+                                    fontWeight: FontWeight.bold)),
+                            Container(height: 5),
+                            Text("tanmay@immersiveinfotech.com",
+                                style: MyText.body2(context)!
+                                    .copyWith(color: Colors.grey[100]))
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ListTile(
+                title: Text("My Subscription",
+                    style: MyText.subhead(context)!.copyWith(
+                        color: Colors.black, fontWeight: FontWeight.w500)),
+                leading:
+                    Icon(Icons.subscriptions, size: 25.0, color: Colors.grey),
+                onTap: () {
+                  // onDrawerItemClicked("Home");
+                },
+              ),
+              ListTile(
+                title: Text("Invoices",
+                    style: MyText.subhead(context)!.copyWith(
+                        color: Colors.black, fontWeight: FontWeight.w500)),
+                leading: Icon(Icons.payment, size: 25.0, color: Colors.grey),
+                onTap: () {
+                  // onDrawerItemClicked("Trending");
+                },
+              ),
+              ListTile(
+                title: Text("Free eBooks",
+                    style: MyText.subhead(context)!.copyWith(
+                        color: Colors.black, fontWeight: FontWeight.w500)),
+                leading:
+                    Icon(Icons.menu_book_sharp, size: 25.0, color: Colors.grey),
+                onTap: () {
+                  // onDrawerItemClicked("Latest");
+                },
+              ),
+              Divider(
+                height: 1,
+                thickness: 1.4,
+              ),
+              ListTile(
+                title: Text("Saved Notes",
+                    style: MyText.subhead(context)!.copyWith(
+                        color: Colors.black, fontWeight: FontWeight.w500)),
+                leading: Icon(Icons.note_sharp, size: 25.0, color: Colors.grey),
+                onTap: () {
+                  // onDrawerItemClicked("Highlight");
+                },
+              ),
+              ListTile(
+                title: Text("Current Affairs",
+                    style: MyText.subhead(context)!.copyWith(
+                        color: Colors.black, fontWeight: FontWeight.w500)),
+                leading: Icon(Icons.newspaper, size: 25.0, color: Colors.grey),
+                onTap: () {
+                  // onDrawerItemClicked("Settings");
+                },
+              ),
+              ListTile(
+                title: Text("Success Stories",
+                    style: MyText.subhead(context)!.copyWith(
+                        color: Colors.black, fontWeight: FontWeight.w500)),
+                leading:
+                    Icon(Icons.auto_stories, size: 25.0, color: Colors.grey),
+                onTap: () {
+                  // onDrawerItemClicked("Help");
+                },
+              ),
+              Divider(
+                height: 1,
+                thickness: 1.4,
+              ),
+              ListTile(
+                title: Text("Share",
+                    style: MyText.subhead(context)!.copyWith(
+                        color: Colors.black, fontWeight: FontWeight.w500)),
+                leading: Icon(Icons.share, size: 25.0, color: Colors.grey),
+                onTap: () {
+                  // onDrawerItemClicked("Help");
+                },
+              ),
+              Divider(
+                height: 1,
+                thickness: 1.4,
+              ),
+              ListTile(
+                title: Text("Contact us",
+                    style: MyText.subhead(context)!.copyWith(
+                        color: Colors.black, fontWeight: FontWeight.w500)),
+                leading: Icon(Icons.phone, size: 25.0, color: Colors.grey),
+                onTap: () {
+                  // onDrawerItemClicked("Help");
+                },
+              ),
+              Divider(
+                height: 1,
+                thickness: 1.4,
+              ),
+              ListTile(
+                title: Text("About NDN",
+                    style: MyText.subhead(context)!.copyWith(
+                        color: Colors.black, fontWeight: FontWeight.w500)),
+                leading: Icon(Icons.info, size: 25.0, color: Colors.grey),
+                onTap: () {
+                  // onDrawerItemClicked("Help");
+                },
+              ),
+              Divider(
+                height: 1,
+                thickness: 1.4,
+              ),
+              ListTile(
+                title: Text("Terms",
+                    style: MyText.subhead(context)!.copyWith(
+                        color: Colors.black, fontWeight: FontWeight.w500)),
+                leading: Icon(Icons.front_hand_sharp,
+                    size: 25.0, color: Colors.grey),
+                onTap: () {
+                  // onDrawerItemClicked("Help");
+                },
+              ),
+              ListTile(
+                title: Text("Polices",
+                    style: MyText.subhead(context)!.copyWith(
+                        color: Colors.black, fontWeight: FontWeight.w500)),
+                leading: Icon(Icons.policy, size: 25.0, color: Colors.grey),
+                onTap: () {
+                  // onDrawerItemClicked("Help");
+                },
+              ),
+              ListTile(
+                title: Text("Logout",
+                    style: MyText.subhead(context)!.copyWith(
+                        color: Colors.black, fontWeight: FontWeight.w500)),
+                leading:
+                    Icon(Icons.help_outline, size: 25.0, color: Colors.grey),
+                onTap: () {
+                  Get.offAll(LoginView());
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+      key: _scaffoldKey,
       backgroundColor: Colors.grey.shade100,
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(
+              Icons.home,
+            ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.library_books_rounded),
+            icon: Icon(
+              Icons.library_books_rounded,
+            ),
             label: 'Books',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
+            icon: Icon(
+              Icons.school,
+            ),
             label: 'Library',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.more_horiz),
+            icon: Icon(
+              Icons.more_horiz,
+            ),
             label: 'More',
           ),
         ],
         currentIndex: _selectedIndex,
         unselectedItemColor: Colors.grey,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Colors.blue,
         onTap: _onItemTapped,
       ),
       appBar: AppBar(
-        leading: const Icon(
-          Icons.menu,
-          color: Colors.black,
+        leading: IconButton(
+          onPressed: () {
+            _scaffoldKey.currentState?.openDrawer();
+            print("Tapped on Drawer");
+          },
+          icon: Icon(
+            Icons.menu,
+            color: Colors.black,
+          ),
         ),
         backgroundColor: Colors.white,
         elevation: 2,
@@ -191,7 +403,17 @@ class _DashboardViewState extends State<DashboardView> {
                   itemBuilder: (BuildContext context, int index) {
                     return InkWell(
                       onTap: () {
-                        log('Card title :: ${coursesNames[index]} , Icon :: ${iconData[index]}');
+                        dashboardController.examCategories.value =
+                            '${coursesNames['name'][index].toString()}';
+                        print('${coursesNames['name'][index].toString()}');
+                        // dashboardController.examCategories.value =
+                        //     coursesNames['name'][index].toString();
+                        // log('Card title :: ${coursesNames[index]} , Icon :: ${iconData[index]}');
+
+                        Get.to(TabsSimpleLightRoute(
+                          title: '${coursesNames['name'][index].toString()}',
+                        ));
+                        print(dashboardController.examCategories.value);
                       },
                       child: Card(
                         elevation: 3,

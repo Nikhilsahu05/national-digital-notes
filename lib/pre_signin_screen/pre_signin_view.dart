@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:national_digital_notes/views/login_screen/login_view.dart';
 
-import '../../pre_signin_screen/pre_signin_view.dart';
-import '../sign_up_screen/signup_view.dart';
+import '../views/sign_up_screen/signup_view.dart';
 
-class PreLoginScreen extends StatelessWidget {
-  const PreLoginScreen({Key? key}) : super(key: key);
+class PreSignInScreen extends StatelessWidget {
+  const PreSignInScreen({Key? key}) : super(key: key);
 
   Widget _buildImage() {
     return Image.asset(
@@ -35,7 +35,7 @@ class PreLoginScreen extends StatelessWidget {
             height: kH * 0.02,
           ),
           const Text(
-            "Register to use NDN",
+            "Login to use NDN",
             style: TextStyle(
                 color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
           ),
@@ -57,7 +57,7 @@ class PreLoginScreen extends StatelessWidget {
                         'assets/social_logo/google-logo-history-png-2603.png'),
                     const Spacer(),
                     const Text(
-                      "Register with google",
+                      "Login with google",
                       style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w500,
@@ -76,7 +76,7 @@ class PreLoginScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
             child: InkWell(
               onTap: () {
-                Get.to(SignupView());
+                Get.to(LoginView());
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -88,7 +88,7 @@ class PreLoginScreen extends StatelessWidget {
                     Image.asset('assets/social_logo/email-logo-png-1111.png'),
                     const Spacer(),
                     const Text(
-                      "Register with email",
+                      "Login with email",
                       style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w500,
@@ -108,15 +108,15 @@ class PreLoginScreen extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               const Text(
-                "Already have an account?",
+                "Don't have an account?",
                 style: TextStyle(fontSize: 14),
               ),
               TextButton(
                   onPressed: () {
-                    Get.to(PreSignInScreen());
+                    Get.to(SignupView());
                   },
                   child: const Text(
-                    "Login here",
+                    "Register here",
                     style: TextStyle(fontSize: 14, color: Colors.blue),
                   )),
             ],

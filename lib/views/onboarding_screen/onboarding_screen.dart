@@ -36,21 +36,18 @@ class OnBoardingPageState extends State<OnBoardingPage> {
             },
             children: [
               SizedBox(
-                width: double.maxFinite,
                 child: Image.asset(
                   'assets/onboarding-images/Frame 1.png',
                   fit: BoxFit.fitWidth,
                 ),
               ),
               SizedBox(
-                width: double.maxFinite,
                 child: Image.asset(
                   'assets/onboarding-images/Frame 3.png',
                   fit: BoxFit.fitWidth,
                 ),
               ),
               SizedBox(
-                width: double.maxFinite,
                 child: Image.asset(
                   'assets/onboarding-images/Frame 2.png',
                   fit: BoxFit.fitWidth,
@@ -62,25 +59,30 @@ class OnBoardingPageState extends State<OnBoardingPage> {
           child: Container(
             alignment: Alignment.center,
             height: 40,
-            width: MediaQuery.of(context).size.width,
-            color: Colors.white,
+            width: MediaQuery
+                .of(context)
+                .size
+                .width,
+            color: Colors.transparent,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 TextButton(
                     onPressed: () {
-                      setState(() {
-                        pageController.animateToPage(2,
-                            duration: const Duration(milliseconds: 500),
-                            curve: Curves.slowMiddle);
-                        currentPageIndex = 2;
-                      });
+                      Get.to(PreLoginScreen());
                     },
-                    child: const Text("Skip")),
+                    child: const Text(
+                      "Skip",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18),
+                    )),
                 DotsIndicator(
                   dotsCount: 3,
                   position: double.parse(currentPageIndex.toString()),
                   decorator: DotsDecorator(
+                    color: Colors.white,
                     size: const Size.square(9.0),
                     activeSize: const Size(18.0, 9.0),
                     activeShape: RoundedRectangleBorder(
@@ -105,14 +107,22 @@ class OnBoardingPageState extends State<OnBoardingPage> {
                         },
                         icon: const Icon(
                           Icons.arrow_forward_rounded,
-                          color: Colors.blue,
+                          color: Colors.white,
                         )),
                 if (currentPageIndex == 2)
                   TextButton(
                       onPressed: () {
                         Get.to(const PreLoginScreen());
                       },
-                      child: const Text("Next"))
+                      child: const Text(
+                        "Next",
+
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18),
+                      )
+                  )
               ],
             ),
           ),

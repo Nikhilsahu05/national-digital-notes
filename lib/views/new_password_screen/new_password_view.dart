@@ -37,19 +37,26 @@ class _NewPasswordViewState extends State<NewPasswordView> {
         width: double.infinity,
         height: double.infinity,
         child: ListView(children: [
-          Container(
-            alignment: Alignment.topLeft,
-            width: 80,
-            height: 80,
-            child: Hero(
-                tag: 'LOGO',
-                child:
-                    Image.asset('assets/onboarding-images/android_logo.png')),
+          Center(
+            child: Container(
+              alignment: Alignment.topLeft,
+              width: 80,
+              height: 80,
+              child: Hero(
+                  tag: 'LOGO',
+                  child:
+                      Image.asset('assets/onboarding-images/android_logo.png')),
+            ),
           ),
-          Container(height: 15),
-          Text("Set New Password",
-              style: MyText.title(context)!.copyWith(
-                  color: MyColors.grey_80, fontWeight: FontWeight.bold)),
+          Container(height: 10),
+          Center(
+            child: Text("Set New Password",
+                style: MyText.title(context)!.copyWith(
+                    color: MyColors.grey_80, fontWeight: FontWeight.bold)),
+          ),
+          SizedBox(
+            height: 20,
+          ),
           Container(
             padding: const EdgeInsets.symmetric(vertical: 5),
             child: Container(

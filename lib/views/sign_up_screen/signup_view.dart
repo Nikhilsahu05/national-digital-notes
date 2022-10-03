@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:national_digital_notes/views/dashboard_screen/dashboard_view.dart';
 import 'package:national_digital_notes/views/login_screen/login_view.dart';
 
 class SignupView extends StatefulWidget {
@@ -20,6 +21,7 @@ class _SignupViewState extends State<SignupView> {
 
   // This function is triggered when the button is clicked
   void _doSomething() {
+    Get.to(DashboardView());
     // Do something
   }
 
@@ -43,7 +45,7 @@ class _SignupViewState extends State<SignupView> {
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(10),
                   child: const Text(
-                    'Sign Up',
+                    'Register with email',
                     style: TextStyle(fontSize: 20),
                   )),
               Container(
@@ -146,9 +148,12 @@ class _SignupViewState extends State<SignupView> {
                         },
                       ),
                     ),
-                    const Text(
-                      'I have read and accept terms and conditions',
-                      overflow: TextOverflow.ellipsis,
+                    Flexible(
+                      child: const Text(
+                        'I have read and accept terms and conditions',
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(fontSize: 12),
+                      ),
                     )
                   ],
                 ),
@@ -158,14 +163,14 @@ class _SignupViewState extends State<SignupView> {
                     width: double.maxFinite,
                     child: ElevatedButton(
                         onPressed: agree ? _doSomething : null,
-                        child: const Text('Login')),
+                        child: const Text('Register')),
                   ),
                 )
               ]),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('Does not have account?'),
+                  const Text('Already have an account?'),
                   TextButton(
                     child: const Text(
                       'Sign in',

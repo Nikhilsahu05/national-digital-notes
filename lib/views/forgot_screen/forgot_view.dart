@@ -24,22 +24,29 @@ class ForgotScreen extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(height: 30),
-            Container(
-              width: 80,
-              height: 80,
-              child: Hero(
-                  tag: 'LOGO',
-                  child:
-                      Image.asset('assets/onboarding-images/android_logo.png')),
+            Center(
+              child: Container(
+                width: 80,
+                height: 80,
+                child: Hero(
+                    tag: 'LOGO',
+                    child: Image.asset(
+                        'assets/onboarding-images/android_logo.png')),
+              ),
             ),
             Container(height: 15),
-            Text("Forgot Password,",
-                style: MyText.title(context)!.copyWith(
-                    color: MyColors.grey_80, fontWeight: FontWeight.bold)),
+            Center(
+              child: Text("Forgot Password,",
+                  style: MyText.title(context)!.copyWith(
+                      color: MyColors.grey_80, fontWeight: FontWeight.bold)),
+            ),
             Container(height: 5),
-            Text("Enter mail to continue",
-                style: MyText.subhead(context)!.copyWith(
-                    color: Colors.blueGrey[300], fontWeight: FontWeight.bold)),
+            Center(
+              child: Text("Enter mail to continue",
+                  style: MyText.subhead(context)!.copyWith(
+                      color: Colors.blueGrey[300],
+                      fontWeight: FontWeight.bold)),
+            ),
             SizedBox(
               height: 20,
             ),

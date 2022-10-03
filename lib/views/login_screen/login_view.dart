@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:national_digital_notes/views/dashboard_screen/dashboard_view.dart';
 import 'package:national_digital_notes/views/forgot_screen/forgot_view.dart';
-import 'package:national_digital_notes/views/sign_up_screen/signup_view.dart';
+import 'package:national_digital_notes/views/pre_login_screen/pre_login_screen.dart';
 
 import '../../utils/constants/heading_text_styles.dart';
 import '../../utils/constants/my_colors.dart';
@@ -27,23 +27,29 @@ class LoginViewState extends State<LoginView> {
         width: double.infinity,
         height: double.infinity,
         child: ListView(children: [
-          Container(
-            alignment: Alignment.topLeft,
-            width: 80,
-            height: 80,
-            child: Hero(
-                tag: 'LOGO',
-                child:
-                    Image.asset('assets/onboarding-images/android_logo.png')),
+          Center(
+            child: Container(
+              alignment: Alignment.topLeft,
+              width: 80,
+              height: 80,
+              child: Hero(
+                  tag: 'LOGO',
+                  child:
+                      Image.asset('assets/onboarding-images/android_logo.png')),
+            ),
           ),
           Container(height: 15),
-          Text("Welcome Back,",
-              style: MyText.title(context)!.copyWith(
-                  color: MyColors.grey_80, fontWeight: FontWeight.bold)),
+          Center(
+            child: Text("Welcome Back,",
+                style: MyText.title(context)!.copyWith(
+                    color: MyColors.grey_80, fontWeight: FontWeight.bold)),
+          ),
           Container(height: 5),
-          Text("Sign in to continue",
-              style: MyText.subhead(context)!.copyWith(
-                  color: Colors.blueGrey[300], fontWeight: FontWeight.bold)),
+          Center(
+            child: Text("Login to continue",
+                style: MyText.subhead(context)!.copyWith(
+                    color: Colors.blueGrey[300], fontWeight: FontWeight.bold)),
+          ),
           Container(height: 50),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 5),
@@ -103,7 +109,7 @@ class LoginViewState extends State<LoginView> {
               child: Text("New user? Sign Up",
                   style: TextStyle(color: Colors.blueAccent[400])),
               onPressed: () {
-                Get.to(const SignupView());
+                Get.to(const PreLoginScreen());
               },
             ),
           )
