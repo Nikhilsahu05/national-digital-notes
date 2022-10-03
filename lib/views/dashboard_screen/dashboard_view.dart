@@ -1,13 +1,17 @@
 import 'dart:math' as math;
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:national_digital_notes/views/about_screen/about_us_view.dart';
 import 'package:national_digital_notes/views/login_screen/login_view.dart';
 
 import '../../utils/constants/heading_text_styles.dart';
+import '../contact_us_screen/contact_us_view.dart';
 import '../detailed_course_screen/detailed_course_view.dart';
+import '../privaceAndTerms_screens.dart';
 import 'controller_dashboard_view.dart';
 
 class DashboardView extends StatefulWidget {
@@ -215,6 +219,7 @@ class _DashboardViewState extends State<DashboardView> {
                         color: Colors.black, fontWeight: FontWeight.w500)),
                 leading: Icon(Icons.phone, size: 25.0, color: Colors.grey),
                 onTap: () {
+                  Get.to(ContactUsView());
                   // onDrawerItemClicked("Help");
                 },
               ),
@@ -228,6 +233,7 @@ class _DashboardViewState extends State<DashboardView> {
                         color: Colors.black, fontWeight: FontWeight.w500)),
                 leading: Icon(Icons.info, size: 25.0, color: Colors.grey),
                 onTap: () {
+                  Get.to(AboutAppSimpleBlueRoute());
                   // onDrawerItemClicked("Help");
                 },
               ),
@@ -242,6 +248,7 @@ class _DashboardViewState extends State<DashboardView> {
                 leading: Icon(Icons.front_hand_sharp,
                     size: 25.0, color: Colors.grey),
                 onTap: () {
+                  Get.to(TermsScreen());
                   // onDrawerItemClicked("Help");
                 },
               ),
@@ -251,6 +258,8 @@ class _DashboardViewState extends State<DashboardView> {
                         color: Colors.black, fontWeight: FontWeight.w500)),
                 leading: Icon(Icons.policy, size: 25.0, color: Colors.grey),
                 onTap: () {
+                  Get.to(PoliciesScreen());
+
                   // onDrawerItemClicked("Help");
                 },
               ),
@@ -404,14 +413,16 @@ class _DashboardViewState extends State<DashboardView> {
                     return InkWell(
                       onTap: () {
                         dashboardController.examCategories.value =
-                            '${coursesNames['name'][index].toString()}';
-                        print('${coursesNames['name'][index].toString()}');
+                            coursesNames['name'][index].toString();
+                        if (kDebugMode) {
+                          print(coursesNames['name'][index].toString());
+                        }
                         // dashboardController.examCategories.value =
                         //     coursesNames['name'][index].toString();
                         // log('Card title :: ${coursesNames[index]} , Icon :: ${iconData[index]}');
 
                         Get.to(TabsSimpleLightRoute(
-                          title: '${coursesNames['name'][index].toString()}',
+                          title: coursesNames['name'][index].toString(),
                         ));
                         print(dashboardController.examCategories.value);
                       },
@@ -419,19 +430,19 @@ class _DashboardViewState extends State<DashboardView> {
                         elevation: 3,
                         color: Colors.white,
                         child: Container(
-                          padding: EdgeInsets.only(right: 10),
+                          padding: const EdgeInsets.only(right: 10),
                           color: Colors.transparent,
                           alignment: Alignment.bottomRight,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Container(
-                                  padding: EdgeInsets.only(
+                                  padding: const EdgeInsets.only(
                                       left: 10, top: 10, bottom: 10),
                                   alignment: Alignment.centerLeft,
                                   child: Text(
                                     coursesNames['name'][index].toString(),
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w600),
                                   )),
@@ -443,7 +454,7 @@ class _DashboardViewState extends State<DashboardView> {
                                     child: Text(
                                       coursesNames['desc'][index].toString(),
                                       textAlign: TextAlign.start,
-                                      style: TextStyle(fontSize: 11),
+                                      style: const TextStyle(fontSize: 11),
                                     ),
                                   ),
                                   Flexible(

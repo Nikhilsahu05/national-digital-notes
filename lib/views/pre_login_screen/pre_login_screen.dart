@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../pre_signin_screen/pre_signin_view.dart';
+import '../pre_signin_screen/pre_signin_view.dart';
 import '../sign_up_screen/signup_view.dart';
 
 class PreLoginScreen extends StatelessWidget {

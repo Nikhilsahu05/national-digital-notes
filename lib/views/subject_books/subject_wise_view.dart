@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../specific_book_details_screen/specific_books_views.dart';
 
 class SubjectWiseView extends StatefulWidget {
   String subjectName;
@@ -164,6 +168,21 @@ class _SubjectWiseViewState extends State<SubjectWiseView>
                     itemBuilder: (BuildContext context, int index) {
                       return InkWell(
                         onTap: () {
+                          if (englishPressed) {
+                            Get.to(SpecificBooksViews(
+                              category:
+                                  "${widget.subjectName}, ${widget.coachingName} ${widget.examType}",
+                              bookName: booksNames[index],
+                              imageURL: imagesURL[index],
+                            ));
+                          } else {
+                            Get.to(SpecificBooksViews(
+                              category:
+                                  "${widget.subjectName}, ${widget.coachingName} ${widget.examType}",
+                              bookName: booksNames[index],
+                              imageURL: imagesURLHindi[index],
+                            ));
+                          }
                           // Get.to(SubjectWiseView(
                           //   coachingName: '${widget.map['name'][widget.index]}',
                           //   examType:

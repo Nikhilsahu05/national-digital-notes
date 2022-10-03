@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:national_digital_notes/views/login_screen/login_view.dart';
 
-import '../views/sign_up_screen/signup_view.dart';
+import '../sign_up_screen/signup_view.dart';
 
 class PreSignInScreen extends StatelessWidget {
   const PreSignInScreen({Key? key}) : super(key: key);
