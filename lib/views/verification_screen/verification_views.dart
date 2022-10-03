@@ -7,7 +7,7 @@ import '../../utils/constants/heading_text_styles.dart';
 import '../../utils/constants/my_colors.dart';
 
 class VerificationCodeRoute extends StatefulWidget {
-  const VerificationCodeRoute();
+  const VerificationCodeRoute({super.key});
 
   @override
   VerificationCodeRouteState createState() => VerificationCodeRouteState();

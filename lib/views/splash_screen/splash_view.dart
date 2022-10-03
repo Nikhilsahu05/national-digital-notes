@@ -9,6 +9,8 @@ import '../../utils/constants/heading_text_styles.dart';
 import '../../utils/constants/my_colors.dart';
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
   SplashScreenState createState() {
     return SplashScreenState();
@@ -22,7 +24,7 @@ class SplashScreenState extends State<SplashScreen> {
   }
 
   void navigationPage() {
-    Get.to(OnBoardingPage());
+    Get.to(const OnBoardingPage());
 
     ///USE GET X HERE FOR NAVIGATION
   }
@@ -41,16 +43,16 @@ class SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Spacer(),
-            Container(
+            const Spacer(),
+            SizedBox(
                 height: 100,
                 width: 100,
                 child:
                     Image.asset('assets/onboarding-images/android_logo.png')),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width * 0.8,
               child: Text(
                 projectName,
@@ -63,16 +65,16 @@ class SplashScreenState extends State<SplashScreen> {
               ),
             ),
             Container(height: 20),
-            Container(
+            SizedBox(
               height: 5,
               width: 80,
               child: LinearProgressIndicator(
                 valueColor:
-                    AlwaysStoppedAnimation<Color>(MyColors.primaryLight),
+                    const AlwaysStoppedAnimation<Color>(MyColors.primaryLight),
                 backgroundColor: Colors.grey[300],
               ),
             ),
-            Spacer(),
+            const Spacer(),
             Text("V 1.0.1",
                 style:
                     MyText.body1(context)!.copyWith(color: Colors.grey[500])),

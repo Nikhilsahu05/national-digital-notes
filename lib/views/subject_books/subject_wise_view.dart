@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../specific_book_details_screen/specific_books_views.dart';
 
@@ -68,6 +67,7 @@ class _SubjectWiseViewState extends State<SubjectWiseView>
   Widget build(BuildContext context) {
     return widget.isHome
         ? Scaffold(
+            backgroundColor: Colors.blue.shade50,
             appBar: AppBar(
               title: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -75,11 +75,11 @@ class _SubjectWiseViewState extends State<SubjectWiseView>
                 children: [
                   Text(
                     widget.subjectName,
-                    style: TextStyle(fontSize: 14),
+                    style: const TextStyle(fontSize: 14),
                   ),
                   Text(
                     "${widget.coachingName}, ${widget.examType}",
-                    style: TextStyle(fontSize: 12, color: Colors.white70),
+                    style: const TextStyle(fontSize: 12, color: Colors.white70),
                   ),
                 ],
               ),
@@ -105,11 +105,11 @@ class _SubjectWiseViewState extends State<SubjectWiseView>
                 tabs: [
                   SizedBox(
                     width: MediaQuery.of(context).size.width / 2,
-                    child: Tab(text: "Pre"),
+                    child: const Tab(text: "Pre"),
                   ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width / 2,
-                    child: Tab(text: "Mains"),
+                    child: const Tab(text: "Mains"),
                   ),
                 ],
               ),
@@ -119,7 +119,7 @@ class _SubjectWiseViewState extends State<SubjectWiseView>
               children: [
                 Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Padding(
@@ -159,7 +159,7 @@ class _SubjectWiseViewState extends State<SubjectWiseView>
                     ),
                     Expanded(
                       child: GridView.builder(
-                          physics: AlwaysScrollableScrollPhysics(),
+                          physics: const AlwaysScrollableScrollPhysics(),
                           primary: true,
                           scrollDirection: Axis.vertical,
                           gridDelegate:
@@ -200,7 +200,7 @@ class _SubjectWiseViewState extends State<SubjectWiseView>
                                   elevation: 3,
                                   color: Colors.white,
                                   child: Container(
-                                    padding: EdgeInsets.only(right: 10),
+                                    padding: const EdgeInsets.only(right: 10),
                                     color: Colors.transparent,
                                     alignment: Alignment.bottomRight,
                                     child: Column(
@@ -209,7 +209,7 @@ class _SubjectWiseViewState extends State<SubjectWiseView>
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
-                                        Container(
+                                        SizedBox(
                                           width: double.maxFinite,
                                           child: Image.asset(
                                             englishPressed == true
@@ -218,15 +218,15 @@ class _SubjectWiseViewState extends State<SubjectWiseView>
                                             fit: BoxFit.fitWidth,
                                           ),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 5,
                                         ),
                                         Container(
                                             alignment: Alignment.center,
                                             child: Text(
-                                              '${booksNames[index]}',
+                                              booksNames[index],
                                               textAlign: TextAlign.center,
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w600),
                                             )),
@@ -244,12 +244,13 @@ class _SubjectWiseViewState extends State<SubjectWiseView>
             ),
           )
         : Scaffold(
+            backgroundColor: Colors.blue.shade50,
             body: TabBarView(
               controller: _tabController,
               children: [
                 Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Padding(
@@ -290,7 +291,7 @@ class _SubjectWiseViewState extends State<SubjectWiseView>
                     Expanded(
                       child: GridView.builder(
                           padding: EdgeInsets.zero,
-                          physics: AlwaysScrollableScrollPhysics(),
+                          physics: const AlwaysScrollableScrollPhysics(),
                           primary: true,
                           scrollDirection: Axis.vertical,
                           gridDelegate:
@@ -331,7 +332,7 @@ class _SubjectWiseViewState extends State<SubjectWiseView>
                                   elevation: 3,
                                   color: Colors.white,
                                   child: Container(
-                                    padding: EdgeInsets.only(right: 10),
+                                    padding: const EdgeInsets.only(right: 10),
                                     color: Colors.transparent,
                                     alignment: Alignment.bottomRight,
                                     child: Column(
@@ -340,7 +341,7 @@ class _SubjectWiseViewState extends State<SubjectWiseView>
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
-                                        Container(
+                                        SizedBox(
                                           width: double.maxFinite,
                                           child: Image.asset(
                                             englishPressed == true
@@ -349,15 +350,15 @@ class _SubjectWiseViewState extends State<SubjectWiseView>
                                             fit: BoxFit.fitWidth,
                                           ),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 5,
                                         ),
                                         Container(
                                             alignment: Alignment.center,
                                             child: Text(
-                                              '${booksNames[index]}',
+                                              booksNames[index],
                                               textAlign: TextAlign.center,
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w600),
                                             )),

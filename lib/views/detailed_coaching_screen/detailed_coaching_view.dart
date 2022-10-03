@@ -54,6 +54,7 @@ class _DetailedCoachingViewState extends State<DetailedCoachingView> {
     log(dashboardController.examCategories.value);
     return Obx(
       () => Scaffold(
+        backgroundColor: Colors.blue.shade50,
         appBar: AppBar(
           title: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -169,7 +170,7 @@ class _DetailedCoachingViewState extends State<DetailedCoachingView> {
                             children: [
                               Container(
                                   padding: const EdgeInsets.only(
-                                      left: 10, top: 10, bottom: 10),
+                                      left: 10, top: 10, bottom: 0),
                                   alignment: Alignment.centerLeft,
                                   child: Text(
                                     coursesNames['name'][index].toString(),
@@ -177,6 +178,9 @@ class _DetailedCoachingViewState extends State<DetailedCoachingView> {
                                         fontSize: 16,
                                         fontWeight: FontWeight.w600),
                                   )),
+                              Divider(
+                                thickness: 1.3,
+                              ),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,

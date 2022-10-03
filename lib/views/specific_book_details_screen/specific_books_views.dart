@@ -1,10 +1,9 @@
-import 'package:esys_flutter_share_plus/esys_flutter_share_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
+import '../add_to_cart_views/add_to_cart_views.dart';
 import 'about_this_ebook_view.dart';
 
 class SpecificBooksViews extends StatefulWidget {
@@ -24,6 +23,7 @@ class SpecificBooksViews extends StatefulWidget {
 
 class _SpecificBooksViewsState extends State<SpecificBooksViews> {
   bool isFaved = false;
+  bool addToCart = false;
 
   @override
   Widget build(BuildContext context) {
@@ -35,24 +35,16 @@ class _SpecificBooksViewsState extends State<SpecificBooksViews> {
       appBar: AppBar(
         title: Text(widget.bookName),
         actions: [
-          IconButton(
-              onPressed: () {
-                Share.text(
-                  'NDN',
-                  widget.bookName,
-                  widget.imageURL,
-                );
-              },
-              icon: Icon(Icons.ios_share))
+          IconButton(onPressed: () {}, icon: const Icon(Icons.shopping_cart))
         ],
       ),
       body: ListView(children: [
         Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Container(
+            SizedBox(
               height: MediaQuery.of(context).size.height * 0.25,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -68,23 +60,25 @@ class _SpecificBooksViewsState extends State<SpecificBooksViews> {
                       children: [
                         Text(
                           widget.bookName,
-                          style: TextStyle(fontSize: 20),
+                          style: const TextStyle(fontSize: 20),
                         ),
-                        Text(
-                          widget.category,
-                          style: TextStyle(
-                              fontSize: 12, color: Colors.grey.shade700),
+                        Flexible(
+                          child: Text(
+                            widget.category,
+                            style: TextStyle(
+                                fontSize: 12, color: Colors.grey.shade700),
+                          ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Flexible(
-                          child: Container(
+                          child: SizedBox(
                             height: 25,
                             child: ListView(
                               shrinkWrap: true,
                               scrollDirection: Axis.horizontal,
-                              children: [
+                              children: const [
                                 Icon(
                                   Icons.star,
                                   color: Colors.orange,
@@ -109,7 +103,7 @@ class _SpecificBooksViewsState extends State<SpecificBooksViews> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Row(
@@ -147,7 +141,7 @@ class _SpecificBooksViewsState extends State<SpecificBooksViews> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
+                              children: const [
                                 Icon(Icons.shopping_cart),
                                 Text(
                                   "BUY NOW",
@@ -163,7 +157,7 @@ class _SpecificBooksViewsState extends State<SpecificBooksViews> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             const Divider(
@@ -181,9 +175,9 @@ class _SpecificBooksViewsState extends State<SpecificBooksViews> {
                     },
                     style: OutlinedButton.styleFrom(
                       //<-- SEE HERE
-                      side: BorderSide(width: 1.0, color: Colors.grey),
+                      side: const BorderSide(width: 1.0, color: Colors.grey),
                     ),
-                    child: Text(
+                    child: const Text(
                       'Read Sample',
                       style: TextStyle(fontSize: 11),
                     )),
@@ -201,61 +195,63 @@ class _SpecificBooksViewsState extends State<SpecificBooksViews> {
                     },
                     style: OutlinedButton.styleFrom(
                       //<-- SEE HERE
-                      side: BorderSide(width: 1.0, color: Colors.grey),
+                      side: const BorderSide(width: 1.0, color: Colors.grey),
                     ),
                     child: isFaved
-                        ? Text(
+                        ? const Text(
                             '    Add to Wishlist   ',
-                            style: TextStyle(fontSize: 11),
+                            style: TextStyle(fontSize: 10),
                           )
-                        : Text(
+                        : const Text(
                             'Remove from Wishlist',
-                            style: TextStyle(fontSize: 11),
+                            style: TextStyle(fontSize: 10),
                           ),
                   ),
                 ),
-                ElevatedButton(
-                    onPressed: () {},
-                    child: Text(
-                      "Add to Cart",
-                      style: TextStyle(fontSize: 11),
-                    )),
+                addToCart == false
+                    ? ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            addToCart = !addToCart;
+                          });
+
+                          Get.to(AddToCartView(
+                            category: widget.category,
+                            bookName: widget.bookName,
+                            imageURL: widget.imageURL,
+                          ));
+                        },
+                        child: const Text(
+                          "Add to Cart",
+                          style: TextStyle(fontSize: 10),
+                        ))
+                    : ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.blue.shade200),
+                        onPressed: () {
+                          setState(() {
+                            addToCart = !addToCart;
+                          });
+                        },
+                        child: const Text(
+                          "Remove from cart",
+                          style: TextStyle(fontSize: 10),
+                        ))
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(horizontal: 18.0),
-            //   child: Row(
-            //     children: [
-            //       Icon(
-            //         Icons.warning_amber,
-            //         size: 20,
-            //       ),
-            //       SizedBox(
-            //         width: 10,
-            //       ),
-            //       Flexible(
-            //         child: Text(
-            //           "Books that you buy on the Google Play website can be read in the app.",
-            //           style: TextStyle(fontSize: 13),
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // // ),
-            // const Divider(
-            //   thickness: 1.2,
-            // ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18.0),
               child: InkWell(
                 onTap: () {
-                  print("About this eBook");
+                  if (kDebugMode) {
+                    print("About this eBook");
+                  }
                   Get.to(AboutThisEBook(
                     bookName: widget.bookName,
                   ));
@@ -264,7 +260,7 @@ class _SpecificBooksViewsState extends State<SpecificBooksViews> {
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
+                      children: const [
                         Text(
                           "About this eBook",
                           style: TextStyle(color: Colors.black, fontSize: 18),
@@ -275,7 +271,7 @@ class _SpecificBooksViewsState extends State<SpecificBooksViews> {
                         ),
                       ],
                     ),
-                    Text(
+                    const Text(
                       "Books that you buy on the Google Play website can be read in the app.Books that you buy on the Google Play website can be read in the app.Books that you buy on the Google Play website can be read in the app.Books that you buy on the Google Play website can be read in the app.",
                       style: TextStyle(fontSize: 13),
                     ),
@@ -283,7 +279,7 @@ class _SpecificBooksViewsState extends State<SpecificBooksViews> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Padding(
@@ -293,7 +289,7 @@ class _SpecificBooksViewsState extends State<SpecificBooksViews> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: const [
                     Text(
                       "Published",
                       style: TextStyle(color: Colors.black, fontSize: 18),
@@ -348,7 +344,7 @@ class PriceTagPaint extends CustomPainter {
 class PDFSYNC extends StatefulWidget {
   String bookName;
 
-  PDFSYNC({required this.bookName});
+  PDFSYNC({super.key, required this.bookName});
 
   @override
   State<PDFSYNC> createState() => _PDFSYNCState();

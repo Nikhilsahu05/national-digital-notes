@@ -180,16 +180,16 @@ class _DashboardViewState extends State<DashboardView> {
                   // onDrawerItemClicked("Highlight");
                 },
               ),
-              ListTile(
-                title: Text("Current Affairs",
-                    style: MyText.subhead(context)!.copyWith(
-                        color: Colors.black, fontWeight: FontWeight.w500)),
-                leading:
-                    const Icon(Icons.newspaper, size: 25.0, color: Colors.grey),
-                onTap: () {
-                  // onDrawerItemClicked("Settings");
-                },
-              ),
+              // ListTile(
+              //   title: Text("Current Affairs",
+              //       style: MyText.subhead(context)!.copyWith(
+              //           color: Colors.black, fontWeight: FontWeight.w500)),
+              //   leading:
+              //       const Icon(Icons.newspaper, size: 25.0, color: Colors.grey),
+              //   onTap: () {
+              //     // onDrawerItemClicked("Settings");
+              //   },
+              // ),
               ListTile(
                 title: Text("Success Stories",
                     style: MyText.subhead(context)!.copyWith(
@@ -290,7 +290,7 @@ class _DashboardViewState extends State<DashboardView> {
         ),
       ),
       key: _scaffoldKey,
-      backgroundColor: Colors.grey.shade100,
+      backgroundColor: Colors.blue.shade50,
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -402,7 +402,7 @@ class _DashboardViewState extends State<DashboardView> {
               child: Text(
                 "EXAMS CATEGORIES",
                 style: TextStyle(
-                    color: Colors.grey,
+                    color: Colors.black,
                     fontSize: 14,
                     letterSpacing: 1.05,
                     fontWeight: FontWeight.w600),
@@ -450,7 +450,7 @@ class _DashboardViewState extends State<DashboardView> {
                             children: [
                               Container(
                                   padding: const EdgeInsets.only(
-                                      left: 10, top: 10, bottom: 10),
+                                      left: 10, top: 10, bottom: 0),
                                   alignment: Alignment.centerLeft,
                                   child: Text(
                                     coursesNames['name'][index].toString(),
@@ -458,6 +458,13 @@ class _DashboardViewState extends State<DashboardView> {
                                         fontSize: 16,
                                         fontWeight: FontWeight.w600),
                                   )),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Divider(
+                                height: 2,
+                                thickness: 1.3,
+                              ),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,

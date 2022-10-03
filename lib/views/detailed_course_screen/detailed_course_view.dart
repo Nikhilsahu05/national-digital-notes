@@ -76,19 +76,19 @@ class TabsSimpleLightRouteState extends State<TabsSimpleLightRoute>
                   tabs: const [
                     SizedBox(
                       width: 70,
-                      child: Tab(text: "Overview"),
-                    ),
-                    SizedBox(
-                      width: 70,
-                      child: Tab(text: "Syllabus"),
-                    ),
-                    SizedBox(
-                      width: 70,
                       child: Tab(text: "Coaching"),
                     ),
                     SizedBox(
                       width: 70,
                       child: Tab(text: "Books"),
+                    ),
+                    SizedBox(
+                      width: 70,
+                      child: Tab(text: "Overview"),
+                    ),
+                    SizedBox(
+                      width: 70,
+                      child: Tab(text: "Syllabus"),
                     ),
                     SizedBox(
                       width: 90,
@@ -103,76 +103,87 @@ class TabsSimpleLightRouteState extends State<TabsSimpleLightRoute>
           body: TabBarView(
             controller: _tabController,
             children: [
+              const DetailedCoursesTab(),
+              SubjectWiseView(
+                isHome: false,
+                coachingName: '',
+                examType: '',
+                subjectName: '',
+              ),
               widget.title == "UPSC"
-                  ? const Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
-                      child: Text("What is UPSC?\n"
-                          "\n"
-                          'UPSC is India’s central agency which conducts exams like Civil Services Exam (CSE) to recruit candidates into top government services like IAS, IPS, IFS etc. UPSC recruits candidates to both civil services as well as defence services.\n'
-                          "\n"
-                          'What is the full form of UPSC?'
-                          "\n"
-                          'The full form of UPSC is Union Public Service Commission.'
-                          "\n"
-                          'What are the exams conducted by UPSC for selection into civil services?'
-                          "\n"
-                          '1. Civil Services Examination (CSE)'
-                          "\n"
-                          '2. Engineering Services Examination (ESE).'
-                          "\n"
-                          '3. Indian Forestry Services Examination (IFoS).'
-                          "\n"
-                          '4. Central Armed Police Forces Examination (CAPF).'
-                          "\n"
-                          '5. Indian Economic Service and Indian Statistical Service (IES/ISS).'
-                          "\n"
-                          '6. Combined Geo-Scientist and Geologist Examination.'
-                          "\n"
-                          '7. Combined Medical Services (CMS).'
-                          "\n"
-                          '8. Special Class Railway Apprentices Exam (SCRA).'
-                          "\n"
-                          '9. Limited Departmental Competitive Examination for selection of Assistant Commandant. (Executive) in CISF.'
-                          "\n\n"
-                          'What are the exams conducted by UPSC for selection into defence services?'
-                          "\n\n"
-                          '1. National Defence Academy & Naval Academy Examination – NDA & NA (I).'
-                          "\n"
-                          '2. National Defence Academy & Naval Academy Examination – NDA & NA (II).'
-                          "\n"
-                          '3. Combined Defense Services Exam – CDS (I).'
-                          "\n"
-                          '4. Combined Defense Services Exam – CDS (II).'
-                          "\n\n"
-                          ' UPSC Exam: What is the UPSC Civil Services Examination?'
-                          ' Civil Services Examination (CSE) is one of the most popular exams conducted by the Union Public Service Commission. It is widely known as the ‘IAS exam’ even though CSE is a common exam to recruit candidates to about 24 top government services like IAS, IPS, IFS, IRS etc.'
-                          "\n\n"
-                          ' UPSC Civil Services Exam (CSE) consists of 3 stages. The stages are:'
-                          '1. Preliminary Exam (objective)'
-                          '2. Main Exam (written)'
-                          '3. Interview (personality test)'
-                          '  The exam window extends around 10-12 months (usually from June month of a year to June month next year when the results are announced).'
-                          "\n\n"
-                          ' How to prepare for UPSC CSE?'
-                          "\n\n"
-                          ' Proper training and practice can significantly increase the chance of success of candidates in the UPSC Civil Services Examination.'
-                          ' In this age of the internet, you can clear the IAS exam by online preparation.'
-                          "\n\n"
-                          'Please find the 7-steps we recommend for aspirants to succeed in the UPSC Services Examination.'
-                          "\n\n"
-                          ' * Step 1: Join ClearIAS Online Classroom Program (ClearIAS Classes)'
-                          '* Step 2: Prepare Notes based on ClearIAS Classes'
-                          '* Step 3: Self-Study (Learn ClearIAS Notes, NCERT Textbooks and Standard Textbooks)'
-                          '   * Step 4: Take ClearIAS Prelims Online Mock Exams'
-                          '  * Step 5: Take ClearIAS Mains Mock Exams. Polish your answer writing skills'
-                          ' * Step 6: Learn Optional Subject'
-                          '  * Step 7: Participate in ClearIAS Interview Program'
-                          '  Note: Once you join ClearIAS Online Classroom Program (ClearIAS Classes) you will get detailed guidance and personal mentorship regarding all stages of UPSC preparation.'),
+                  ? Container(
+                      color: Colors.blue.shade50,
+                      child: const Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
+                        child: Text("What is UPSC?\n"
+                            "\n"
+                            'UPSC is India’s central agency which conducts exams like Civil Services Exam (CSE) to recruit candidates into top government services like IAS, IPS, IFS etc. UPSC recruits candidates to both civil services as well as defence services.\n'
+                            "\n"
+                            'What is the full form of UPSC?'
+                            "\n"
+                            'The full form of UPSC is Union Public Service Commission.'
+                            "\n"
+                            'What are the exams conducted by UPSC for selection into civil services?'
+                            "\n"
+                            '1. Civil Services Examination (CSE)'
+                            "\n"
+                            '2. Engineering Services Examination (ESE).'
+                            "\n"
+                            '3. Indian Forestry Services Examination (IFoS).'
+                            "\n"
+                            '4. Central Armed Police Forces Examination (CAPF).'
+                            "\n"
+                            '5. Indian Economic Service and Indian Statistical Service (IES/ISS).'
+                            "\n"
+                            '6. Combined Geo-Scientist and Geologist Examination.'
+                            "\n"
+                            '7. Combined Medical Services (CMS).'
+                            "\n"
+                            '8. Special Class Railway Apprentices Exam (SCRA).'
+                            "\n"
+                            '9. Limited Departmental Competitive Examination for selection of Assistant Commandant. (Executive) in CISF.'
+                            "\n\n"
+                            'What are the exams conducted by UPSC for selection into defence services?'
+                            "\n\n"
+                            '1. National Defence Academy & Naval Academy Examination – NDA & NA (I).'
+                            "\n"
+                            '2. National Defence Academy & Naval Academy Examination – NDA & NA (II).'
+                            "\n"
+                            '3. Combined Defense Services Exam – CDS (I).'
+                            "\n"
+                            '4. Combined Defense Services Exam – CDS (II).'
+                            "\n\n"
+                            ' UPSC Exam: What is the UPSC Civil Services Examination?'
+                            ' Civil Services Examination (CSE) is one of the most popular exams conducted by the Union Public Service Commission. It is widely known as the ‘IAS exam’ even though CSE is a common exam to recruit candidates to about 24 top government services like IAS, IPS, IFS, IRS etc.'
+                            "\n\n"
+                            ' UPSC Civil Services Exam (CSE) consists of 3 stages. The stages are:'
+                            '1. Preliminary Exam (objective)'
+                            '2. Main Exam (written)'
+                            '3. Interview (personality test)'
+                            '  The exam window extends around 10-12 months (usually from June month of a year to June month next year when the results are announced).'
+                            "\n\n"
+                            ' How to prepare for UPSC CSE?'
+                            "\n\n"
+                            ' Proper training and practice can significantly increase the chance of success of candidates in the UPSC Civil Services Examination.'
+                            ' In this age of the internet, you can clear the IAS exam by online preparation.'
+                            "\n\n"
+                            'Please find the 7-steps we recommend for aspirants to succeed in the UPSC Services Examination.'
+                            "\n\n"
+                            ' * Step 1: Join ClearIAS Online Classroom Program (ClearIAS Classes)'
+                            '* Step 2: Prepare Notes based on ClearIAS Classes'
+                            '* Step 3: Self-Study (Learn ClearIAS Notes, NCERT Textbooks and Standard Textbooks)'
+                            '   * Step 4: Take ClearIAS Prelims Online Mock Exams'
+                            '  * Step 5: Take ClearIAS Mains Mock Exams. Polish your answer writing skills'
+                            ' * Step 6: Learn Optional Subject'
+                            '  * Step 7: Participate in ClearIAS Interview Program'
+                            '  Note: Once you join ClearIAS Online Classroom Program (ClearIAS Classes) you will get detailed guidance and personal mentorship regarding all stages of UPSC preparation.'),
+                      ),
                     )
                   : Container(),
               widget.title == "UPSC"
                   ? Container(
+                      color: Colors.blue.shade50,
                       padding: const EdgeInsets.all(10),
                       child: const Text("Syllabus"
                           "\n\n"
@@ -243,13 +254,6 @@ class TabsSimpleLightRouteState extends State<TabsSimpleLightRoute>
                           ""),
                     )
                   : Container(),
-              const DetailedCoursesTab(),
-              SubjectWiseView(
-                isHome: false,
-                coachingName: '',
-                examType: '',
-                subjectName: '',
-              ),
               Image.asset(
                 'assets/upsc-exam-timetable-1.jpg',
               ),
@@ -308,7 +312,7 @@ class _DetailedCoursesTabState extends State<DetailedCoursesTab> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
+      backgroundColor: Colors.blue.shade50,
       body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
