@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
-import '../add_to_cart_views/add_to_cart_views.dart';
+import '../add_to_cart_screen/add_to_cart_view.dart';
+import '../buy_now_view/buy_now_screen.dart';
 import 'about_this_ebook_view.dart';
 
 class SpecificBooksViews extends StatefulWidget {
@@ -36,7 +37,11 @@ class _SpecificBooksViewsState extends State<SpecificBooksViews> {
       appBar: AppBar(
         title: Text(widget.bookName),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.shopping_cart))
+          IconButton(
+              onPressed: () {
+                Get.to(AddToCartView());
+              },
+              icon: const Icon(Icons.shopping_cart))
         ],
       ),
       body: ListView(children: [
@@ -138,7 +143,13 @@ class _SpecificBooksViewsState extends State<SpecificBooksViews> {
                           height: 35,
                           width: MediaQuery.of(context).size.width * 0.4,
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.to(BuyNowScreen(
+                                category: widget.category,
+                                bookName: widget.bookName,
+                                imageURL: widget.imageURL,
+                              ));
+                            },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -215,12 +226,6 @@ class _SpecificBooksViewsState extends State<SpecificBooksViews> {
                           setState(() {
                             addToCart = !addToCart;
                           });
-
-                          Get.to(AddToCartView(
-                            category: widget.category,
-                            bookName: widget.bookName,
-                            imageURL: widget.imageURL,
-                          ));
                         },
                         child: const Text(
                           "Add to Cart",

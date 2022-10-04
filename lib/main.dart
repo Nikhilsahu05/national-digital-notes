@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
+        // scaffoldBackgroundColor: Colors.blue.shade50,
         fontFamily: 'Poppins-Regular',
         // This is the theme of your application.
         //

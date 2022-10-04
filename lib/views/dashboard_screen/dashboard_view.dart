@@ -8,12 +8,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:national_digital_notes/views/about_screen/about_us_view.dart';
 import 'package:national_digital_notes/views/login_screen/login_view.dart';
+import 'package:national_digital_notes/views/sucess_story_screens/success_story_view.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../utils/constants/heading_text_styles.dart';
-import '../contact_us_screen/contact_us_view.dart';
+import '../../utils/constants/my_colors.dart';
 import '../detailed_course_screen/detailed_course_view.dart';
 import '../my_library_screen/my_library_screen.dart';
 import '../privaceAndTerms_screens.dart';
+import '../profile_settings_screen/profile_settings_views.dart';
 import 'controller_dashboard_view.dart';
 
 class DashboardView extends StatefulWidget {
@@ -29,6 +32,12 @@ class _DashboardViewState extends State<DashboardView> {
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
+    if (index == 3) {
+      _scaffoldKey.currentState?.openDrawer();
+      _selectedIndex = 0;
+      index = 0;
+    }
+
     setState(() {
       _selectedIndex = index;
     });
@@ -90,55 +99,60 @@ class _DashboardViewState extends State<DashboardView> {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              SizedBox(
-                height: 190,
-                child: Stack(
-                  children: <Widget>[
-                    Image.asset(
-                      'assets/home_screen_images/material_bg_1.png',
-                      width: double.infinity,
-                      height: double.infinity,
-                      fit: BoxFit.cover,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 40, horizontal: 14),
-                      child: CircleAvatar(
-                        radius: 36,
-                        backgroundColor: Colors.grey[100],
-                        child: const CircleAvatar(
-                          radius: 33,
-                          backgroundImage: AssetImage(
-                              'assets/home_screen_images/Screenshot 2022-09-29 153032.png'),
-                        ),
+              GestureDetector(
+                onTap: () {
+                  Get.to(SettingProfileRoute());
+                },
+                child: SizedBox(
+                  height: 190,
+                  child: Stack(
+                    children: <Widget>[
+                      Image.asset(
+                        'assets/home_screen_images/material_bg_1.png',
+                        width: double.infinity,
+                        height: double.infinity,
+                        fit: BoxFit.cover,
                       ),
-                    ),
-                    Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Padding(
+                      Padding(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 18),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text("Tanmay Sasvadkar",
-                                style: MyText.body2(context)!.copyWith(
-                                    color: Colors.grey[100],
-                                    fontWeight: FontWeight.bold)),
-                            Container(height: 5),
-                            Text("tanmay@immersiveinfotech.com",
-                                style: MyText.body2(context)!
-                                    .copyWith(color: Colors.grey[100]))
-                          ],
+                            vertical: 40, horizontal: 14),
+                        child: CircleAvatar(
+                          radius: 36,
+                          backgroundColor: Colors.grey[100],
+                          child: const CircleAvatar(
+                            radius: 33,
+                            backgroundImage: AssetImage(
+                                'assets/home_screen_images/Screenshot 2022-09-29 153032.png'),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                      Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 18),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text("Tanmay Sasvadkar",
+                                  style: MyText.body2(context)!.copyWith(
+                                      color: Colors.grey[100],
+                                      fontWeight: FontWeight.bold)),
+                              Container(height: 5),
+                              Text("tanmay@immersiveinfotech.com",
+                                  style: MyText.body2(context)!
+                                      .copyWith(color: Colors.grey[100]))
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               ListTile(
-                title: Text("My Library",
+                title: Text("My Orders",
                     style: MyText.subhead(context)!.copyWith(
                         color: Colors.black, fontWeight: FontWeight.w500)),
                 leading: const Icon(Icons.subscriptions,
@@ -148,16 +162,7 @@ class _DashboardViewState extends State<DashboardView> {
                   // onDrawerItemClicked("Home");
                 },
               ),
-              ListTile(
-                title: Text("Invoices",
-                    style: MyText.subhead(context)!.copyWith(
-                        color: Colors.black, fontWeight: FontWeight.w500)),
-                leading:
-                    const Icon(Icons.payment, size: 25.0, color: Colors.grey),
-                onTap: () {
-                  // onDrawerItemClicked("Trending");
-                },
-              ),
+
               ListTile(
                 title: Text("Free eBooks",
                     style: MyText.subhead(context)!.copyWith(
@@ -199,7 +204,7 @@ class _DashboardViewState extends State<DashboardView> {
                 leading: const Icon(Icons.auto_stories,
                     size: 25.0, color: Colors.grey),
                 onTap: () {
-                  // onDrawerItemClicked("Help");
+                  Get.to(SuccessStory());
                 },
               ),
               const Divider(
@@ -232,7 +237,8 @@ class _DashboardViewState extends State<DashboardView> {
                 leading:
                     const Icon(Icons.phone, size: 25.0, color: Colors.grey),
                 onTap: () {
-                  Get.to(const ContactUsView());
+                  showDialog(
+                      context: context, builder: (_) => CustomEventDialog());
                   // onDrawerItemClicked("Help");
                 },
               ),
@@ -355,7 +361,9 @@ class _DashboardViewState extends State<DashboardView> {
                   ),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(SettingProfileRoute());
+                  },
                   icon: const Icon(
                     Icons.person,
                     color: Colors.black,
@@ -501,6 +509,80 @@ class _DashboardViewState extends State<DashboardView> {
                   }),
             )
           ]),
+    );
+  }
+}
+
+class CustomEventDialog extends StatefulWidget {
+  CustomEventDialog({Key? key}) : super(key: key);
+
+  @override
+  CustomEventDialogState createState() => new CustomEventDialogState();
+}
+
+class CustomEventDialogState extends State<CustomEventDialog> {
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      backgroundColor: Colors.transparent,
+      child: Container(
+        width: 160,
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(4),
+          ),
+          color: Colors.white,
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          child: Wrap(
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.all(20),
+                width: double.infinity,
+                color: Colors.lightGreen[400],
+                child: Column(
+                  children: <Widget>[
+                    Container(height: 10),
+                    Icon(Icons.call, color: Colors.white, size: 80),
+                    Container(height: 10),
+                    Text("Contact us",
+                        style: MyText.title(context)!
+                            .copyWith(color: Colors.white)),
+                    Container(height: 10),
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.all(20),
+                width: double.infinity,
+                child: Column(
+                  children: <Widget>[
+                    Text('+91 6989898123',
+                        textAlign: TextAlign.center,
+                        style: MyText.subhead(context)!
+                            .copyWith(color: MyColors.grey_60)),
+                    Container(height: 10),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.lightGreen[500],
+                        elevation: 0,
+                        padding:
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 40),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(18.0)),
+                      ),
+                      child: Text("Call Now",
+                          style: TextStyle(color: Colors.white)),
+                      onPressed: () {
+                        launch("tel://+91 6989898123");
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

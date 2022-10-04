@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import 'detailed_order_details_view.dart';
 
 class MyLibraryView extends StatefulWidget {
   const MyLibraryView({Key? key}) : super(key: key);
@@ -34,14 +38,20 @@ class _MyLibraryViewState extends State<MyLibraryView>
         title: const Text("My Library"),
         bottom: TabBar(
           controller: _tabController,
-          tabs: [
-            Text(
-              "Your Orders",
-              style: TextStyle(fontSize: 17),
+          tabs: const [
+            SizedBox(
+              height: 35,
+              child: Text(
+                "Your Orders",
+                style: TextStyle(fontSize: 17),
+              ),
             ),
-            Text(
-              "Buy Again",
-              style: TextStyle(fontSize: 17),
+            SizedBox(
+              height: 35,
+              child: Text(
+                "Buy Again",
+                style: TextStyle(fontSize: 17),
+              ),
             ),
           ],
         ),
@@ -49,88 +59,92 @@ class _MyLibraryViewState extends State<MyLibraryView>
       body: TabBarView(
         controller: _tabController,
         children: [
-          Container(
-            child: ListView(children: [
-              SizedBox(
-                height: 10,
+          ListView(children: [
+            const SizedBox(
+              height: 10,
+            ),
+            Center(
+              child: Text(
+                "Past three months",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                    color: Colors.grey.shade600),
               ),
-              Center(
-                child: Text(
-                  "Past three months",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
-                      color: Colors.grey.shade600),
-                ),
+            ),
+            const Divider(
+              thickness: 1,
+            ),
+            ListTile(
+              onTap: () {
+                Get.to(DetailedBooksOrder(
+                  bookName: 'Best Seller # Book',
+                  imageURL: 'assets/books_covers/3.jpg',
+                  orderedDate: 'Delivered on 2-Oct-2022',
+                ));
+              },
+              leading: Image.asset(
+                'assets/books_covers/3.jpg',
               ),
-              Divider(
-                thickness: 1,
+              title: const Text("Best Seller # Book"),
+              subtitle: const Text("Delivered on 2-Oct-2022"),
+              trailing: const Icon(Icons.chevron_right),
+            ),
+            const Divider(
+              thickness: 1,
+            ),
+            ListTile(
+              onTap: () {},
+              leading: Image.asset(
+                'assets/books_covers/8.jpg',
               ),
-              ListTile(
-                onTap: () {},
-                leading: Image.asset(
-                  'assets/books_covers/3.jpg',
-                ),
-                title: Text("Best Seller # Book"),
-                subtitle: Text("Delivered on 2-Oct-2022"),
-                trailing: Icon(Icons.chevron_right),
+              title: const Text("Best Seller # Book"),
+              subtitle: const Text("Delivered on 2-Oct-2022"),
+              trailing: const Icon(Icons.chevron_right),
+            ),
+            const Divider(
+              thickness: 1,
+            ),
+            ListTile(
+              leading: Image.asset(
+                'assets/books_covers/1.jpg',
               ),
-              Divider(
-                thickness: 1,
+              title: const Text("Best # Book"),
+              subtitle: const Text("Pending"),
+              trailing: const Icon(Icons.chevron_right),
+            ),
+            const Divider(
+              thickness: 1,
+            ),
+            ListTile(
+              leading: Image.asset(
+                'assets/books_covers/4.jpg',
               ),
-              ListTile(
-                onTap: () {},
-                leading: Image.asset(
-                  'assets/books_covers/8.jpg',
-                ),
-                title: Text("Best Seller # Book"),
-                subtitle: Text("Delivered on 2-Oct-2022"),
-                trailing: Icon(Icons.chevron_right),
+              title: const Text("Kristin Hannah"),
+              subtitle: const Text("Ordered on 1-Oct-2022"),
+              trailing: const Icon(Icons.chevron_right),
+            ),
+            const Divider(
+              thickness: 1,
+            ),
+            ListTile(
+              leading: Image.asset(
+                'assets/books_covers/5.jpg',
               ),
-              Divider(
-                thickness: 1,
+              title: const Text("Leave the world behind"),
+              subtitle: const Text("Ordered on 4-Oct-2022"),
+              trailing: const Icon(Icons.chevron_right),
+            ),
+            const Divider(
+              thickness: 1,
+            ),
+            const Center(
+              child: Text(
+                "You have reached the end of Your Orders",
+                style: TextStyle(fontSize: 13),
               ),
-              ListTile(
-                leading: Image.asset(
-                  'assets/books_covers/1.jpg',
-                ),
-                title: Text("Best # Book"),
-                subtitle: const Text("Delivered on 3-Oct-2022"),
-                trailing: Icon(Icons.chevron_right),
-              ),
-              Divider(
-                thickness: 1,
-              ),
-              ListTile(
-                leading: Image.asset(
-                  'assets/books_covers/4.jpg',
-                ),
-                title: Text("Kristin Hannah"),
-                subtitle: Text("Ordered on 1-Oct-2022"),
-                trailing: Icon(Icons.chevron_right),
-              ),
-              Divider(
-                thickness: 1,
-              ),
-              ListTile(
-                leading: Image.asset(
-                  'assets/books_covers/5.jpg',
-                ),
-                title: Text("Leave the world behind"),
-                subtitle: Text("Ordered on 5-Oct-2022"),
-                trailing: Icon(Icons.chevron_right),
-              ),
-              Divider(
-                thickness: 1,
-              ),
-              Center(
-                child: Text(
-                  "You have reached the end of Your Orders",
-                  style: TextStyle(fontSize: 13),
-                ),
-              )
-            ]),
-          ),
+            )
+          ]),
           Container()
         ],
       ),

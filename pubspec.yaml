@@ -46,6 +46,8 @@ dependencies:
   syncfusion_flutter_pdfviewer: ^20.3.47
   animated_text_kit: ^4.2.2
   syncfusion_flutter_gauges: any
+  url_launcher: ^6.1.6
+
 
 
   get: ^4.6.5
@@ -77,6 +79,7 @@ flutter:
   assets:
     - assets/social_logo/
     - assets/sample_book.pdf
+    - assets/quote_icon.png
     - assets/Checkmark.gif
     - assets/onboarding-images/
     - assets/home_screen_images/
