@@ -12,6 +12,7 @@ import 'package:national_digital_notes/views/login_screen/login_view.dart';
 import '../../utils/constants/heading_text_styles.dart';
 import '../contact_us_screen/contact_us_view.dart';
 import '../detailed_course_screen/detailed_course_view.dart';
+import '../my_library_screen/my_library_screen.dart';
 import '../privaceAndTerms_screens.dart';
 import 'controller_dashboard_view.dart';
 
@@ -137,12 +138,13 @@ class _DashboardViewState extends State<DashboardView> {
                 ),
               ),
               ListTile(
-                title: Text("My Subscription",
+                title: Text("My Library",
                     style: MyText.subhead(context)!.copyWith(
                         color: Colors.black, fontWeight: FontWeight.w500)),
                 leading: const Icon(Icons.subscriptions,
                     size: 25.0, color: Colors.grey),
                 onTap: () {
+                  Get.to(const MyLibraryView());
                   // onDrawerItemClicked("Home");
                 },
               ),
