@@ -32,6 +32,7 @@ class _SpecificBooksViewsState extends State<SpecificBooksViews> {
     }
 
     return Scaffold(
+      backgroundColor: Colors.blue.shade50,
       appBar: AppBar(
         title: Text(widget.bookName),
         actions: [

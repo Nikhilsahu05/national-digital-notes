@@ -178,7 +178,7 @@ class _DetailedCoachingViewState extends State<DetailedCoachingView> {
                                         fontSize: 16,
                                         fontWeight: FontWeight.w600),
                                   )),
-                              Divider(
+                              const Divider(
                                 thickness: 1.3,
                               ),
                               Row(

@@ -458,10 +458,10 @@ class _DashboardViewState extends State<DashboardView> {
                                         fontSize: 16,
                                         fontWeight: FontWeight.w600),
                                   )),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
-                              Divider(
+                              const Divider(
                                 height: 2,
                                 thickness: 1.3,
                               ),

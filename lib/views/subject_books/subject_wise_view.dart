@@ -197,7 +197,7 @@ class _SubjectWiseViewState extends State<SubjectWiseView>
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Card(
-                                  elevation: 3,
+                                  elevation: 7,
                                   color: Colors.white,
                                   child: Container(
                                     padding: const EdgeInsets.only(right: 10),
@@ -210,12 +210,15 @@ class _SubjectWiseViewState extends State<SubjectWiseView>
                                           CrossAxisAlignment.center,
                                       children: [
                                         SizedBox(
-                                          width: double.maxFinite,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.55,
                                           child: Image.asset(
                                             englishPressed == true
                                                 ? imagesURL[index]
                                                 : imagesURLHindi[index],
-                                            fit: BoxFit.fitWidth,
+                                            fit: BoxFit.fitHeight,
                                           ),
                                         ),
                                         const SizedBox(

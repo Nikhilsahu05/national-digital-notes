@@ -44,7 +44,8 @@ dependencies:
   flutter_animated_button: ^2.0.1
   advance_pdf_viewer: ^2.0.1
   syncfusion_flutter_pdfviewer: ^20.3.47
-
+  animated_text_kit: ^4.2.2
+  syncfusion_flutter_gauges: any
 
 
   get: ^4.6.5
@@ -76,6 +77,7 @@ flutter:
   assets:
     - assets/social_logo/
     - assets/sample_book.pdf
+    - assets/Checkmark.gif
     - assets/onboarding-images/
     - assets/home_screen_images/
     - assets/coaching_logos/
@@ -83,6 +85,8 @@ flutter:
     - assets/subjects_logo/
     - assets/books_covers/
     - assets/upsc-exam-timetable-1.jpg
+    - assets/20943863.jpg
+    - assets/png-clipart-check-mark-computer-icons-icon-design-cheque-successful-angle-logo.png
 
     - assets/books_covers/hindi/
 
