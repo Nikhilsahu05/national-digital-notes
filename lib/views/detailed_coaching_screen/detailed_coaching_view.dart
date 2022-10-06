@@ -4,9 +4,11 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:national_digital_notes/views/dashboard_screen/controller_dashboard_view.dart';
+import 'package:national_digital_notes/views/profile_settings_screen/profile_settings_views.dart';
 
 import '../subject_books/subject_wise_view.dart';
 
+// ignore: must_be_immutable
 class DetailedCoachingView extends StatefulWidget {
   int index;
   Map map;
@@ -72,12 +74,10 @@ class _DetailedCoachingViewState extends State<DetailedCoachingView> {
           ),
           actions: <Widget>[
             IconButton(
-              icon: const Icon(Icons.search),
-              onPressed: () {},
-            ),
-            IconButton(
               icon: const Icon(Icons.person),
-              onPressed: () {},
+              onPressed: () {
+                Get.to(const SettingProfileRoute());
+              },
             ),
             // overflow menu
           ],

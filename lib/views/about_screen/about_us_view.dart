@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../../utils/constants/heading_text_styles.dart';
 import '../../utils/constants/my_colors.dart';
-import '../privaceAndTerms_screens.dart';
+import '../privacy_and_terms.dart';
 
 class AboutAppSimpleBlueRoute extends StatefulWidget {
   const AboutAppSimpleBlueRoute({super.key});

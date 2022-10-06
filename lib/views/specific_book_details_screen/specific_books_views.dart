@@ -7,6 +7,7 @@ import '../add_to_cart_screen/add_to_cart_view.dart';
 import '../buy_now_view/buy_now_screen.dart';
 import 'about_this_ebook_view.dart';
 
+// ignore: must_be_immutable
 class SpecificBooksViews extends StatefulWidget {
   String bookName;
   String imageURL;
@@ -39,7 +40,7 @@ class _SpecificBooksViewsState extends State<SpecificBooksViews> {
         actions: [
           IconButton(
               onPressed: () {
-                Get.to(AddToCartView());
+                Get.to(const AddToCartView());
               },
               icon: const Icon(Icons.shopping_cart))
         ],
@@ -347,6 +348,7 @@ class PriceTagPaint extends CustomPainter {
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
 
+// ignore: must_be_immutable
 class PDFSYNC extends StatefulWidget {
   String bookName;
 

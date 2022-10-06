@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:national_digital_notes/views/about_screen/about_us_view.dart';
 import 'package:national_digital_notes/views/login_screen/login_view.dart';
+import 'package:national_digital_notes/views/notification_screen/notification_screen.dart';
 import 'package:national_digital_notes/views/sucess_story_screens/success_story_view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -15,7 +16,7 @@ import '../../utils/constants/heading_text_styles.dart';
 import '../../utils/constants/my_colors.dart';
 import '../detailed_course_screen/detailed_course_view.dart';
 import '../my_library_screen/my_library_screen.dart';
-import '../privaceAndTerms_screens.dart';
+import '../privacy_and_terms.dart';
 import '../profile_settings_screen/profile_settings_views.dart';
 import 'controller_dashboard_view.dart';
 
@@ -101,7 +102,7 @@ class _DashboardViewState extends State<DashboardView> {
             children: <Widget>[
               GestureDetector(
                 onTap: () {
-                  Get.to(SettingProfileRoute());
+                  Get.to(const SettingProfileRoute());
                 },
                 child: SizedBox(
                   height: 190,
@@ -204,7 +205,7 @@ class _DashboardViewState extends State<DashboardView> {
                 leading: const Icon(Icons.auto_stories,
                     size: 25.0, color: Colors.grey),
                 onTap: () {
-                  Get.to(SuccessStory());
+                  Get.to(const SuccessStory());
                 },
               ),
               const Divider(
@@ -238,7 +239,8 @@ class _DashboardViewState extends State<DashboardView> {
                     const Icon(Icons.phone, size: 25.0, color: Colors.grey),
                 onTap: () {
                   showDialog(
-                      context: context, builder: (_) => CustomEventDialog());
+                      context: context,
+                      builder: (_) => const CustomEventDialog());
                   // onDrawerItemClicked("Help");
                 },
               ),
@@ -354,7 +356,9 @@ class _DashboardViewState extends State<DashboardView> {
             Row(
               children: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(const NotificationScreen());
+                  },
                   icon: const Icon(
                     Icons.notifications,
                     color: Colors.black,
@@ -362,7 +366,7 @@ class _DashboardViewState extends State<DashboardView> {
                 ),
                 IconButton(
                   onPressed: () {
-                    Get.to(SettingProfileRoute());
+                    Get.to(const SettingProfileRoute());
                   },
                   icon: const Icon(
                     Icons.person,
@@ -514,10 +518,10 @@ class _DashboardViewState extends State<DashboardView> {
 }
 
 class CustomEventDialog extends StatefulWidget {
-  CustomEventDialog({Key? key}) : super(key: key);
+  const CustomEventDialog({Key? key}) : super(key: key);
 
   @override
-  CustomEventDialogState createState() => new CustomEventDialogState();
+  CustomEventDialogState createState() => CustomEventDialogState();
 }
 
 class CustomEventDialogState extends State<CustomEventDialog> {
@@ -525,7 +529,7 @@ class CustomEventDialogState extends State<CustomEventDialog> {
   Widget build(BuildContext context) {
     return Dialog(
       backgroundColor: Colors.transparent,
-      child: Container(
+      child: SizedBox(
         width: 160,
         child: Card(
           shape: RoundedRectangleBorder(
@@ -536,13 +540,13 @@ class CustomEventDialogState extends State<CustomEventDialog> {
           child: Wrap(
             children: <Widget>[
               Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 width: double.infinity,
                 color: Colors.lightGreen[400],
                 child: Column(
                   children: <Widget>[
                     Container(height: 10),
-                    Icon(Icons.call, color: Colors.white, size: 80),
+                    const Icon(Icons.call, color: Colors.white, size: 80),
                     Container(height: 10),
                     Text("Contact us",
                         style: MyText.title(context)!
@@ -552,7 +556,7 @@ class CustomEventDialogState extends State<CustomEventDialog> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 width: double.infinity,
                 child: Column(
                   children: <Widget>[
@@ -563,14 +567,14 @@ class CustomEventDialogState extends State<CustomEventDialog> {
                     Container(height: 10),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.lightGreen[500],
+                        backgroundColor: Colors.lightGreen[500],
                         elevation: 0,
-                        padding:
-                            EdgeInsets.symmetric(vertical: 0, horizontal: 40),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 0, horizontal: 40),
                         shape: RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(18.0)),
+                            borderRadius: BorderRadius.circular(18.0)),
                       ),
-                      child: Text("Call Now",
+                      child: const Text("Call Now",
                           style: TextStyle(color: Colors.white)),
                       onPressed: () {
                         launch("tel://+91 6989898123");

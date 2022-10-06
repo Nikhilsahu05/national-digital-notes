@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 class AddressController extends GetxController {
@@ -7,6 +6,7 @@ class AddressController extends GetxController {
   RxString houseNumber = ''.obs;
   RxString city = ''.obs;
   RxString state = ''.obs;
+  RxString pincode = ''.obs;
   RxInt indexOfTile = 0.obs;
 
   RxList addedAddressList = RxList();
@@ -18,11 +18,7 @@ class AddressController extends GetxController {
       'houseNumber': houseNumber.value,
       'city': city.value,
       'state': state.value,
+      'pincode': pincode.value,
     });
-
-    if (kDebugMode) {
-      print(addedAddressList.length);
-      print(addedAddressList.value);
-    }
   }
 }

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../specific_book_details_screen/specific_books_views.dart';
 
+// ignore: must_be_immutable
 class SubjectWiseView extends StatefulWidget {
   String subjectName;
   String coachingName;

@@ -1,13 +1,17 @@
 import 'package:esys_flutter_share_plus/esys_flutter_share_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:national_digital_notes/views/buy_now_view/buy_now_screen.dart';
 
+// ignore: must_be_immutable
 class DetailedBooksOrder extends StatefulWidget {
   String bookName;
   String imageURL;
   String orderedDate;
 
   DetailedBooksOrder(
-      {required this.bookName,
+      {super.key,
+      required this.bookName,
       required this.imageURL,
       required this.orderedDate});
 
@@ -120,18 +124,26 @@ class _DetailedBooksOrderState extends State<DetailedBooksOrder> {
           const Divider(
             thickness: 1.3,
           ),
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Text(
-                  "Buy it again",
-                  style: TextStyle(fontSize: 16),
-                ),
-                Icon(Icons.chevron_right)
-              ],
+          GestureDetector(
+            onTap: () {
+              Get.to(BuyNowScreen(
+                  category: '',
+                  bookName: widget.bookName,
+                  imageURL: widget.imageURL));
+            },
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Text(
+                    "Buy it again",
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  Icon(Icons.chevron_right)
+                ],
+              ),
             ),
           ),
           const Divider(
@@ -310,19 +322,19 @@ class _DetailedBooksOrderState extends State<DetailedBooksOrder> {
                           fontWeight: FontWeight.w700),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
-                      Container(
-                          height: 100, child: Image.asset(widget.imageURL)),
                       SizedBox(
+                          height: 100, child: Image.asset(widget.imageURL)),
+                      const SizedBox(
                         width: 10,
                       ),
                       Column(
@@ -330,14 +342,14 @@ class _DetailedBooksOrderState extends State<DetailedBooksOrder> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "${widget.bookName}",
-                            style: TextStyle(
+                            widget.bookName,
+                            style: const TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold),
                           ),
-                          Text("Qty: 1"),
-                          Text("Order Total"),
-                          Text(
+                          const Text("Qty: 1"),
+                          const Text("Order Total"),
+                          const Text(
                             "₹ 999.00 (1 Item)",
                             style: TextStyle(fontWeight: FontWeight.w600),
                           ),
@@ -349,7 +361,7 @@ class _DetailedBooksOrderState extends State<DetailedBooksOrder> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           const Padding(
@@ -375,11 +387,11 @@ class _DetailedBooksOrderState extends State<DetailedBooksOrder> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+                      children: const [
                         Text(
                           'Payment Method',
                           style: TextStyle(fontWeight: FontWeight.bold),
@@ -401,9 +413,9 @@ class _DetailedBooksOrderState extends State<DetailedBooksOrder> {
                           fontWeight: FontWeight.w700),
                     ),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(left: 4.0),
-                    child: Container(
+                    child: SizedBox(
                       width: 100,
                       child: Text(
                         "Immersive Infotech, Atulya IT Park, Indore , MP ",
@@ -418,7 +430,7 @@ class _DetailedBooksOrderState extends State<DetailedBooksOrder> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           const Padding(
@@ -546,7 +558,7 @@ class _DetailedBooksOrderState extends State<DetailedBooksOrder> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
         ],

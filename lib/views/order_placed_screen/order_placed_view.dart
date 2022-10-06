@@ -10,29 +10,26 @@ class OrderPlaced extends StatefulWidget {
 }
 
 class _OrderPlacedState extends State<OrderPlaced> {
-  var progressValue;
-
   @override
   Widget build(BuildContext context) {
     Future.delayed(const Duration(seconds: 3))
-        .then((value) => Get.offAll(DashboardView()));
+        .then((value) => Get.offAll(const DashboardView()));
 
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Center(
-            child: Container(
-                child: Image.asset(
+            child: Image.asset(
               'assets/20943863.jpg',
               scale: 0.1,
-            )),
+            ),
           ),
-          Icon(
+          const Icon(
             Icons.check_circle,
             color: Colors.green,
             size: 150,

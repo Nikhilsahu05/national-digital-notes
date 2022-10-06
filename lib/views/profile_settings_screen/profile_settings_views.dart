@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:national_digital_notes/views/about_screen/about_us_view.dart';
 import 'package:national_digital_notes/views/login_screen/login_view.dart';
 import 'package:national_digital_notes/views/verification_screen/verification_views.dart';
 
 import '../../utils/constants/heading_text_styles.dart';
 import '../../utils/constants/my_colors.dart';
-import '../privaceAndTerms_screens.dart';
+import '../privacy_and_terms.dart';
 
 class SettingProfileRoute extends StatefulWidget {
-  SettingProfileRoute();
+  const SettingProfileRoute({super.key});
 
   @override
-  SettingProfileRouteState createState() => new SettingProfileRouteState();
+  SettingProfileRouteState createState() => SettingProfileRouteState();
 }
 
 class SettingProfileRouteState extends State<SettingProfileRoute> {
@@ -31,9 +30,9 @@ class SettingProfileRouteState extends State<SettingProfileRoute> {
               floating: false,
               pinned: true,
               backgroundColor: MyColors.primary,
-              flexibleSpace: FlexibleSpaceBar(),
+              flexibleSpace: const FlexibleSpaceBar(),
               bottom: PreferredSize(
-                preferredSize: Size.fromHeight(190),
+                preferredSize: const Size.fromHeight(190),
                 child: SizedBox(
                   height: 190,
                   child: Stack(
@@ -60,11 +59,11 @@ class SettingProfileRouteState extends State<SettingProfileRoute> {
                         bottom: 60,
                         left: 100,
                         child: Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               shape: BoxShape.circle, color: Colors.white),
                           child: IconButton(
                               onPressed: () {},
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.edit,
                                 color: Colors.black,
                               )),
@@ -95,7 +94,7 @@ class SettingProfileRouteState extends State<SettingProfileRoute> {
                 ),
               ),
               leading: IconButton(
-                icon: Icon(Icons.arrow_back),
+                icon: const Icon(Icons.arrow_back),
                 onPressed: () {
                   Navigator.pop(context);
                 },
@@ -103,10 +102,10 @@ class SettingProfileRouteState extends State<SettingProfileRoute> {
               actions: <Widget>[
                 PopupMenuButton<String>(
                   onSelected: (String value) {
-                    Get.offAll(LoginView());
+                    Get.offAll(const LoginView());
                   },
                   itemBuilder: (context) => [
-                    PopupMenuItem(
+                    const PopupMenuItem(
                       value: "Logout",
                       child: Text("Logout"),
                     ),
@@ -120,7 +119,7 @@ class SettingProfileRouteState extends State<SettingProfileRoute> {
           child: Column(
             children: <Widget>[
               Card(
-                margin: EdgeInsets.all(0),
+                margin: const EdgeInsets.all(0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(0),
                 ),
@@ -134,7 +133,7 @@ class SettingProfileRouteState extends State<SettingProfileRoute> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Text(
+                            const Text(
                               "Edit",
                               style: TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.bold),
@@ -151,12 +150,12 @@ class SettingProfileRouteState extends State<SettingProfileRoute> {
                       onTap: () => () {},
                       child: Container(
                           width: double.infinity,
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               vertical: 10, horizontal: 15),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Text(
+                              const Text(
                                 "Tanmay Sasvadkar",
                                 style: TextStyle(
                                     fontSize: 16,
@@ -168,19 +167,19 @@ class SettingProfileRouteState extends State<SettingProfileRoute> {
                             ],
                           )),
                     ),
-                    Divider(height: 0),
+                    const Divider(height: 0),
                     InkWell(
                       highlightColor: Colors.grey.withOpacity(0.1),
                       splashColor: Colors.grey.withOpacity(0.1),
                       onTap: () => () {},
                       child: Container(
                           width: double.infinity,
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               vertical: 10, horizontal: 15),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Text(
+                              const Text(
                                 "+61883762938",
                                 style: TextStyle(
                                     fontSize: 16,
@@ -192,19 +191,19 @@ class SettingProfileRouteState extends State<SettingProfileRoute> {
                             ],
                           )),
                     ),
-                    Divider(height: 0),
+                    const Divider(height: 0),
                     InkWell(
                       highlightColor: Colors.grey.withOpacity(0.1),
                       splashColor: Colors.grey.withOpacity(0.1),
                       onTap: () => () {},
                       child: Container(
                           width: double.infinity,
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               vertical: 10, horizontal: 15),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Text(
+                              const Text(
                                 "tanmay@immersiveinfotech.com",
                                 style: TextStyle(
                                     fontSize: 16,
@@ -216,13 +215,13 @@ class SettingProfileRouteState extends State<SettingProfileRoute> {
                             ],
                           )),
                     ),
-                    Divider(height: 0),
+                    const Divider(height: 0),
                   ],
                 ),
               ),
               Container(height: 10),
               Card(
-                margin: EdgeInsets.all(0),
+                margin: const EdgeInsets.all(0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(0),
                 ),
@@ -232,7 +231,7 @@ class SettingProfileRouteState extends State<SettingProfileRoute> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Container(
-                      padding: EdgeInsets.fromLTRB(15, 30, 15, 0),
+                      padding: const EdgeInsets.fromLTRB(15, 30, 15, 0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
@@ -244,80 +243,80 @@ class SettingProfileRouteState extends State<SettingProfileRoute> {
                       ),
                     ),
                     Container(height: 10),
-                    Divider(height: 0),
+                    const Divider(height: 0),
                     InkWell(
                       highlightColor: Colors.grey.withOpacity(0.1),
                       splashColor: Colors.grey.withOpacity(0.1),
                       onTap: () => () {},
                       child: Container(
                           width: double.infinity,
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               horizontal: 15, vertical: 15),
                           child: Row(
                             children: <Widget>[
                               InkWell(
                                 onTap: () {
-                                  Get.to(VerificationCodeRoute());
+                                  Get.to(const VerificationCodeRoute());
                                 },
                                 child: Text("Set Password",
                                     style: MyText.medium(context)
                                         .copyWith(color: MyColors.grey_80)),
                               ),
-                              Spacer(),
-                              Text(""),
+                              const Spacer(),
+                              const Text(""),
                             ],
                           )),
                     ),
-                    Divider(height: 0),
+                    const Divider(height: 0),
                     InkWell(
                       highlightColor: Colors.grey.withOpacity(0.1),
                       splashColor: Colors.grey.withOpacity(0.1),
                       onTap: () => () {},
                       child: Container(
                           width: double.infinity,
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               horizontal: 15, vertical: 15),
                           child: Row(
                             children: <Widget>[
                               Text("Delete Account",
                                   style: MyText.medium(context)
                                       .copyWith(color: MyColors.grey_80)),
-                              Spacer(),
-                              Icon(
+                              const Spacer(),
+                              const Icon(
                                 Icons.delete,
                                 color: Colors.grey,
                               )
                             ],
                           )),
                     ),
-                    Divider(height: 0),
+                    const Divider(height: 0),
                     InkWell(
                       highlightColor: Colors.grey.withOpacity(0.1),
                       splashColor: Colors.grey.withOpacity(0.1),
                       onTap: () => () {},
                       child: Container(
                           width: double.infinity,
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               horizontal: 15, vertical: 15),
                           child: Row(
                             children: <Widget>[
                               Text("Mode",
                                   style: MyText.medium(context)
                                       .copyWith(color: MyColors.grey_80)),
-                              Spacer(),
-                              Text("Dark"),
+                              const Spacer(),
+                              const Text("Dark"),
                               Switch(value: true, onChanged: (_) {}),
-                              Text("Light"),
+                              const Text("Light"),
                             ],
                           )),
                     ),
-                    Divider(height: 0),
+                    const Divider(height: 0),
                   ],
                 ),
               ),
               Container(height: 10),
               Card(
-                margin: EdgeInsets.all(0),
+                margin: const EdgeInsets.all(0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(0),
                 ),
@@ -327,7 +326,7 @@ class SettingProfileRouteState extends State<SettingProfileRoute> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Container(
-                      padding: EdgeInsets.fromLTRB(15, 30, 15, 0),
+                      padding: const EdgeInsets.fromLTRB(15, 30, 15, 0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
@@ -340,44 +339,44 @@ class SettingProfileRouteState extends State<SettingProfileRoute> {
                     ),
                     Container(height: 10),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                      padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
                       child: GestureDetector(
                         onTap: () {
                           Get.to(const TermsScreen());
                         },
-                        child: Text(
+                        child: const Text(
                           "Terms",
                           style: TextStyle(fontSize: 18),
                         ),
                       ),
                     ),
-                    Divider(),
+                    const Divider(),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                      padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
                       child: GestureDetector(
                         onTap: () {
                           Get.to(const PoliciesScreen());
                         },
-                        child: Text(
+                        child: const Text(
                           "Privacy",
                           style: TextStyle(fontSize: 18),
                         ),
                       ),
                     ),
-                    Divider(),
+                    const Divider(),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                      padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
                       child: GestureDetector(
                         onTap: () {
                           Get.to(const AboutAppSimpleBlueRoute());
                         },
-                        child: Text(
+                        child: const Text(
                           "About",
                           style: TextStyle(fontSize: 18),
                         ),
                       ),
                     ),
-                    Divider(),
+                    const Divider(),
                   ],
                 ),
               ),

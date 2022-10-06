@@ -39,18 +39,18 @@ class _SuccessStoryState extends State<SuccessStory> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Container(
             alignment: Alignment.topCenter,
             width: 350,
-            child: Text(
+            child: const Text(
               "More than 9 in 10 students recommend NDN to their friends and family. Here’s what they have to say!",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Center(
@@ -64,26 +64,26 @@ class _SuccessStoryState extends State<SuccessStory> {
                   builder: (BuildContext context) {
                     return Container(
                         width: MediaQuery.of(context).size.width,
-                        margin: EdgeInsets.symmetric(horizontal: 5.0),
+                        margin: const EdgeInsets.symmetric(horizontal: 5.0),
                         decoration: BoxDecoration(
                             color: Colors.amber.shade100,
                             borderRadius:
-                                BorderRadius.all(Radius.circular(20))),
+                                const BorderRadius.all(Radius.circular(20))),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               Text(
                                 '"${comments[i]}"',
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.black, fontSize: 16),
                               ),
-                              Container(
+                              SizedBox(
                                 width: 200,
                                 height: 50,
                                 child: ListView(
@@ -91,7 +91,7 @@ class _SuccessStoryState extends State<SuccessStory> {
                                   scrollDirection: Axis.horizontal,
                                   children: [
                                     Row(
-                                      children: [
+                                      children: const [
                                         Icon(
                                           Icons.star,
                                           color: Colors.orange,
@@ -119,10 +119,10 @@ class _SuccessStoryState extends State<SuccessStory> {
                               ),
                               Text(
                                 "${name[i]}",
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 15, fontWeight: FontWeight.bold),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                             ],

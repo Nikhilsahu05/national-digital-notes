@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:national_digital_notes/views/profile_settings_screen/profile_settings_views.dart';
 
 import '../../utils/constants/my_colors.dart';
 import '../detailed_coaching_screen/detailed_coaching_view.dart';
 import '../subject_books/subject_wise_view.dart';
 
+// ignore: must_be_immutable
 class TabsSimpleLightRoute extends StatefulWidget {
   String title;
 
@@ -57,12 +59,10 @@ class TabsSimpleLightRouteState extends State<TabsSimpleLightRoute>
                 title: Text(widget.title),
                 actions: <Widget>[
                   IconButton(
-                    icon: const Icon(Icons.search),
-                    onPressed: () {},
-                  ),
-                  IconButton(
                     icon: const Icon(Icons.person),
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(const SettingProfileRoute());
+                    },
                   ),
                   // overflow menu
                 ],
