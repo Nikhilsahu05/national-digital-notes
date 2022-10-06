@@ -26,8 +26,10 @@ class _AllAddressScreenState extends State<AllAddressScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             if (addressController.addedAddressList.isEmpty)
-              const Center(
-                child: Text("No Address found !"),
+              Container(
+                height: MediaQuery.of(context).size.height * 0.6,
+                alignment: Alignment.center,
+                child: const Text("No Address found !"),
               ),
             if (addressController.addedAddressList.isNotEmpty)
               ListView.builder(

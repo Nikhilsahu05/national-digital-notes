@@ -1,6 +1,11 @@
+import 'dart:typed_data';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 import '../add_to_cart_screen/add_to_cart_view.dart';
@@ -12,9 +17,11 @@ class SpecificBooksViews extends StatefulWidget {
   String bookName;
   String imageURL;
   String category;
+  bool free;
 
   SpecificBooksViews(
       {super.key,
+      required this.free,
       required this.bookName,
       required this.imageURL,
       required this.category});
@@ -114,19 +121,27 @@ class _SpecificBooksViewsState extends State<SpecificBooksViews> {
                           height: 10,
                         ),
                         Row(
-                          children: const [
-                            Text(
-                              "₹ 999",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                  letterSpacing: 1.2,
-                                  color: Colors.green),
-                            ),
-                            SizedBox(
+                          children: [
+                            widget.free == true
+                                ? const Text(
+                                    "FREE",
+                                    style: TextStyle(
+                                        color: Colors.orange,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
+                                  )
+                                : const Text(
+                                    "₹ 999",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                        letterSpacing: 1.2,
+                                        color: Colors.green),
+                                  ),
+                            const SizedBox(
                               width: 10,
                             ),
-                            Text(
+                            const Text(
                               "₹ 1549",
                               style: TextStyle(
                                   decoration: TextDecoration.lineThrough,
@@ -183,8 +198,8 @@ class _SpecificBooksViewsState extends State<SpecificBooksViews> {
                 OutlinedButton(
                     onPressed: () {
                       Get.to(PDFSYNC(
-                        bookName: widget.bookName,
-                      ));
+                          // bookName: widget.bookName,
+                          ));
                     },
                     style: OutlinedButton.styleFrom(
                       //<-- SEE HERE
@@ -350,42 +365,270 @@ class PriceTagPaint extends CustomPainter {
 
 // ignore: must_be_immutable
 class PDFSYNC extends StatefulWidget {
-  String bookName;
-
-  PDFSYNC({super.key, required this.bookName});
-
   @override
-  State<PDFSYNC> createState() => _PDFSYNCState();
+  _HomePage createState() => _HomePage();
 }
 
-class _PDFSYNCState extends State<PDFSYNC> {
+class _HomePage extends State<PDFSYNC> {
   final GlobalKey<SfPdfViewerState> _pdfViewerKey = GlobalKey();
+  final PdfViewerController _pdfViewerController = PdfViewerController();
+  Uint8List? _documentBytes;
+  OverlayEntry? _overlayEntry;
+  double yOffset = 0.0;
+  double xOffset = 0.0;
+  final Color _contextMenuColor = const Color(0xFFFFFFFF);
+  final Color _textColor = const Color(0xFF000000);
+
+  @override
+  void initState() {
+    getPdfBytes();
+    super.initState();
+  }
+
+  ///Get the PDF document as bytes
+  void getPdfBytes() async {
+    _documentBytes = await http.readBytes(Uri.parse(
+        'https://cdn.syncfusion.com/content/PDFViewer/flutter-succinctly.pdf'));
+    setState(() {});
+  }
+
+  ///Add the annotation in PDF document
+  Widget _addAnnotation(String? annotationType, String? selectedText) {
+    return SizedBox(
+      height: 30,
+      width: 100,
+      child: RawMaterialButton(
+        onPressed: () async {
+          _checkAndCloseContextMenu();
+          await Clipboard.setData(ClipboardData(text: selectedText));
+          _drawAnnotation(annotationType);
+        },
+        child: Text(
+          annotationType!,
+          style: TextStyle(
+              color: _textColor,
+              fontSize: 10,
+              fontFamily: 'Roboto',
+              fontWeight: FontWeight.w400),
+        ),
+      ),
+    );
+  }
+
+  ///Draw the annotation in PDF document
+  void _drawAnnotation(String? annotationType) {
+    final PdfDocument document = PdfDocument(inputBytes: _documentBytes);
+    switch (annotationType) {
+      case 'Highlight':
+        {
+          _pdfViewerKey.currentState!
+              .getSelectedTextLines()
+              .forEach((pdfTextLine) {
+            final PdfPage _page = document.pages[pdfTextLine.pageNumber];
+            final PdfRectangleAnnotation rectangleAnnotation =
+                PdfRectangleAnnotation(
+                    pdfTextLine.bounds, 'Highlight Annotation',
+                    author: 'Syncfusion',
+                    color: PdfColor.fromCMYK(0, 0, 255, 0),
+                    innerColor: PdfColor.fromCMYK(0, 0, 255, 0),
+                    opacity: 0.5);
+            _page.annotations.add(rectangleAnnotation);
+            _page.annotations.flattenAllAnnotations();
+            xOffset = _pdfViewerController.scrollOffset.dx;
+            yOffset = _pdfViewerController.scrollOffset.dy;
+          });
+          final List<int> bytes = document.saveSync();
+          setState(() {
+            _documentBytes = Uint8List.fromList(bytes);
+          });
+        }
+        break;
+      case 'Underline':
+        {
+          _pdfViewerKey.currentState!
+              .getSelectedTextLines()
+              .forEach((pdfTextLine) {
+            final PdfPage _page = document.pages[pdfTextLine.pageNumber];
+            final PdfLineAnnotation lineAnnotation = PdfLineAnnotation(
+              [
+                pdfTextLine.bounds.left.toInt(),
+                (document.pages[pdfTextLine.pageNumber].size.height -
+                        pdfTextLine.bounds.bottom)
+                    .toInt(),
+                pdfTextLine.bounds.right.toInt(),
+                (document.pages[pdfTextLine.pageNumber].size.height -
+                        pdfTextLine.bounds.bottom)
+                    .toInt()
+              ],
+              'Underline Annotation',
+              author: 'Syncfusion',
+              innerColor: PdfColor(0, 255, 0),
+              color: PdfColor(0, 255, 0),
+            );
+            _page.annotations.add(lineAnnotation);
+            _page.annotations.flattenAllAnnotations();
+            xOffset = _pdfViewerController.scrollOffset.dx;
+            yOffset = _pdfViewerController.scrollOffset.dy;
+          });
+          final List<int> bytes = document.saveSync();
+          setState(() {
+            _documentBytes = Uint8List.fromList(bytes);
+          });
+        }
+        break;
+      case 'Strikethrough':
+        {
+          _pdfViewerKey.currentState!
+              .getSelectedTextLines()
+              .forEach((pdfTextLine) {
+            final PdfPage _page = document.pages[pdfTextLine.pageNumber];
+            final PdfLineAnnotation lineAnnotation = PdfLineAnnotation(
+              [
+                pdfTextLine.bounds.left.toInt(),
+                ((document.pages[pdfTextLine.pageNumber].size.height -
+                            pdfTextLine.bounds.bottom) +
+                        (pdfTextLine.bounds.height / 2))
+                    .toInt(),
+                pdfTextLine.bounds.right.toInt(),
+                ((document.pages[pdfTextLine.pageNumber].size.height -
+                            pdfTextLine.bounds.bottom) +
+                        (pdfTextLine.bounds.height / 2))
+                    .toInt()
+              ],
+              'Strikethrough Annotation',
+              author: 'Syncfusion',
+              innerColor: PdfColor(255, 0, 0),
+              color: PdfColor(255, 0, 0),
+            );
+            _page.annotations.add(lineAnnotation);
+            _page.annotations.flattenAllAnnotations();
+            xOffset = _pdfViewerController.scrollOffset.dx;
+            yOffset = _pdfViewerController.scrollOffset.dy;
+          });
+          final List<int> bytes = document.saveSync();
+          setState(() {
+            _documentBytes = Uint8List.fromList(bytes);
+          });
+        }
+        break;
+    }
+  }
+
+  /// Show Context menu with annotation options.
+  void _showContextMenu(
+    BuildContext context,
+    PdfTextSelectionChangedDetails? details,
+  ) {
+    final RenderBox? renderBoxContainer =
+        context.findRenderObject()! as RenderBox;
+    if (renderBoxContainer != null) {
+      const double _kContextMenuHeight = 90;
+      const double _kContextMenuWidth = 100;
+      const double _kHeight = 18;
+      final Offset containerOffset = renderBoxContainer.localToGlobal(
+        renderBoxContainer.paintBounds.topLeft,
+      );
+      if (details != null &&
+              containerOffset.dy < details.globalSelectedRegion!.topLeft.dy ||
+          (containerOffset.dy <
+                  details!.globalSelectedRegion!.center.dy -
+                      (_kContextMenuHeight / 2) &&
+              details.globalSelectedRegion!.height > _kContextMenuWidth)) {
+        double top = 0.0;
+        double left = 0.0;
+        final Rect globalSelectedRect = details.globalSelectedRegion!;
+        if ((globalSelectedRect.top) > MediaQuery.of(context).size.height / 2) {
+          top = globalSelectedRect.topLeft.dy +
+              details.globalSelectedRegion!.height +
+              _kHeight;
+          left = globalSelectedRect.bottomLeft.dx;
+        } else {
+          top = globalSelectedRect.height > _kContextMenuWidth
+              ? globalSelectedRect.center.dy - (_kContextMenuHeight / 2)
+              : globalSelectedRect.topLeft.dy +
+                  details.globalSelectedRegion!.height +
+                  _kHeight;
+          left = globalSelectedRect.height > _kContextMenuWidth
+              ? globalSelectedRect.center.dx - (_kContextMenuWidth / 2)
+              : globalSelectedRect.bottomLeft.dx;
+        }
+        final OverlayState? _overlayState =
+            Overlay.of(context, rootOverlay: true);
+        _overlayEntry = OverlayEntry(
+          builder: (context) => Positioned(
+            top: top,
+            left: left,
+            child: Container(
+              decoration: BoxDecoration(
+                color: _contextMenuColor,
+                boxShadow: const [
+                  BoxShadow(
+                    color: Color.fromRGBO(0, 0, 0, 0.14),
+                    blurRadius: 2,
+                    offset: Offset(0, 0),
+                  ),
+                  BoxShadow(
+                    color: Color.fromRGBO(0, 0, 0, 0.12),
+                    blurRadius: 2,
+                    offset: Offset(0, 2),
+                  ),
+                  BoxShadow(
+                    color: Color.fromRGBO(0, 0, 0, 0.2),
+                    blurRadius: 3,
+                    offset: Offset(0, 1),
+                  ),
+                ],
+              ),
+              constraints: const BoxConstraints.tightFor(
+                  width: _kContextMenuWidth, height: _kContextMenuHeight),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _addAnnotation('Highlight', details.selectedText),
+                  _addAnnotation('Underline', details.selectedText),
+                  _addAnnotation('Strikethrough', details.selectedText),
+                ],
+              ),
+            ),
+          ),
+        );
+        _overlayState?.insert(_overlayEntry!);
+      }
+    }
+  }
+
+  /// Check and close the context menu.
+  void _checkAndCloseContextMenu() {
+    if (_overlayEntry != null) {
+      _overlayEntry?.remove();
+      _overlayEntry = null;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Read Sample Book - ${widget.bookName}'),
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(
-                Icons.bookmark,
-                color: Colors.white,
-                semanticLabel: 'Bookmark',
-              ),
-              onPressed: () {
-                _pdfViewerKey.currentState?.openBookmarkView();
+      appBar: AppBar(
+        title: const Text('Syncfusion Flutter PDF Viewer'),
+      ),
+      body: _documentBytes != null
+          ? SfPdfViewer.memory(
+              _documentBytes!,
+              key: _pdfViewerKey,
+              controller: _pdfViewerController,
+              onDocumentLoaded: (PdfDocumentLoadedDetails details) {
+                _pdfViewerController.jumpTo(xOffset: xOffset, yOffset: yOffset);
               },
-            ),
-          ],
-        ),
-        body: SfPdfViewer.asset(
-          'assets/sample_book.pdf',
-          canShowHyperlinkDialog: true,
-          canShowPaginationDialog: true,
-          canShowPasswordDialog: true,
-          canShowScrollHead: true,
-          canShowScrollStatus: true,
-        ));
+              onTextSelectionChanged: (PdfTextSelectionChangedDetails details) {
+                if (details.selectedText == null && _overlayEntry != null) {
+                  _checkAndCloseContextMenu();
+                } else if (details.selectedText != null &&
+                    _overlayEntry == null) {
+                  _showContextMenu(context, details);
+                }
+              },
+            )
+          : Container(),
+    );
   }
 }

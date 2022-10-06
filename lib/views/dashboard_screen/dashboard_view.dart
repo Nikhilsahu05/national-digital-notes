@@ -15,9 +15,11 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../utils/constants/heading_text_styles.dart';
 import '../../utils/constants/my_colors.dart';
 import '../detailed_course_screen/detailed_course_view.dart';
+import '../free_ebooks/free_ebooks.dart';
 import '../my_library_screen/my_library_screen.dart';
 import '../privacy_and_terms.dart';
 import '../profile_settings_screen/profile_settings_views.dart';
+import '../wishlists/wishlists.dart';
 import 'controller_dashboard_view.dart';
 
 class DashboardView extends StatefulWidget {
@@ -153,7 +155,7 @@ class _DashboardViewState extends State<DashboardView> {
                 ),
               ),
               ListTile(
-                title: Text("My Orders",
+                title: Text("My Library",
                     style: MyText.subhead(context)!.copyWith(
                         color: Colors.black, fontWeight: FontWeight.w500)),
                 leading: const Icon(Icons.subscriptions,
@@ -171,12 +173,24 @@ class _DashboardViewState extends State<DashboardView> {
                 leading: const Icon(Icons.menu_book_sharp,
                     size: 25.0, color: Colors.grey),
                 onTap: () {
+                  Get.to(const FreeEbooksView());
                   // onDrawerItemClicked("Latest");
                 },
               ),
               const Divider(
                 height: 1,
                 thickness: 1.4,
+              ),
+              ListTile(
+                title: Text("Wishlist",
+                    style: MyText.subhead(context)!.copyWith(
+                        color: Colors.black, fontWeight: FontWeight.w500)),
+                leading:
+                    const Icon(Icons.favorite, size: 25.0, color: Colors.grey),
+                onTap: () {
+                  Get.to(Wishlists());
+                  // onDrawerItemClicked("Highlight");
+                },
               ),
               ListTile(
                 title: Text("Saved Notes",
@@ -577,6 +591,7 @@ class CustomEventDialogState extends State<CustomEventDialog> {
                       child: const Text("Call Now",
                           style: TextStyle(color: Colors.white)),
                       onPressed: () {
+                        // ignore: deprecated_member_use
                         launch("tel://+91 6989898123");
                       },
                     ),

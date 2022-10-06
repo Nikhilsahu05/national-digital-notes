@@ -43,11 +43,13 @@ dependencies:
   esys_flutter_share_plus: 2.2.0
   flutter_animated_button: ^2.0.1
   advance_pdf_viewer: ^2.0.1
-  syncfusion_flutter_pdfviewer: ^20.3.47
+  syncfusion_flutter_pdfviewer: ^20.2.45-beta
+  rating: any
+
   animated_text_kit: ^4.2.2
   syncfusion_flutter_gauges: any
   url_launcher: ^6.1.6
-
+  http: ^0.13.5
 
 
   get: ^4.6.5

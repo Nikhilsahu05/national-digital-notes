@@ -1,7 +1,7 @@
-import 'package:esys_flutter_share_plus/esys_flutter_share_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:national_digital_notes/views/buy_now_view/buy_now_screen.dart';
+import 'package:national_digital_notes/views/specific_book_details_screen/specific_books_views.dart';
+import 'package:rating/rating.dart';
 
 // ignore: must_be_immutable
 class DetailedBooksOrder extends StatefulWidget {
@@ -19,7 +19,31 @@ class DetailedBooksOrder extends StatefulWidget {
   State<DetailedBooksOrder> createState() => _DetailedBooksOrderState();
 }
 
+class Item {
+  Item({
+    required this.expandedValue,
+    required this.headerValue,
+    this.isExpanded = false,
+  });
+
+  String expandedValue;
+  String headerValue;
+  bool isExpanded;
+}
+
+List<Item> generateItems(int numberOfItems) {
+  return List<Item>.generate(numberOfItems, (int index) {
+    return Item(
+      headerValue: 'Panel $index',
+      expandedValue: 'This is item number $index',
+    );
+  });
+}
+
 class _DetailedBooksOrderState extends State<DetailedBooksOrder> {
+  final List<Item> _data = generateItems(1);
+  final List<Item> _data1 = generateItems(1);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,15 +73,17 @@ class _DetailedBooksOrderState extends State<DetailedBooksOrder> {
                           widget.bookName,
                           style: const TextStyle(fontSize: 20),
                         ),
+                        Text(
+                          'UPSC, Sharma Academy, Chemistry',
+                          style: const TextStyle(
+                              fontSize: 12, color: Colors.black87),
+                        ),
                         Flexible(
                           child: Text(
-                            'A good book description is a detailed, descriptive copy that is good for public display.',
-                            style: TextStyle(
-                                fontSize: 12, color: Colors.grey.shade700),
+                            'A good book description is a detailed,',
+                            style:
+                                TextStyle(fontSize: 12, color: Colors.black54),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 10,
                         ),
                         Flexible(
                           child: SizedBox(
@@ -90,30 +116,17 @@ class _DetailedBooksOrderState extends State<DetailedBooksOrder> {
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.4,
-                            child: InkWell(
-                              onTap: () {
-                                Share.text('', '', '');
-                              },
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: const [
-                                  Icon(Icons.ios_share_outlined),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 8.0),
-                                    child: Text("Share this item"),
-                                  ),
-                                ],
-                              ),
-                            )),
+                        Flexible(
+                            child: ElevatedButton(
+                          child: const Text(
+                            "Read Now",
+                            style: TextStyle(
+                                fontSize: 14.5, fontWeight: FontWeight.bold),
+                          ),
+                          onPressed: () {
+                            Get.to(PDFSYNC());
+                          },
+                        )),
                       ],
                     ),
                   ),
@@ -121,265 +134,213 @@ class _DetailedBooksOrderState extends State<DetailedBooksOrder> {
               ),
             ),
           ),
-          const Divider(
-            thickness: 1.3,
-          ),
-          GestureDetector(
-            onTap: () {
-              Get.to(BuyNowScreen(
-                  category: '',
-                  bookName: widget.bookName,
-                  imageURL: widget.imageURL));
-            },
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text(
-                    "Buy it again",
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  Icon(Icons.chevron_right)
-                ],
-              ),
-            ),
-          ),
-          const Divider(
-            thickness: 1.3,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text(
-              "How's your item?",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600),
-            ),
-          ),
-          const Divider(
-            thickness: 1.3,
-          ),
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Text(
-                  "Write a product review",
-                  style: TextStyle(fontSize: 16),
+
+          Card(
+            elevation: 5,
+            child: Column(
+              children: [
+                const Divider(
+                  thickness: 1.3,
                 ),
-                Icon(Icons.chevron_right)
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 10.0, vertical: 8.0),
+                  child: InkWell(
+                    onTap: () {
+                      showModalBottomSheet(
+                        context: context,
+                        builder: (context) => RatingWidget(
+                            controller: PrintRatingController(ratingModel)),
+                      );
+                    },
+                    child: Row(
+                      children: const [
+                        Text(
+                          "Write a review",
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        Spacer(),
+                        Icon(
+                          Icons.expand_more,
+                          size: 25,
+                          color: Colors.grey,
+                        ),
+                        SizedBox(
+                          width: 15,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                const Divider(
+                  thickness: 1.3,
+                  height: 0,
+                ),
+                _buildPanelOrder(),
+                const Divider(
+                  thickness: 1.3,
+                  height: 0,
+                ),
+                _buildPanelShipment(),
               ],
             ),
           ),
-          const Divider(
-            thickness: 1.3,
-          ),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text(
-              "View order details",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.0),
-            child: Container(
-              height: MediaQuery.of(context).size.height * 0.22,
-              width: 100,
-              decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
-                  borderRadius: const BorderRadius.all(Radius.circular(15))),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text("Order Date"),
-                        Text(
-                          "05-Aug-2022",
-                          style: TextStyle(fontWeight: FontWeight.w600),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text("Order #"),
-                        Text(
-                          "405-8464129-Aug-2022",
-                          style: TextStyle(fontWeight: FontWeight.w600),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text("Order Total"),
-                        Text(
-                          "₹ 999.00 (1 Item)",
-                          style: TextStyle(fontWeight: FontWeight.w600),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Divider(
-                    thickness: 1.3,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10.0, vertical: 8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text(
-                          "Download Invoice",
-                          style: TextStyle(fontSize: 14),
-                        ),
-                        Icon(Icons.chevron_right)
-                      ],
-                    ),
-                  ),
-                ],
+
+          // ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPanelOrder() {
+    return ExpansionPanelList(
+      expansionCallback: (int index, bool isExpanded) {
+        setState(() {
+          _data[index].isExpanded = !isExpanded;
+        });
+      },
+      children: _data.map<ExpansionPanel>((Item item) {
+        return ExpansionPanel(
+          canTapOnHeader: true,
+          headerBuilder: (BuildContext context, bool isExpanded) {
+            return Padding(
+              padding: const EdgeInsets.only(left: 13.0),
+              child: Container(
+                alignment: Alignment.centerLeft,
+                child: const Text(
+                  'View order details',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600),
+                ),
               ),
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text(
-              "Shipment details",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.0),
-            child: Container(
-              height: MediaQuery.of(context).size.height * 0.32,
-              width: 100,
-              decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
-                  borderRadius: const BorderRadius.all(Radius.circular(15))),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Text('FREE Delivery on eligible orders'),
-                  ),
-                  const Divider(
-                    thickness: 1.3,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 4.0),
-                    child: Text(
-                      "Delivered",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 4.0),
-                    child: Text(
-                      "Delivery - ",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 4.0),
-                    child: Text(
-                      "Wednesday, 10 August, 2022",
-                      style: TextStyle(
-                          color: Colors.green,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w700),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+            );
+          },
+          body: Column(
+            children: [
+              Padding(
+                padding:
+                    const EdgeInsets.only(left: 12.0, right: 12.0, bottom: 15),
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.22,
+                  width: double.maxFinite,
+                  decoration: BoxDecoration(
+                      color: Colors.grey.shade200,
+                      border: Border.all(color: Colors.grey),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(15))),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const SizedBox(
-                        width: 10,
+                      Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            Text("Order Date"),
+                            Text(
+                              "05-Aug-2022",
+                              style: TextStyle(fontWeight: FontWeight.w600),
+                            ),
+                          ],
+                        ),
                       ),
-                      SizedBox(
-                          height: 100, child: Image.asset(widget.imageURL)),
-                      const SizedBox(
-                        width: 10,
+                      Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            Text("Order #"),
+                            Text(
+                              "405-8464129-Aug-2022",
+                              style: TextStyle(fontWeight: FontWeight.w600),
+                            ),
+                          ],
+                        ),
                       ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            widget.bookName,
-                            style: const TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          const Text("Qty: 1"),
-                          const Text("Order Total"),
-                          const Text(
-                            "₹ 999.00 (1 Item)",
-                            style: TextStyle(fontWeight: FontWeight.w600),
-                          ),
-                        ],
+                      Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            Text("Order Total"),
+                            Text(
+                              "₹ 999.00 (1 Item)",
+                              style: TextStyle(fontWeight: FontWeight.w600),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Divider(
+                        thickness: 1.3,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10.0, vertical: 8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            Text(
+                              "Download Invoice",
+                              style: TextStyle(fontSize: 14),
+                            ),
+                            Icon(Icons.chevron_right)
+                          ],
+                        ),
                       ),
                     ],
                   ),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
-          const SizedBox(
-            height: 20,
-          ),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text(
-              "Payment Information",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          isExpanded: item.isExpanded,
+        );
+      }).toList(),
+    );
+  }
+
+  Widget _buildPanelShipment() {
+    return ExpansionPanelList(
+      expansionCallback: (int index, bool isExpanded) {
+        setState(() {
+          _data1[index].isExpanded = !isExpanded;
+        });
+      },
+      children: _data1.map<ExpansionPanel>((Item item) {
+        return ExpansionPanel(
+          headerBuilder: (BuildContext context, bool isExpanded) {
+            return Padding(
+              padding: EdgeInsets.only(left: 15.0),
+              child: Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Payment Information',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600),
+                ),
+              ),
+            );
+          },
+          body: Padding(
+            padding: const EdgeInsets.only(left: 12.0, right: 12, bottom: 15),
             child: Container(
               height: MediaQuery.of(context).size.height * 0.24,
-              width: 100,
+              width: double.maxFinite,
               decoration: BoxDecoration(
+                  color: Colors.grey.shade200,
                   border: Border.all(color: Colors.grey),
                   borderRadius: const BorderRadius.all(Radius.circular(15))),
               child: Column(
@@ -430,139 +391,46 @@ class _DetailedBooksOrderState extends State<DetailedBooksOrder> {
               ),
             ),
           ),
-          const SizedBox(
-            height: 20,
-          ),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text(
-              "Order Summary",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.0),
-            child: Container(
-              height: MediaQuery.of(context).size.height * 0.22,
-              width: 100,
-              decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
-                  borderRadius: const BorderRadius.all(Radius.circular(15))),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text("Items"),
-                        Text(
-                          "₹ 999.00",
-                          style: TextStyle(fontWeight: FontWeight.w600),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text("Postage & Packing:"),
-                        Text(
-                          "₹ 0.00",
-                          style: TextStyle(fontWeight: FontWeight.w600),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text("Promotional Applied:"),
-                        Text(
-                          "₹ 3,431.30",
-                          style: TextStyle(fontWeight: FontWeight.w600),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text("Total Before Tax:"),
-                        Text(
-                          "₹ 623.00",
-                          style: TextStyle(fontWeight: FontWeight.w600),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text("Tax:"),
-                        Text(
-                          "₹ 4049.00",
-                          style: TextStyle(fontWeight: FontWeight.w600),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text("Total:"),
-                        Text(
-                          "₹ 139.00",
-                          style: TextStyle(fontWeight: FontWeight.w600),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text(
-                          "Order Total:",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontSize: 16),
-                        ),
-                        Text(
-                          "₹ 0.00",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.red,
-                              fontSize: 16),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-        ],
-      ),
+          isExpanded: item.isExpanded,
+        );
+      }).toList(),
     );
   }
 }
+
+class PrintRatingController extends RatingController {
+  PrintRatingController(RatingModel ratingModel) : super(ratingModel);
+
+  @override
+  Future<void> ignoreForEverCallback() async {
+    print('Rating ignored forever!');
+    await Future.delayed(const Duration(seconds: 3));
+  }
+
+  @override
+  Future<void> saveRatingCallback(
+      int rate, List<RatingCriterionModel> selectedCriterions) async {
+    print('Rating saved!\nRate: $rate\nsSelectedItems: $selectedCriterions');
+    await Future.delayed(const Duration(seconds: 3));
+  }
+}
+
+final ratingModel = RatingModel(
+  id: 1,
+  title: null,
+  subtitle: 'Rate National Digital Notes',
+  ratingConfig: RatingConfigModel(
+    id: 1,
+    ratingSurvey1: 'Shit !',
+    ratingSurvey2: 'You rate me 2/5 Stars, What happened',
+    ratingSurvey3: 'OK ! You rate me 3/5 Stars',
+    ratingSurvey4: 'Great ! You rate me 4/5 Stars',
+    ratingSurvey5: 'Wow ! You rate me 5/5 Stars',
+    items: [
+      RatingCriterionModel(id: 1, name: 'Best Quality Books'),
+      RatingCriterionModel(id: 2, name: 'Best Services'),
+      RatingCriterionModel(id: 3, name: 'Quick Payments'),
+      RatingCriterionModel(id: 4, name: 'Good User Interface'),
+    ],
+  ),
+);
