@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:national_digital_notes/views/all_address_screen/all_address_screen.dart';
-import 'package:national_digital_notes/views/deliver_to_screen/deliver_to_screen.dart';
+
+import '../order_placed_screen/order_placed_view.dart';
 
 class AddToCartView extends StatefulWidget {
   const AddToCartView({super.key});
@@ -52,29 +52,29 @@ class _AddToCartViewState extends State<AddToCartView> {
               )
             : Column(
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      Get.to(const AllAddressScreen());
-                    },
-                    child: Container(
-                      height: 50,
-                      color: Colors.blue.shade200,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: const [
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Icon(Icons.gps_fixed_outlined),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text("Deliver to Tanmay - Indore 452001")
-                        ],
-                      ),
-                    ),
-                  ),
+                  // GestureDetector(
+                  //   onTap: () {
+                  //     Get.to(const AllAddressScreen());
+                  //   },
+                  //   child: Container(
+                  //     height: 50,
+                  //     color: Colors.blue.shade200,
+                  //     child: Row(
+                  //       crossAxisAlignment: CrossAxisAlignment.center,
+                  //       mainAxisAlignment: MainAxisAlignment.start,
+                  //       children: const [
+                  //         SizedBox(
+                  //           width: 20,
+                  //         ),
+                  //         Icon(Icons.gps_fixed_outlined),
+                  //         SizedBox(
+                  //           width: 10,
+                  //         ),
+                  //         Text("Deliver to Tanmay - Indore 452001")
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.70,
                     child: ListView.builder(
@@ -200,7 +200,10 @@ class _AddToCartViewState extends State<AddToCartView> {
                     width: double.maxFinite,
                     child: ElevatedButton(
                         onPressed: () {
-                          Get.to(const DeliverToScreen());
+                          Future.delayed(const Duration(seconds: 1))
+                              .then((value) {
+                            Get.to(const OrderPlaced());
+                          });
                         },
                         child:
                             const Text("Proceed to Buy (Rs. 5499 - 5 Items)")),

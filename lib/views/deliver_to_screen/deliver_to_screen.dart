@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:national_digital_notes/views/order_placed_screen/order_placed_view.dart';
+import 'package:national_digital_notes/views/specific_book_details_screen/add_address_screen.dart';
 
 class DeliverToScreen extends StatefulWidget {
   const DeliverToScreen({Key? key}) : super(key: key);
@@ -146,6 +147,11 @@ class _DeliverToScreenState extends State<DeliverToScreen> {
                     ],
                   ),
                 ),
+                ElevatedButton(
+                    onPressed: () {
+                      Get.to(AddAddressScreen());
+                    },
+                    child: Icon(Icons.add)),
                 const Spacer(),
                 SizedBox(
                   height: 60,

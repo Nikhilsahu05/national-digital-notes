@@ -56,7 +56,7 @@ class PreSignInScreen extends StatelessWidget {
                         'assets/social_logo/google-logo-history-png-2603.png'),
                     const Spacer(),
                     const Text(
-                      "Login with google",
+                      "Login with Google",
                       style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w500,
@@ -87,7 +87,7 @@ class PreSignInScreen extends StatelessWidget {
                     Image.asset('assets/social_logo/email-logo-png-1111.png'),
                     const Spacer(),
                     const Text(
-                      "Login with email",
+                      "Login with Email",
                       style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w500,

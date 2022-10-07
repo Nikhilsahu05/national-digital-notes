@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:national_digital_notes/views/specific_book_details_screen/specific_books_views.dart';
+import 'package:national_digital_notes/testing_epub.dart';
 import 'package:rating/rating.dart';
 
 // ignore: must_be_immutable
@@ -57,7 +57,7 @@ class _DetailedBooksOrderState extends State<DetailedBooksOrder> {
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
             child: SizedBox(
-              height: MediaQuery.of(context).size.height * 0.25,
+              height: MediaQuery.of(context).size.height * 0.35,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,9 +74,15 @@ class _DetailedBooksOrderState extends State<DetailedBooksOrder> {
                           widget.bookName,
                           style: const TextStyle(fontSize: 20),
                         ),
+                        SizedBox(
+                          height: 10,
+                        ),
                         const Text(
                           'UPSC, Sharma Academy, Chemistry',
                           style: TextStyle(fontSize: 12, color: Colors.black87),
+                        ),
+                        SizedBox(
+                          height: 10,
                         ),
                         const Flexible(
                           child: Text(
@@ -85,9 +91,12 @@ class _DetailedBooksOrderState extends State<DetailedBooksOrder> {
                                 TextStyle(fontSize: 12, color: Colors.black54),
                           ),
                         ),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Flexible(
                           child: SizedBox(
-                            height: 25,
+                            height: 30,
                             child: ListView(
                               shrinkWrap: true,
                               scrollDirection: Axis.horizontal,
@@ -124,7 +133,7 @@ class _DetailedBooksOrderState extends State<DetailedBooksOrder> {
                                 fontSize: 14.5, fontWeight: FontWeight.bold),
                           ),
                           onPressed: () {
-                            Get.to(const PDFSYNC());
+                            Get.to(EPUBTEST());
                           },
                         )),
                       ],
@@ -231,7 +240,7 @@ class _DetailedBooksOrderState extends State<DetailedBooksOrder> {
                 padding:
                     const EdgeInsets.only(left: 12.0, right: 12.0, bottom: 15),
                 child: Container(
-                  height: MediaQuery.of(context).size.height * 0.22,
+                  height: MediaQuery.of(context).size.height * 0.3,
                   width: double.maxFinite,
                   decoration: BoxDecoration(
                       color: Colors.grey.shade200,
@@ -285,13 +294,13 @@ class _DetailedBooksOrderState extends State<DetailedBooksOrder> {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 10.0, vertical: 8.0),
+                            horizontal: 10.0, vertical: 2.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: const [
                             Text(
                               "Download Invoice",
-                              style: TextStyle(fontSize: 14),
+                              style: TextStyle(fontSize: 12),
                             ),
                             Icon(Icons.chevron_right)
                           ],
@@ -337,7 +346,7 @@ class _DetailedBooksOrderState extends State<DetailedBooksOrder> {
           body: Padding(
             padding: const EdgeInsets.only(left: 12.0, right: 12, bottom: 15),
             child: Container(
-              height: MediaQuery.of(context).size.height * 0.24,
+              height: MediaQuery.of(context).size.height * 0.3,
               width: double.maxFinite,
               decoration: BoxDecoration(
                   color: Colors.grey.shade200,
@@ -382,7 +391,7 @@ class _DetailedBooksOrderState extends State<DetailedBooksOrder> {
                         "Immersive Infotech, Atulya IT Park, Indore , MP ",
                         style: TextStyle(
                             color: Colors.black,
-                            fontSize: 14,
+                            fontSize: 12,
                             fontWeight: FontWeight.w400),
                       ),
                     ),

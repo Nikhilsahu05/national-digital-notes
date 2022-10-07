@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../specific_book_details_screen/specific_books_views.dart';
+import 'package:national_digital_notes/testing_epub.dart';
 
 class FreeEbooksView extends StatefulWidget {
   const FreeEbooksView({Key? key}) : super(key: key);
@@ -93,21 +92,8 @@ class _FreeEbooksViewState extends State<FreeEbooksView> {
                 itemBuilder: (BuildContext context, int index) {
                   return InkWell(
                     onTap: () {
-                      if (englishPressed) {
-                        Get.to(SpecificBooksViews(
-                          free: true,
-                          category: "Chemistry, Sharma Academy UPSC",
-                          bookName: booksNames[index],
-                          imageURL: imagesURL[index],
-                        ));
-                      } else {
-                        Get.to(SpecificBooksViews(
-                          free: true,
-                          category: "Chemistry, Sharma Academy UPSC",
-                          bookName: booksNames[index],
-                          imageURL: imagesURLHindi[index],
-                        ));
-                      }
+                      Get.to(EPUBTEST());
+
                       // Get.to(SubjectWiseView(
                       //   coachingName: '${widget.map['name'][widget.index]}',
                       //   examType:

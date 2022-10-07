@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:national_digital_notes/controllers/address_controller.dart';
 import 'package:national_digital_notes/views/deliver_to_screen/deliver_to_screen.dart';
-import 'package:national_digital_notes/views/specific_book_details_screen/add_address_screen.dart';
 
 // ignore: must_be_immutable
 class BuyNowScreen extends StatefulWidget {
@@ -195,80 +194,6 @@ class _BuyNowScreenState extends State<BuyNowScreen> {
                 const SizedBox(
                   height: 10,
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                  child: InkWell(
-                    onTap: () {
-                      if (kDebugMode) {
-                        print("About this eBook");
-                      }
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text(
-                              "Delivery Location",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 16),
-                            ),
-                            if (addressController.addedAddressList.isNotEmpty)
-                              IconButton(
-                                  onPressed: () {
-                                    Get.to(const AddAddressScreen());
-                                  },
-                                  icon: const Icon(Icons.add))
-                          ],
-                        ),
-                        if (addressController.addedAddressList.isEmpty)
-                          ListTile(
-                            onTap: () {
-                              Get.to(const AddAddressScreen());
-                            },
-                            leading: const Icon(Icons.gps_fixed),
-                            title: const Text("No Address added"),
-                            subtitle: const Text("Tap on the icon to add"),
-                            trailing: const Icon(
-                              Icons.add,
-                              size: 20,
-                            ),
-                          ),
-                        if (addressController.addedAddressList.isNotEmpty)
-                          Obx(
-                            () => ListView.builder(
-                                shrinkWrap: true,
-                                itemCount:
-                                    addressController.addedAddressList.length,
-                                itemBuilder: (context, index) {
-                                  return ListTile(
-                                    selected:
-                                        addressController.indexOfTile.value ==
-                                                index
-                                            ? true
-                                            : false,
-                                    onTap: () {
-                                      addressController.indexOfTile.value =
-                                          index;
-                                    },
-                                    leading: const Icon(Icons.gps_fixed),
-                                    title: Text(
-                                        "${addressController.addedAddressList[index]['name']}, ${addressController.addedAddressList[index]['fullAddress']}"),
-                                    subtitle: Text(
-                                        "${addressController.addedAddressList[index]['houseNumber']}, ${addressController.addedAddressList[index]['city']}, ${addressController.addedAddressList[index]['state']}"),
-                                    trailing: const Icon(
-                                      Icons.arrow_forward_ios_sharp,
-                                      size: 16,
-                                    ),
-                                  );
-                                }),
-                          ),
-                      ],
-                    ),
-                  ),
-                ),
                 const SizedBox(
                   height: 15,
                 ),
@@ -294,18 +219,6 @@ class _BuyNowScreenState extends State<BuyNowScreen> {
                               child: RadioListTile(
                                 title: const Text("Online"),
                                 value: "Online",
-                                groupValue: payment,
-                                onChanged: (value) {
-                                  setState(() {
-                                    payment = value.toString();
-                                  });
-                                },
-                              ),
-                            ),
-                            Flexible(
-                              child: RadioListTile(
-                                title: const Text("Offline"),
-                                value: "Offline",
                                 groupValue: payment,
                                 onChanged: (value) {
                                   setState(() {

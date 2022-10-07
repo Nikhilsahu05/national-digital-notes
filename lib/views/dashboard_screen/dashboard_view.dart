@@ -7,8 +7,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:national_digital_notes/views/about_screen/about_us_view.dart';
-import 'package:national_digital_notes/views/login_screen/login_view.dart';
 import 'package:national_digital_notes/views/notification_screen/notification_screen.dart';
+import 'package:national_digital_notes/views/pre_login_screen/pre_login_screen.dart';
 import 'package:national_digital_notes/views/sucess_story_screens/success_story_view.dart';
 // ignore: depend_on_referenced_packages
 import 'package:url_launcher/url_launcher.dart';
@@ -33,9 +33,49 @@ class DashboardView extends StatefulWidget {
 }
 
 class _DashboardViewState extends State<DashboardView> {
+  showAlertDialog(BuildContext context) {
+    // set up the button
+    Widget okButton = ElevatedButton(
+      child: Text("Logout"),
+      onPressed: () {
+        Get.offAll(PreLoginScreen());
+      },
+    );
+    Widget noButton = ElevatedButton(
+      child: Text("Cancel"),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Do you want to exit this application?"),
+      content: Text("We hate to see you leave..."),
+      actions: [
+        noButton,
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
+    if (index == 1) {
+      Get.to(MyLibraryView());
+    }
+    if (index == 2) {
+      Get.to(FreeEbooksView());
+    }
     if (index == 3) {
       _scaffoldKey.currentState?.openDrawer();
       _selectedIndex = 0;
@@ -193,16 +233,7 @@ class _DashboardViewState extends State<DashboardView> {
                   // onDrawerItemClicked("Highlight");
                 },
               ),
-              ListTile(
-                title: Text("Saved Notes",
-                    style: MyText.subhead(context)!.copyWith(
-                        color: Colors.black, fontWeight: FontWeight.w500)),
-                leading: const Icon(Icons.note_sharp,
-                    size: 25.0, color: Colors.grey),
-                onTap: () {
-                  // onDrawerItemClicked("Highlight");
-                },
-              ),
+
               // ListTile(
               //   title: Text("Current Affairs",
               //       style: MyText.subhead(context)!.copyWith(
@@ -307,7 +338,9 @@ class _DashboardViewState extends State<DashboardView> {
                 leading: const Icon(Icons.help_outline,
                     size: 25.0, color: Colors.grey),
                 onTap: () {
-                  Get.offAll(const LoginView());
+                  showDialog(
+                      context: context, builder: showAlertDialog(context));
+                  // Get.offAll(const LoginView());
                 },
               ),
             ],
@@ -326,15 +359,15 @@ class _DashboardViewState extends State<DashboardView> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.library_books_rounded,
-            ),
-            label: 'Books',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
               Icons.school,
             ),
             label: 'Library',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.book,
+            ),
+            label: 'Books',
           ),
           BottomNavigationBarItem(
             icon: Icon(

@@ -56,7 +56,7 @@ class PreLoginScreen extends StatelessWidget {
                         'assets/social_logo/google-logo-history-png-2603.png'),
                     const Spacer(),
                     const Text(
-                      "Register with google",
+                      "Register with Google",
                       style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w500,
@@ -87,7 +87,7 @@ class PreLoginScreen extends StatelessWidget {
                     Image.asset('assets/social_logo/email-logo-png-1111.png'),
                     const Spacer(),
                     const Text(
-                      "Register with email",
+                      "Register with Email",
                       style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w500,

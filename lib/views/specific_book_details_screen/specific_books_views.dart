@@ -6,8 +6,9 @@ import 'package:http/http.dart' as http;
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
+import '../../testing_epub.dart';
 import '../add_to_cart_screen/add_to_cart_view.dart';
-import '../buy_now_view/buy_now_screen.dart';
+import '../order_placed_screen/order_placed_view.dart';
 import 'about_this_ebook_view.dart';
 
 // ignore: must_be_immutable
@@ -158,11 +159,10 @@ class _SpecificBooksViewsState extends State<SpecificBooksViews> {
                           width: MediaQuery.of(context).size.width * 0.4,
                           child: ElevatedButton(
                             onPressed: () {
-                              Get.to(BuyNowScreen(
-                                category: widget.category,
-                                bookName: widget.bookName,
-                                imageURL: widget.imageURL,
-                              ));
+                              Future.delayed(const Duration(seconds: 3))
+                                  .then((value) {
+                                Get.to(const OrderPlaced());
+                              });
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -195,7 +195,7 @@ class _SpecificBooksViewsState extends State<SpecificBooksViews> {
               children: [
                 OutlinedButton(
                     onPressed: () {
-                      Get.to(const PDFSYNC(
+                      Get.to(EPUBTEST(
                           // bookName: widget.bookName,
                           ));
                     },
@@ -403,6 +403,7 @@ class _HomePage extends State<PDFSYNC> {
           _checkAndCloseContextMenu();
           await Clipboard.setData(ClipboardData(text: selectedText));
           _drawAnnotation(annotationType);
+          print("Selected Text :: $selectedText :: Save to saved notes");
         },
         child: Text(
           annotationType!,
@@ -611,6 +612,10 @@ class _HomePage extends State<PDFSYNC> {
       ),
       body: _documentBytes != null
           ? SfPdfViewer.memory(
+              scrollDirection: PdfScrollDirection.horizontal,
+              enableDoubleTapZooming: true,
+              enableDocumentLinkAnnotation: true,
+              enableTextSelection: true,
               _documentBytes!,
               key: _pdfViewerKey,
               controller: _pdfViewerController,
