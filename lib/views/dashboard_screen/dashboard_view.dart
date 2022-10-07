@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'dart:math' as math;
 
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:esys_flutter_share_plus/esys_flutter_share_plus.dart';
+// import 'package:esys_flutter_share_plus/esys_flutter_share_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,6 +10,7 @@ import 'package:national_digital_notes/views/about_screen/about_us_view.dart';
 import 'package:national_digital_notes/views/login_screen/login_view.dart';
 import 'package:national_digital_notes/views/notification_screen/notification_screen.dart';
 import 'package:national_digital_notes/views/sucess_story_screens/success_story_view.dart';
+// ignore: depend_on_referenced_packages
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../utils/constants/heading_text_styles.dart';
@@ -233,11 +234,11 @@ class _DashboardViewState extends State<DashboardView> {
                 leading:
                     const Icon(Icons.share, size: 25.0, color: Colors.grey),
                 onTap: () {
-                  Share.text(
-                    'NATIONAL DIGITAL NOTES',
-                    'NDN',
-                    'www.google.com',
-                  );
+                  // Share.text(
+                  //   'NATIONAL DIGITAL NOTES',
+                  //   'NDN',
+                  //   'www.google.com',
+                  // );
                   // onDrawerItemClicked("Help");
                 },
               ),

@@ -32,27 +32,18 @@ dependencies:
   flutter:
     sdk: flutter
 
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
-  introduction_screen: ^3.0.1
-  flutter_signin_button: ^2.0.0
-  dots_indicator: ^2.1.0
-  carousel_slider: ^4.1.1
-  esys_flutter_share_plus: 2.2.0
-  flutter_animated_button: ^2.0.1
-  advance_pdf_viewer: ^2.0.1
-  syncfusion_flutter_pdfviewer: ^20.2.45-beta
-  rating: any
-
-  animated_text_kit: ^4.2.2
-  syncfusion_flutter_gauges: any
-  url_launcher: ^6.1.6
-  http: ^0.13.5
-
-
+  cupertino_icons: ^1.0.4
   get: ^4.6.5
+  http: ^0.13.5
+  syncfusion_flutter_pdf: ^20.3.48
+  syncfusion_flutter_pdfviewer: ^20.3.48
+  carousel_slider: ^4.1.1
+  dots_indicator: ^2.1.0
+  introduction_screen: ^3.0.2
+  rating: ^1.0.0-dev.1
+  nb_utils: ^4.6.21
+
+
 
 
 dev_dependencies:
@@ -80,6 +71,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/social_logo/
+    - assets/android_logo/Book_ICON (1).png
+    - assets/android_logo/NDN Logo (1).png
     - assets/sample_book.pdf
     - assets/quote_icon.png
     - assets/Checkmark.gif
@@ -90,6 +83,7 @@ flutter:
     - assets/subjects_logo/
     - assets/books_covers/
     - assets/upsc-exam-timetable-1.jpg
+    - assets/book.epub
     - assets/20943863.jpg
     - assets/png-clipart-check-mark-computer-icons-icon-design-cheque-successful-angle-logo.png
 

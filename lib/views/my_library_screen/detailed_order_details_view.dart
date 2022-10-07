@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:national_digital_notes/views/specific_book_details_screen/specific_books_views.dart';
@@ -73,12 +74,11 @@ class _DetailedBooksOrderState extends State<DetailedBooksOrder> {
                           widget.bookName,
                           style: const TextStyle(fontSize: 20),
                         ),
-                        Text(
+                        const Text(
                           'UPSC, Sharma Academy, Chemistry',
-                          style: const TextStyle(
-                              fontSize: 12, color: Colors.black87),
+                          style: TextStyle(fontSize: 12, color: Colors.black87),
                         ),
-                        Flexible(
+                        const Flexible(
                           child: Text(
                             'A good book description is a detailed,',
                             style:
@@ -124,7 +124,7 @@ class _DetailedBooksOrderState extends State<DetailedBooksOrder> {
                                 fontSize: 14.5, fontWeight: FontWeight.bold),
                           ),
                           onPressed: () {
-                            Get.to(PDFSYNC());
+                            Get.to(const PDFSYNC());
                           },
                         )),
                       ],
@@ -176,7 +176,7 @@ class _DetailedBooksOrderState extends State<DetailedBooksOrder> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 const Divider(
@@ -320,10 +320,10 @@ class _DetailedBooksOrderState extends State<DetailedBooksOrder> {
         return ExpansionPanel(
           headerBuilder: (BuildContext context, bool isExpanded) {
             return Padding(
-              padding: EdgeInsets.only(left: 15.0),
+              padding: const EdgeInsets.only(left: 15.0),
               child: Container(
                 alignment: Alignment.centerLeft,
-                child: Text(
+                child: const Text(
                   'Payment Information',
                   textAlign: TextAlign.left,
                   style: TextStyle(
@@ -403,14 +403,18 @@ class PrintRatingController extends RatingController {
 
   @override
   Future<void> ignoreForEverCallback() async {
-    print('Rating ignored forever!');
+    if (kDebugMode) {
+      print('Rating ignored forever!');
+    }
     await Future.delayed(const Duration(seconds: 3));
   }
 
   @override
   Future<void> saveRatingCallback(
       int rate, List<RatingCriterionModel> selectedCriterions) async {
-    print('Rating saved!\nRate: $rate\nsSelectedItems: $selectedCriterions');
+    if (kDebugMode) {
+      print('Rating saved!\nRate: $rate\nsSelectedItems: $selectedCriterions');
+    }
     await Future.delayed(const Duration(seconds: 3));
   }
 }

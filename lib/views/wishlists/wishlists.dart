@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:national_digital_notes/views/buy_now_view/buy_now_screen.dart';
 
 class Wishlists extends StatefulWidget {
+  const Wishlists({super.key});
+
   @override
   State<Wishlists> createState() => _WishlistsState();
 }
@@ -37,7 +39,7 @@ class _WishlistsState extends State<Wishlists> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Wishlist"),
+          title: const Text("Wishlist"),
         ),
         body: ListView.builder(
             itemCount: bookLists.length,
@@ -49,16 +51,16 @@ class _WishlistsState extends State<Wishlists> {
                       bookName: bookLists[index].title,
                       imageURL: bookLists[index].imageURL));
                 },
-                title: Text('${bookLists[index].title}'),
+                title: Text(bookLists[index].title),
                 leading: Image.asset(bookLists[index].imageURL),
                 subtitle: Text(bookLists[index].desc),
                 trailing: IconButton(
                   icon: wishlist == true
-                      ? Icon(
+                      ? const Icon(
                           Icons.favorite,
                           color: Colors.red,
                         )
-                      : Icon(Icons.favorite_border),
+                      : const Icon(Icons.favorite_border),
                   onPressed: () {
                     setState(() {
                       Get.snackbar(
