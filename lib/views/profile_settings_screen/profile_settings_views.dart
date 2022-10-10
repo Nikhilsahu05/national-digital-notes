@@ -6,6 +6,7 @@ import 'package:national_digital_notes/views/verification_screen/verification_vi
 
 import '../../utils/constants/heading_text_styles.dart';
 import '../../utils/constants/my_colors.dart';
+import '../pre_login_screen/pre_login_screen.dart';
 import '../privacy_and_terms.dart';
 
 class SettingProfileRoute extends StatefulWidget {
@@ -17,7 +18,39 @@ class SettingProfileRoute extends StatefulWidget {
 
 class SettingProfileRouteState extends State<SettingProfileRoute> {
   bool isSwitched1 = true;
+  showAlertDialog(BuildContext context) {
+    // set up the button
+    Widget okButton = ElevatedButton(
+      child: const Text("Delete Account",),
+      onPressed: () {
+        Get.offAll(const PreLoginScreen());
+      },
+    );
+    Widget noButton = ElevatedButton(
+      child: const Text("Cancel"),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
 
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: const Text("Are you sure, you want to delete account?"),
+      content: const Text("We hate to see you leave..."),
+      actions: [
+        noButton,
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -282,10 +315,10 @@ class SettingProfileRouteState extends State<SettingProfileRoute> {
                                   style: MyText.medium(context)
                                       .copyWith(color: MyColors.grey_80)),
                               const Spacer(),
-                              const Icon(
-                                Icons.delete,
-                                color: Colors.grey,
-                              )
+                              IconButton(onPressed: (){
+                                showDialog(context: context, builder: showAlertDialog(context));
+                              }, icon: Icon(Icons.delete,color: Colors.grey,))
+
                             ],
                           )),
                     ),
