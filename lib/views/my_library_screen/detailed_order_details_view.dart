@@ -74,14 +74,14 @@ class _DetailedBooksOrderState extends State<DetailedBooksOrder> {
                           widget.bookName,
                           style: const TextStyle(fontSize: 20),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         const Text(
                           'UPSC, Sharma Academy, Chemistry',
                           style: TextStyle(fontSize: 12, color: Colors.black87),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         const Flexible(
@@ -91,7 +91,7 @@ class _DetailedBooksOrderState extends State<DetailedBooksOrder> {
                                 TextStyle(fontSize: 12, color: Colors.black54),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Flexible(

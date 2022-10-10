@@ -36,13 +36,13 @@ class _DashboardViewState extends State<DashboardView> {
   showAlertDialog(BuildContext context) {
     // set up the button
     Widget okButton = ElevatedButton(
-      child: Text("Logout"),
+      child: const Text("Logout"),
       onPressed: () {
-        Get.offAll(PreLoginScreen());
+        Get.offAll(const PreLoginScreen());
       },
     );
     Widget noButton = ElevatedButton(
-      child: Text("Cancel"),
+      child: const Text("Cancel"),
       onPressed: () {
         Navigator.pop(context);
       },
@@ -50,8 +50,8 @@ class _DashboardViewState extends State<DashboardView> {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("Do you want to exit this application?"),
-      content: Text("We hate to see you leave..."),
+      title: const Text("Do you want to exit this application?"),
+      content: const Text("We hate to see you leave..."),
       actions: [
         noButton,
         okButton,
@@ -71,10 +71,10 @@ class _DashboardViewState extends State<DashboardView> {
 
   void _onItemTapped(int index) {
     if (index == 1) {
-      Get.to(MyLibraryView());
+      Get.to(const MyLibraryView());
     }
     if (index == 2) {
-      Get.to(FreeEbooksView());
+      Get.to(const FreeEbooksView());
     }
     if (index == 3) {
       _scaffoldKey.currentState?.openDrawer();
@@ -229,7 +229,7 @@ class _DashboardViewState extends State<DashboardView> {
                 leading:
                     const Icon(Icons.favorite, size: 25.0, color: Colors.grey),
                 onTap: () {
-                  Get.to(Wishlists());
+                  Get.to(const Wishlists());
                   // onDrawerItemClicked("Highlight");
                 },
               ),

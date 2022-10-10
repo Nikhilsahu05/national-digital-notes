@@ -2,11 +2,13 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:vocsy_epub_viewer/epub_viewer.dart';
 
+// ignore: use_key_in_widget_constructors
 class EPUBTEST extends StatefulWidget {
   @override
   EPUBTESTState createState() => EPUBTESTState();
@@ -14,7 +16,7 @@ class EPUBTEST extends StatefulWidget {
 
 class EPUBTESTState extends State<EPUBTEST> {
   bool loading = false;
-  Dio dio = new Dio();
+  Dio dio = Dio();
   String filePath = "";
 
   @override
@@ -25,7 +27,9 @@ class EPUBTESTState extends State<EPUBTEST> {
 
   download() async {
     if (Platform.isAndroid || Platform.isIOS) {
-      print('download');
+      if (kDebugMode) {
+        print('download');
+      }
       await downloadFile();
     } else {
       loading = false;
@@ -33,12 +37,6 @@ class EPUBTESTState extends State<EPUBTEST> {
   }
 
   callBook() async {
-    Directory appDocDir = await getApplicationDocumentsDirectory();
-    print('$appDocDir');
-
-    String iosBookPath = '${appDocDir.path}/chair.epub';
-    print(iosBookPath);
-    String androidBookPath = 'file:///android_asset/3.epub';
     EpubViewer.setConfig(
         themeColor: Theme.of(context).primaryColor,
         identifier: "iosBook",
@@ -48,9 +46,7 @@ class EPUBTESTState extends State<EPUBTEST> {
         nightMode: true);
 
     // get current locator
-    EpubViewer.locatorStream.listen((locator) {
-      print('LOCATOR: ${locator}');
-    });
+    EpubViewer.locatorStream.listen((locator) {});
 
     EpubViewer.open(
       filePath,
@@ -71,14 +67,12 @@ class EPUBTESTState extends State<EPUBTEST> {
         appBar: AppBar(
           title: const Text('NDN'),
         ),
-        body: Center(child: CupertinoActivityIndicator()),
+        body: const Center(child: CupertinoActivityIndicator()),
       ),
     );
   }
 
   Future downloadFile() async {
-    print('download1');
-
     if (await Permission.storage.isGranted) {
       await Permission.storage.request();
       await startDownload();
@@ -92,7 +86,7 @@ class EPUBTESTState extends State<EPUBTEST> {
         ? await getExternalStorageDirectory()
         : await getApplicationDocumentsDirectory();
 
-    String path = appDocDir!.path + '/chair.epub';
+    String path = '${appDocDir!.path}/chair.epub';
     File file = File(path);
 //    await file.delete();
 
@@ -104,7 +98,6 @@ class EPUBTESTState extends State<EPUBTEST> {
         path,
         deleteOnError: true,
         onReceiveProgress: (receivedBytes, totalBytes) {
-          print((receivedBytes / totalBytes * 100).toStringAsFixed(0));
           //Check if download is complete and close the alert dialog
           if (receivedBytes == totalBytes) {
             loading = false;

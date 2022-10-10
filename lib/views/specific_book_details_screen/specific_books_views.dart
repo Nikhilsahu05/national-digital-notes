@@ -403,7 +403,9 @@ class _HomePage extends State<PDFSYNC> {
           _checkAndCloseContextMenu();
           await Clipboard.setData(ClipboardData(text: selectedText));
           _drawAnnotation(annotationType);
-          print("Selected Text :: $selectedText :: Save to saved notes");
+          if (kDebugMode) {
+            print("Selected Text :: $selectedText :: Save to saved notes");
+          }
         },
         child: Text(
           annotationType!,
