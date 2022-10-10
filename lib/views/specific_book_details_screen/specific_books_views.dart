@@ -214,7 +214,7 @@ class _SpecificBooksViewsState extends State<SpecificBooksViews> {
                                   onPressed: () {
                                     setState(() {
                                       isLoading = true;
-                                      Future.delayed(const Duration(seconds: 3))
+                                      Future.delayed(const Duration(seconds: 2))
                                           .then((value) {
                                         isLoading = false;
                                         Get.to(const OrderPlaced());
@@ -272,7 +272,7 @@ class _SpecificBooksViewsState extends State<SpecificBooksViews> {
                             });
 
 
-                            Future.delayed(Duration(seconds: 5)).then((value) {
+                            Future.delayed(Duration(seconds: 2)).then((value) {
                               setState(() {
                                 isLoading = false;
                                 print("Method started $isLoading");

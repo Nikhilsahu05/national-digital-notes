@@ -78,6 +78,7 @@ flutter:
     - assets/sample_book.pdf
     - assets/quote_icon.png
     - assets/Checkmark.gif
+    - assets/book_loading.gif
     - assets/onboarding-images/
     - assets/home_screen_images/
     - assets/coaching_logos/
