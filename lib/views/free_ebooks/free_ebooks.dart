@@ -34,6 +34,8 @@ class _FreeEbooksViewState extends State<FreeEbooksView> {
 
   bool englishPressed = true;
 
+  EPUBTEST epubtest = EPUBTEST();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +60,7 @@ class _FreeEbooksViewState extends State<FreeEbooksView> {
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
                       color:
-                          englishPressed == true ? Colors.blue : Colors.black),
+                      englishPressed == true ? Colors.blue : Colors.black),
                 ),
                 Switch(
                     value: englishPressed == false ? true : false,
@@ -74,7 +76,7 @@ class _FreeEbooksViewState extends State<FreeEbooksView> {
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
                       color:
-                          englishPressed == false ? Colors.blue : Colors.black),
+                      englishPressed == false ? Colors.blue : Colors.black),
                 )
               ],
             ),
@@ -117,7 +119,10 @@ class _FreeEbooksViewState extends State<FreeEbooksView> {
                             children: [
                               SizedBox(
                                 height:
-                                    MediaQuery.of(context).size.width * 0.55,
+                                MediaQuery
+                                    .of(context)
+                                    .size
+                                    .width * 0.55,
                                 child: Image.asset(
                                   englishPressed == true
                                       ? imagesURL[index]

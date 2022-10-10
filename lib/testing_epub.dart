@@ -9,10 +9,10 @@ import 'package:vocsy_epub_viewer/epub_viewer.dart';
 
 class EPUBTEST extends StatefulWidget {
   @override
-  _EPUBTESTState createState() => _EPUBTESTState();
+  EPUBTESTState createState() => EPUBTESTState();
 }
 
-class _EPUBTESTState extends State<EPUBTEST> {
+class EPUBTESTState extends State<EPUBTEST> {
   bool loading = false;
   Dio dio = new Dio();
   String filePath = "";
