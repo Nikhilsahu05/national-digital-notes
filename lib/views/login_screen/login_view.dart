@@ -41,8 +41,7 @@ class LoginViewState extends State<LoginView> {
           Container(height: 15),
           Center(
             child: Text("Welcome Back,",
-                style: MyText.title(context)!.copyWith(
-                    color: MyColors.grey_80, fontWeight: FontWeight.bold)),
+                style: TextStyle(color: Colors.black,fontSize: 20, fontWeight: FontWeight.bold)),
           ),
           Container(height: 5),
           Center(
@@ -52,13 +51,15 @@ class LoginViewState extends State<LoginView> {
           ),
           Container(height: 50),
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 5),
+            padding:
+            const EdgeInsets.symmetric(horizontal: 0, vertical: 5),
             child: const SizedBox(
               height: 50,
               child: TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Email',
+                  labelStyle: TextStyle(color: Colors.black)
                 ),
               ),
             ),
@@ -71,6 +72,7 @@ class LoginViewState extends State<LoginView> {
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Password',
+                  labelStyle: TextStyle(color: Colors.black)
                 ),
               ),
             ),

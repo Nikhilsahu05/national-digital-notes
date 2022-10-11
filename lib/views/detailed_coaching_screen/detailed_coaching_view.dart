@@ -175,7 +175,7 @@ class _DetailedCoachingViewState extends State<DetailedCoachingView> {
                                   child: Text(
                                     coursesNames['name'][index].toString(),
                                     style: const TextStyle(
-                                        fontSize: 14,
+                                        fontSize: 16,
                                         fontWeight: FontWeight.w600),
                                   )),
                               const Divider(
@@ -197,8 +197,8 @@ class _DetailedCoachingViewState extends State<DetailedCoachingView> {
                                         decoration: const BoxDecoration(
                                           shape: BoxShape.circle,
                                         ),
-                                        width: 35,
-                                        height: 35,
+                                        width: 50,
+                                        height: 50,
                                         child: Image.asset(imagesURL[index])),
                                   ),
                                 ],

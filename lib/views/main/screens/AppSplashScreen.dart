@@ -69,7 +69,7 @@ class _AppSplashScreenState extends State<AppSplashScreen>
           Tween<double>(begin: 0.0, end: 12).animate(scaleController!);
 
       setState(() {
-        boxColor = Colors.blue;
+        // boxColor = Colors.blue;
         _d = true;
       });
     });

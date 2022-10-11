@@ -198,7 +198,7 @@ class _DashboardViewState extends State<DashboardView> {
               ListTile(
                 title: Text("My Library",
                     style: MyText.subhead(context)!.copyWith(
-                        color: Colors.black, fontWeight: FontWeight.w500)),
+                         fontWeight: FontWeight.w500)),
                 leading: const Icon(Icons.subscriptions,
                     size: 25.0, color: Colors.grey),
                 onTap: () {
@@ -210,7 +210,7 @@ class _DashboardViewState extends State<DashboardView> {
               ListTile(
                 title: Text("Free eBooks",
                     style: MyText.subhead(context)!.copyWith(
-                        color: Colors.black, fontWeight: FontWeight.w500)),
+                         fontWeight: FontWeight.w500)),
                 leading: const Icon(Icons.menu_book_sharp,
                     size: 25.0, color: Colors.grey),
                 onTap: () {
@@ -225,7 +225,7 @@ class _DashboardViewState extends State<DashboardView> {
               ListTile(
                 title: Text("Wishlist",
                     style: MyText.subhead(context)!.copyWith(
-                        color: Colors.black, fontWeight: FontWeight.w500)),
+                       fontWeight: FontWeight.w500)),
                 leading:
                     const Icon(Icons.favorite, size: 25.0, color: Colors.grey),
                 onTap: () {
@@ -247,7 +247,7 @@ class _DashboardViewState extends State<DashboardView> {
               ListTile(
                 title: Text("Success Stories",
                     style: MyText.subhead(context)!.copyWith(
-                        color: Colors.black, fontWeight: FontWeight.w500)),
+                        fontWeight: FontWeight.w500)),
                 leading: const Icon(Icons.auto_stories,
                     size: 25.0, color: Colors.grey),
                 onTap: () {
@@ -261,7 +261,7 @@ class _DashboardViewState extends State<DashboardView> {
               ListTile(
                 title: Text("Share",
                     style: MyText.subhead(context)!.copyWith(
-                        color: Colors.black, fontWeight: FontWeight.w500)),
+                        fontWeight: FontWeight.w500)),
                 leading:
                     const Icon(Icons.share, size: 25.0, color: Colors.grey),
                 onTap: () {
@@ -280,7 +280,7 @@ class _DashboardViewState extends State<DashboardView> {
               ListTile(
                 title: Text("Contact us",
                     style: MyText.subhead(context)!.copyWith(
-                        color: Colors.black, fontWeight: FontWeight.w500)),
+                       fontWeight: FontWeight.w500)),
                 leading:
                     const Icon(Icons.phone, size: 25.0, color: Colors.grey),
                 onTap: () {
@@ -297,7 +297,7 @@ class _DashboardViewState extends State<DashboardView> {
               ListTile(
                 title: Text("About NDN",
                     style: MyText.subhead(context)!.copyWith(
-                        color: Colors.black, fontWeight: FontWeight.w500)),
+                        fontWeight: FontWeight.w500)),
                 leading: const Icon(Icons.info, size: 25.0, color: Colors.grey),
                 onTap: () {
                   Get.to(const AboutAppSimpleBlueRoute());
@@ -311,7 +311,7 @@ class _DashboardViewState extends State<DashboardView> {
               ListTile(
                 title: Text("Terms",
                     style: MyText.subhead(context)!.copyWith(
-                        color: Colors.black, fontWeight: FontWeight.w500)),
+                        fontWeight: FontWeight.w500)),
                 leading: const Icon(Icons.front_hand_sharp,
                     size: 25.0, color: Colors.grey),
                 onTap: () {
@@ -322,7 +322,7 @@ class _DashboardViewState extends State<DashboardView> {
               ListTile(
                 title: Text("Polices",
                     style: MyText.subhead(context)!.copyWith(
-                        color: Colors.black, fontWeight: FontWeight.w500)),
+                        fontWeight: FontWeight.w500)),
                 leading:
                     const Icon(Icons.policy, size: 25.0, color: Colors.grey),
                 onTap: () {
@@ -334,7 +334,7 @@ class _DashboardViewState extends State<DashboardView> {
               ListTile(
                 title: Text("Logout",
                     style: MyText.subhead(context)!.copyWith(
-                        color: Colors.black, fontWeight: FontWeight.w500)),
+                       fontWeight: FontWeight.w500)),
                 leading: const Icon(Icons.help_outline,
                     size: 25.0, color: Colors.grey),
                 onTap: () {
@@ -516,7 +516,7 @@ class _DashboardViewState extends State<DashboardView> {
                                   alignment: Alignment.centerLeft,
                                   child: Text(
                                     coursesNames['name'][index].toString(),
-                                    style: const TextStyle(
+                                    style: const TextStyle(color: Colors.black,
                                         fontSize: 16,
                                         fontWeight: FontWeight.w600),
                                   )),
@@ -535,7 +535,7 @@ class _DashboardViewState extends State<DashboardView> {
                                     child: Text(
                                       coursesNames['desc'][index].toString(),
                                       textAlign: TextAlign.start,
-                                      style: const TextStyle(fontSize: 11),
+                                      style: const TextStyle(color: Colors.black,fontSize: 11),
                                     ),
                                   ),
                                   Flexible(

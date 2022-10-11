@@ -1,0 +1,109 @@
+PODS:
+  - AEXML (4.6.0)
+  - connectivity_plus (0.0.1):
+    - Flutter
+    - ReachabilitySwift
+  - EpubViewerKit (0.1.3):
+    - AEXML (= 4.6.0)
+    - FontBlaster (= 5.1.1)
+    - MenuItemKit (= 4.0.1)
+    - RealmSwift (= 5.5.1)
+    - SSZipArchive (= 2.2.3)
+    - ZFDragableModalTransition (= 0.6)
+  - Flutter (1.0.0)
+  - fluttertoast (0.0.2):
+    - Flutter
+    - Toast
+  - FontBlaster (5.1.1)
+  - MenuItemKit (4.0.1)
+  - nb_utils (0.0.1):
+    - Flutter
+  - path_provider_ios (0.0.1):
+    - Flutter
+  - permission_handler_apple (9.0.4):
+    - Flutter
+  - ReachabilitySwift (5.0.0)
+  - Realm (5.5.1):
+    - Realm/Headers (= 5.5.1)
+  - Realm/Headers (5.5.1)
+  - RealmSwift (5.5.1):
+    - Realm (= 5.5.1)
+  - shared_preferences_ios (0.0.1):
+    - Flutter
+  - SSZipArchive (2.2.3)
+  - Toast (4.0.0)
+  - url_launcher_ios (0.0.1):
+    - Flutter
+  - vocsy_epub_viewer (0.0.5):
+    - EpubViewerKit (~> 0.1.3)
+    - Flutter
+  - ZFDragableModalTransition (0.6)
+
+DEPENDENCIES:
+  - connectivity_plus (from `.symlinks/plugins/connectivity_plus/ios`)
+  - Flutter (from `Flutter`)
+  - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
+  - nb_utils (from `.symlinks/plugins/nb_utils/ios`)
+  - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
+  - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
+  - shared_preferences_ios (from `.symlinks/plugins/shared_preferences_ios/ios`)
+  - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
+  - vocsy_epub_viewer (from `.symlinks/plugins/vocsy_epub_viewer/ios`)
+
+SPEC REPOS:
+  trunk:
+    - AEXML
+    - EpubViewerKit
+    - FontBlaster
+    - MenuItemKit
+    - ReachabilitySwift
+    - Realm
+    - RealmSwift
+    - SSZipArchive
+    - Toast
+    - ZFDragableModalTransition
+
+EXTERNAL SOURCES:
+  connectivity_plus:
+    :path: ".symlinks/plugins/connectivity_plus/ios"
+  Flutter:
+    :path: Flutter
+  fluttertoast:
+    :path: ".symlinks/plugins/fluttertoast/ios"
+  nb_utils:
+    :path: ".symlinks/plugins/nb_utils/ios"
+  path_provider_ios:
+    :path: ".symlinks/plugins/path_provider_ios/ios"
+  permission_handler_apple:
+    :path: ".symlinks/plugins/permission_handler_apple/ios"
+  shared_preferences_ios:
+    :path: ".symlinks/plugins/shared_preferences_ios/ios"
+  url_launcher_ios:
+    :path: ".symlinks/plugins/url_launcher_ios/ios"
+  vocsy_epub_viewer:
+    :path: ".symlinks/plugins/vocsy_epub_viewer/ios"
+
+SPEC CHECKSUMS:
+  AEXML: 2fbb73d8724797ed2cde888731e176fa4d44dd83
+  connectivity_plus: 413a8857dd5d9f1c399a39130850d02fe0feaf7e
+  EpubViewerKit: 5f6c8ff9161bba18d6742c59b3c575c19f0623a9
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  fluttertoast: 16fbe6039d06a763f3533670197d01fc73459037
+  FontBlaster: 8897ebdbb4b6ace3ab78c92b665d88c954f19e4a
+  MenuItemKit: 1459920e984d823e1bcc858b7a964f94e6bfa0f6
+  nb_utils: ada4338858d8827ec92fdab2a545206b4ba4cfb1
+  path_provider_ios: 14f3d2fd28c4fdb42f44e0f751d12861c43cee02
+  permission_handler_apple: 44366e37eaf29454a1e7b1b7d736c2cceaeb17ce
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
+  Realm: c2ffe0667f9c98c9ba65f608ba85684d39826145
+  RealmSwift: 5a35c1c35c3e1925e6fcd092c881d5cc4a826bff
+  shared_preferences_ios: 548a61f8053b9b8a49ac19c1ffbc8b92c50d68ad
+  SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
+  Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
+  url_launcher_ios: 839c58cdb4279282219f5e248c3321761ff3c4de
+  vocsy_epub_viewer: ad1cbdb60cb1b9785bea193418250b82caf15fa8
+  ZFDragableModalTransition: 0d294eaaba6edfcb9839595de765f9ca06a4b524
+
+PODFILE CHECKSUM: 7368163408c647b7eb699d0d788ba6718e18fb8d
+
+COCOAPODS: 1.11.3
