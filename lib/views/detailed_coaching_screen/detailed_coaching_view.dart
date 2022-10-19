@@ -189,7 +189,7 @@ class _DetailedCoachingViewState extends State<DetailedCoachingView> {
                                     child: Text(
                                       coursesNames['desc'][index].toString(),
                                       textAlign: TextAlign.start,
-                                      style: const TextStyle(fontSize: 11),
+                                      style: const TextStyle(fontSize: 10),
                                     ),
                                   ),
                                   Flexible(
@@ -197,8 +197,8 @@ class _DetailedCoachingViewState extends State<DetailedCoachingView> {
                                         decoration: const BoxDecoration(
                                           shape: BoxShape.circle,
                                         ),
-                                        width: 50,
-                                        height: 50,
+                                        width: 35,
+                                        height: 35,
                                         child: Image.asset(imagesURL[index])),
                                   ),
                                 ],

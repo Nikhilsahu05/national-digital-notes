@@ -481,7 +481,7 @@ class _DashboardViewState extends State<DashboardView> {
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisSpacing: 2,
                       crossAxisCount: 2,
-                      childAspectRatio: 1.7),
+                      childAspectRatio: 1.2),
                   itemCount: 12,
                   itemBuilder: (BuildContext context, int index) {
                     return InkWell(

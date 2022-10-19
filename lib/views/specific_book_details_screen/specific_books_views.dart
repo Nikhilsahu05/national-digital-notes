@@ -1,16 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
-import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:vocsy_epub_viewer/epub_viewer.dart';
-import 'dart:io';
-import '../../testing_epub.dart';
 import '../add_to_cart_screen/add_to_cart_view.dart';
 import '../order_placed_screen/order_placed_view.dart';
+import '../pdf_viewer.dart';
 import 'about_this_ebook_view.dart';
 
 // ignore: must_be_immutable
@@ -40,22 +35,8 @@ class _SpecificBooksViewsState extends State<SpecificBooksViews> {
   Dio dio = Dio();
   String filePath = "";
 
-  @override
-  void initState() {
-    super.initState();
-    download();
-  }
 
-  download() async {
-    if (Platform.isAndroid || Platform.isIOS) {
-      if (kDebugMode) {
-        print('download');
-      }
-      await downloadFile();
-    } else {
-      loading = false;
-    }
-  }
+
 
   callBook() async {
     EpubViewer.setConfig(
@@ -68,9 +49,8 @@ class _SpecificBooksViewsState extends State<SpecificBooksViews> {
 
     // get current locator
     EpubViewer.locatorStream.listen((locator) {});
-
-    EpubViewer.open(
-      filePath,
+  await  EpubViewer.openAsset(
+      'assets/books_testing.epub',
       lastLocation: EpubLocator.fromJson({
         "bookId": "2239",
         "href": "/OEBPS/ch06.xhtml",
@@ -79,48 +59,10 @@ class _SpecificBooksViewsState extends State<SpecificBooksViews> {
       }),
     );
   }
-  Future downloadFile() async {
-    if (await Permission.storage.isGranted) {
-      await Permission.storage.request();
-      await startDownload();
-    } else {
-      await startDownload();
-    }
-  }
 
-  startDownload() async {
-    Directory? appDocDir = Platform.isAndroid
-        ? await getExternalStorageDirectory()
-        : await getApplicationDocumentsDirectory();
 
-    String path = '${appDocDir!.path}/chair.epub';
-    File file = File(path);
-//    await file.delete();
 
-    if (!File(path).existsSync()) {
-      await file.create();
-      await dio.download(
-        'https://github.com/FolioReader/FolioReaderKit/raw/master/Example/'
-            'Shared/Sample%20eBooks/The%20Silver%20Chair.epub',
-        path,
-        deleteOnError: true,
-        onReceiveProgress: (receivedBytes, totalBytes) {
-          //Check if download is complete and close the alert dialog
-          if (receivedBytes == totalBytes) {
-            loading = false;
-            setState(() {
-              filePath = path;
-            });
-          }
-        },
-      );
-    } else {
-      loading = false;
-      setState(() {
-        filePath = path;
-      });
-    }
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -284,7 +226,7 @@ class _SpecificBooksViewsState extends State<SpecificBooksViews> {
               children: [
                 OutlinedButton(
                     onPressed: () {
-                    callBook();
+                      _settingModalBottomSheet(context);
                     },
                     style: OutlinedButton.styleFrom(
                       //<-- SEE HERE
@@ -414,4 +356,28 @@ class _SpecificBooksViewsState extends State<SpecificBooksViews> {
       ]),
     );
   }
-}
+  void _settingModalBottomSheet(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return Wrap(
+            children: <Widget>[
+              ListTile(
+                  leading: const Icon(Icons.picture_as_pdf),
+                  title: const Text('Open with PDF'),
+                  onTap: () => {
+                  Get.to(const TestingPDF())
+                  }
+              ),
+              ListTile(
+                leading: const Icon(Icons.book),
+                title: const Text('Open with Epub'),
+                onTap: () {
+                  callBook();
+                },
+              ),
+            ],
+          );
+        }
+    );
+  }}

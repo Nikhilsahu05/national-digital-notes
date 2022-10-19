@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
-import 'package:national_digital_notes/views/main/screens/AppSplashScreen.dart';
+import 'package:national_digital_notes/views/inshort/inshort.dart';
 
 // AppStore appStore = AppStore();
 
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Poppins-Regular',
         primarySwatch: Colors.blue,
       ),
-      home: const AppSplashScreen(),
+      home:  InShort(),
     );
   }
 }

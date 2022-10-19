@@ -44,8 +44,12 @@ dependencies:
   permission_handler: ^10.1.0
   url_launcher: ^6.1.6
   dio: ^4.0.6
+  flutter_pdfview: ^1.2.5
+  syncfusion_flutter_pdfviewer: ^20.3.49
 
   vocsy_epub_viewer: ^0.0.8
+  share_plus: ^6.0.0
+
 
 
 dev_dependencies:
@@ -85,6 +89,9 @@ flutter:
     - assets/coaching_banners/
     - assets/subjects_logo/
     - assets/books_covers/
+    - assets/ANCIENT_HISTORY.pdf
+    - assets/315_History_Hindi_Lesson5.epub
+    - assets/books_testing.epub
     - assets/upsc-exam-timetable-1.jpg
     - assets/book.epub
     - assets/20943863.jpg

@@ -5,7 +5,6 @@ import 'package:national_digital_notes/views/forgot_screen/forgot_view.dart';
 import 'package:national_digital_notes/views/pre_login_screen/pre_login_screen.dart';
 
 import '../../utils/constants/heading_text_styles.dart';
-import '../../utils/constants/my_colors.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -39,7 +38,7 @@ class LoginViewState extends State<LoginView> {
             ),
           ),
           Container(height: 15),
-          Center(
+          const Center(
             child: Text("Welcome Back,",
                 style: TextStyle(color: Colors.black,fontSize: 20, fontWeight: FontWeight.bold)),
           ),

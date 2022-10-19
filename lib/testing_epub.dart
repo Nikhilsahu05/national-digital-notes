@@ -48,8 +48,8 @@ class EPUBTESTState extends State<EPUBTEST> {
     // get current locator
     EpubViewer.locatorStream.listen((locator) {});
 
-    EpubViewer.open(
-      filePath,
+    EpubViewer.openAsset(
+      'assets/book.epub',
       lastLocation: EpubLocator.fromJson({
         "bookId": "2239",
         "href": "/OEBPS/ch06.xhtml",
